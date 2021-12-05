@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Kwak/Prefab/PlayerInputActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Kwak/Controller/PlayerInputActions.inputactions'
 
 using System;
 using System.Collections;
@@ -40,6 +40,14 @@ namespace Common.Controller
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""73f1fede-ffbd-4f72-a076-6850c227a068"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Avoid"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd412b8c-c50f-4960-a39d-6fdc5bed80cb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -224,17 +232,6 @@ namespace Common.Controller
                 },
                 {
                     ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""886e731e-7071-4ae4-95c0-e61739dad6fd"",
                     ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
@@ -263,6 +260,50 @@ namespace Common.Controller
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cace042f-22bd-4574-a2ce-3763d3378a41"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""006b0f7a-0913-46fd-96b9-dfd265cff64c"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff81bee4-19e4-47ff-8dbd-0968c63aeef4"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Avoid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6f10f49-05f7-4b94-af74-158802182648"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Avoid"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -843,6 +884,7 @@ namespace Common.Controller
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_Avoid = m_Player.FindAction("Avoid", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -907,6 +949,7 @@ namespace Common.Controller
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_Avoid;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -914,6 +957,7 @@ namespace Common.Controller
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            public InputAction @Avoid => m_Wrapper.m_Player_Avoid;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -932,6 +976,9 @@ namespace Common.Controller
                     @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                     @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                     @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                    @Avoid.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
+                    @Avoid.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
+                    @Avoid.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -945,6 +992,9 @@ namespace Common.Controller
                     @Fire.started += instance.OnFire;
                     @Fire.performed += instance.OnFire;
                     @Fire.canceled += instance.OnFire;
+                    @Avoid.started += instance.OnAvoid;
+                    @Avoid.performed += instance.OnAvoid;
+                    @Avoid.canceled += instance.OnAvoid;
                 }
             }
         }
@@ -1104,6 +1154,7 @@ namespace Common.Controller
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
+            void OnAvoid(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

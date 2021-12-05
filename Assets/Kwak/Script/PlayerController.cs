@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Enable();
         playerInputActions.Player.Move.performed += OnMovePerform;
         playerInputActions.Player.Move.canceled += OnMoveCancel;
+        playerInputActions.Player.Fire.performed += OnAttackPerform;
 
         this.characterController = GetComponent<CharacterController>();
         this.animator = GetComponent<Animator>();
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
         // 캐릭터 State에 따라서 동작해야 할 것 같다
         if (moveDirection != Vector3.zero)
         {
-            this.characterController.Move(Time.deltaTime * moveDirection);
+            this.characterController.Move(Time.deltaTime * moveDirection * 3.0f);
         }
     }
 
@@ -46,5 +47,10 @@ public class PlayerController : MonoBehaviour
     {
         this.moveDirection = Vector3.zero;
         this.animator.CrossFade("Idle",0.15f);
+    }
+
+    private void OnAttackPerform(InputAction.CallbackContext context)
+    {
+        this.animator.CrossFade("Attack01", 0.05f);
     }
 }
