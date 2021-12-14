@@ -6,12 +6,23 @@ using Common.Controller;
 
 public class PlayerController : MonoBehaviour
 {
-    CharacterController characterController;
-    Animator animator;
-    Vector3 moveDirection = Vector3.zero;
+    public static PlayerController instance;
+    public CharacterController characterController { get; private set; }
+    public Animator animator { get; private set; }
+
+    Character.State.IState state;
+    Dictionary<Character.State.State, Character.State.IState> stateContainer;
+    Vector3 reserveMoveVector = Vector3.zero;
 
     private void Awake()
     {
+        if (PlayerController.instance != null)
+        {
+            Debug.LogError("PlayerController Is SingleTone");
+            return;
+        }
+
+        PlayerController.instance = this;
         PlayerInputActions playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
         playerInputActions.Player.Move.performed += OnMovePerform;
@@ -20,37 +31,77 @@ public class PlayerController : MonoBehaviour
 
         this.characterController = GetComponent<CharacterController>();
         this.animator = GetComponent<Animator>();
+
+        stateContainer = new Dictionary<Character.State.State, Character.State.IState>();
+        stateContainer.Add(Character.State.State.Idle, new Character.State.Idle());
+        stateContainer.Add(Character.State.State.Move, new Character.State.Move());
+        stateContainer.Add(Character.State.State.Attack, new Character.State.Attack());
+
+        this.state = stateContainer[Character.State.State.Idle];
     }
 
     private void Update()
     {
-        // 캐릭터 State에 따라서 동작해야 할 것 같다
-        if (moveDirection != Vector3.zero)
+        bool success = this.state.Update();
+        if(success == false)
         {
-            this.characterController.Move(Time.deltaTime * moveDirection * 3.0f);
+            if (this.reserveMoveVector != Vector3.zero)
+            {
+                SetState(Character.State.State.Move);
+                var moveState = this.state as Character.State.Move;
+                if (moveState == null)
+                    return;
+
+                moveState.SetMoveDirection(this.reserveMoveVector);
+
+            }
+            else
+            {
+                SetState(Character.State.State.Idle);
+            }
         }
+    }
+
+    private void SetState(Character.State.State state)
+    {
+        if (this.state.GetStateType() == state)
+            return;
+
+        this.state.Exit();
+        this.state = stateContainer[state];
+        this.state.Entry();
     }
 
     private void OnMovePerform(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
+        Vector3 moveVec = new Vector3(input.x, 0, input.y);// 카메라가 보는 방향에 따라 연산이 필요함
 
-        // 카메라가 보는 방향에 따라 연산이 필요함
-        this.moveDirection = new Vector3(input.x, 0, input.y);
-        Quaternion toRotation = Quaternion.LookRotation(this.moveDirection);
-        this.transform.rotation = toRotation;
+        this.reserveMoveVector = moveVec;
+        if (this.state.GetStateType() == Character.State.State.Attack)
+        {
+            return;
+        }
 
-        this.animator.CrossFade("Run", 0.15f);
+        SetState(Character.State.State.Move);
         
+        var moveState = this.state as Character.State.Move;
+        if (moveState == null)
+            return;
+
+        moveState.SetMoveDirection(moveVec);
     }
     private void OnMoveCancel(InputAction.CallbackContext context)
     {
-        this.moveDirection = Vector3.zero;
-        this.animator.CrossFade("Idle",0.15f);
+        this.reserveMoveVector = Vector3.zero;
+        if (this.state.GetStateType() == Character.State.State.Move)
+        {
+            this.SetState(Character.State.State.Idle);
+        }
     }
 
     private void OnAttackPerform(InputAction.CallbackContext context)
     {
-        this.animator.CrossFade("Attack01", 0.05f);
+        this.SetState(Character.State.State.Attack);
     }
 }
