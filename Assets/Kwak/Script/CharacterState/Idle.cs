@@ -13,7 +13,7 @@ namespace Character.State
 
         public override void Exit()
         {
-            PlayerController.instance.animator.StopPlayback();
+
         }
 
         public override State GetStateType()

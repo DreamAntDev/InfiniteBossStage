@@ -17,5 +17,6 @@ namespace Character.State
         Idle,
         Move,
         Attack,
+        Avoid,
     }
 }
