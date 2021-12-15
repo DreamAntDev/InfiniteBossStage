@@ -63,3 +63,7 @@ crashlytics-build.properties
 
 # Unity UserSettings
 UserSettings/EditorUserSettings.asset
+
+
+# Nammu Editor Asseets
+Assets/Nammu/Editor
