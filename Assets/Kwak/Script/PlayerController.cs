@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Move.performed += OnMovePerform;
         playerInputActions.Player.Move.canceled += OnMoveCancel;
         playerInputActions.Player.Fire.performed += OnAttackPerform;
+        playerInputActions.Player.Avoid.performed += OnAvoidPerform;
 
         this.characterController = GetComponent<CharacterController>();
         this.animator = GetComponent<Animator>();
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         stateContainer.Add(Character.State.State.Idle, new Character.State.Idle());
         stateContainer.Add(Character.State.State.Move, new Character.State.Move());
         stateContainer.Add(Character.State.State.Attack, new Character.State.Attack());
+        stateContainer.Add(Character.State.State.Avoid, new Character.State.Avoid());
 
         this.state = stateContainer[Character.State.State.Idle];
     }
@@ -103,5 +105,12 @@ public class PlayerController : MonoBehaviour
     private void OnAttackPerform(InputAction.CallbackContext context)
     {
         this.SetState(Character.State.State.Attack);
+    }
+    private void OnAvoidPerform(InputAction.CallbackContext context)
+    {
+        if (this.state.GetStateType() == Character.State.State.Avoid)
+            return;
+
+        this.SetState(Character.State.State.Avoid);
     }
 }
