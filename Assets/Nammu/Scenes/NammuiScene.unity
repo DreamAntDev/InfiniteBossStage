@@ -630,6 +630,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DogPBR
       objectReference: {fileID: 0}
+    - target: {fileID: 5503696083994807601, guid: 9e892557e2ca7cd4b8ca88d24854f56d, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5503696083995300113, guid: 9e892557e2ca7cd4b8ca88d24854f56d, type: 3}
       propertyPath: m_RootOrder
       value: 4
