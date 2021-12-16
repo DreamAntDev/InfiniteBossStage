@@ -8,12 +8,12 @@ namespace Character.State
     {
         public override void Entry()
         {
-            PlayerController.instance.animator.CrossFade("Attack01", 0.05f);
+            PlayerController.instance.animator.CrossFadeInFixedTime("Attack01", 0.1f);
         }
 
         public override void Exit()
         {
-            PlayerController.instance.animator.StopPlayback();
+            
         }
 
         public override bool Update()
@@ -28,6 +28,18 @@ namespace Character.State
         public override State GetStateType()
         {
             return State.Attack;
+        }
+
+        public override bool CanExit(State nextState)
+        {
+            if (nextState == State.Avoid)
+                return true;
+
+            if(PlayerController.instance.animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

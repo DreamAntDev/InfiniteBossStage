@@ -10,7 +10,7 @@ namespace Character.State
 
         public override void Entry()
         {
-            PlayerController.instance.animator.CrossFade("Run", 0.05f);
+            PlayerController.instance.animator.CrossFadeInFixedTime("Run", 0.1f);
         }
 
         public override void Exit()
@@ -38,6 +38,11 @@ namespace Character.State
 
             Quaternion toRotation = Quaternion.LookRotation(moveDirection);
             PlayerController.instance.transform.rotation = toRotation;
+        }
+
+        public override bool CanExit(State nextState)
+        {
+            return true;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Character.State
         public abstract bool Update();
         public abstract void Exit();
 
+        public abstract bool CanExit(State nextState);
         public abstract State GetStateType();
     }
     public enum State

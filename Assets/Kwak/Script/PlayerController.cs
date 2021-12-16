@@ -69,9 +69,12 @@ public class PlayerController : MonoBehaviour
         if (this.state.GetStateType() == state)
             return;
 
-        this.state.Exit();
-        this.state = stateContainer[state];
-        this.state.Entry();
+        if (this.state.CanExit(state) == true)
+        {
+            this.state.Exit();
+            this.state = stateContainer[state];
+            this.state.Entry();
+        }
     }
 
     private void OnMovePerform(InputAction.CallbackContext context)
@@ -112,5 +115,8 @@ public class PlayerController : MonoBehaviour
             return;
 
         this.SetState(Character.State.State.Avoid);
+        var avoidState = this.state as Character.State.Avoid;
+        Vector3 avoidVector = (reserveMoveVector == Vector3.zero) ? this.characterController.transform.forward : reserveMoveVector;
+        avoidState.SetMoveVector(avoidVector);
     }
 }

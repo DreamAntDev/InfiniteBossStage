@@ -8,7 +8,7 @@ namespace Character.State
     {
         public override void Entry()
         {
-            PlayerController.instance.animator.CrossFade("Idle", 0.05f);
+            PlayerController.instance.animator.CrossFadeInFixedTime("Idle", 0.1f);
         }
 
         public override void Exit()
@@ -22,6 +22,11 @@ namespace Character.State
         }
 
         public override bool Update()
+        {
+            return true;
+        }
+
+        public override bool CanExit(State nextState)
         {
             return true;
         }
