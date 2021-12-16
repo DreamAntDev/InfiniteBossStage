@@ -119,4 +119,9 @@ public class PlayerController : MonoBehaviour
         Vector3 avoidVector = (reserveMoveVector == Vector3.zero) ? this.characterController.transform.forward : reserveMoveVector;
         avoidState.SetMoveVector(avoidVector);
     }
+
+    public void OnDamage()
+    {
+        Debug.Log("OnDamage");
+    }
 }
