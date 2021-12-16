@@ -7,8 +7,10 @@ using Common.Controller;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
-    public CharacterController characterController { get; private set; }
+    private CharacterController characterController;
     public Animator animator { get; private set; }
+
+    private Vector3 moveVector = Vector3.zero;
 
     Character.State.IState state;
     Dictionary<Character.State.State, Character.State.IState> stateContainer;
@@ -62,6 +64,8 @@ public class PlayerController : MonoBehaviour
                 SetState(Character.State.State.Idle);
             }
         }
+        this.characterController.Move(this.moveVector);
+        this.moveVector = Vector3.zero;
     }
 
     private void SetState(Character.State.State state)
@@ -123,5 +127,10 @@ public class PlayerController : MonoBehaviour
     public void OnDamage()
     {
         Debug.Log("OnDamage");
+    }
+
+    public void AppendMoveVectorPerFrame(Vector3 moveVector)
+    {
+        this.moveVector += moveVector;
     }
 }

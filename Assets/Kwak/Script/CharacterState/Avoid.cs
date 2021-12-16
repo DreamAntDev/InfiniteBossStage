@@ -24,7 +24,7 @@ namespace Character.State
 
             if (PlayerController.instance.animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
             {
-                PlayerController.instance.characterController.Move(Time.deltaTime * moveVector * 5.0f);
+                PlayerController.instance.AppendMoveVectorPerFrame(Time.deltaTime * moveVector * 5.0f);
                 return true;
             }
             return false;

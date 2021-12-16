@@ -27,7 +27,7 @@ namespace Character.State
         {
             if (moveDirection != Vector3.zero)
             {
-                PlayerController.instance.characterController.Move(Time.deltaTime * moveDirection * 3.0f);
+                PlayerController.instance.AppendMoveVectorPerFrame(Time.deltaTime * moveDirection * 3.0f);
                 return true;
             }
             return false;
