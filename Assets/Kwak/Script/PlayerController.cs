@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     Character.State.IState state;
     Dictionary<Character.State.State, Character.State.IState> stateContainer;
     Vector3 reserveMoveVector = Vector3.zero;
+    Vector3 acceleration = Vector3.zero;
 
     private void Awake()
     {
@@ -64,6 +65,18 @@ public class PlayerController : MonoBehaviour
                 SetState(Character.State.State.Idle);
             }
         }
+
+        // AppendGravity
+        if(this.characterController.isGrounded == false)
+        {
+            Vector3 gravityPerFrame = Physics.gravity * Time.deltaTime * Time.deltaTime;
+            this.acceleration += gravityPerFrame;
+        }
+        else
+        {
+            this.acceleration = new Vector3(0, -0.1f, 0);
+        }
+        AppendMoveVectorPerFrame(this.acceleration);
         this.characterController.Move(this.moveVector);
         this.moveVector = Vector3.zero;
     }
@@ -111,7 +124,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttackPerform(InputAction.CallbackContext context)
     {
-        this.SetState(Character.State.State.Attack);
+        if (this.state.GetStateType() == Character.State.State.Attack)
+        {
+            var attackState = this.state as Character.State.Attack;
+            attackState.SetCombo();
+        }
+        else
+        {
+            this.SetState(Character.State.State.Attack);
+        }
     }
     private void OnAvoidPerform(InputAction.CallbackContext context)
     {

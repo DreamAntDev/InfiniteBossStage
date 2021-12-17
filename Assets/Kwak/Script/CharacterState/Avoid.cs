@@ -22,7 +22,9 @@ namespace Character.State
             if (moveVector == Vector3.zero)
                 return false;
 
-            if (PlayerController.instance.animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            var curAnimatorStateInfo = PlayerController.instance.animator.GetCurrentAnimatorStateInfo(0);
+            // 트랜지션중 or 애니메이션 종료 전
+            if (curAnimatorStateInfo.IsName("DiveRoll") == false || PlayerController.instance.animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
             {
                 PlayerController.instance.AppendMoveVectorPerFrame(Time.deltaTime * moveVector * 5.0f);
                 return true;
