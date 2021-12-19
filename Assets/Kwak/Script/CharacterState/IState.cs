@@ -19,5 +19,6 @@ namespace Character.State
         Move,
         Attack,
         Avoid,
+        Grogy,
     }
 }

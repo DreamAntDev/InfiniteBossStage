@@ -10,12 +10,15 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     public Animator animator { get; private set; }
 
+    public Vector3 defaultMoveVector = new Vector3(0, -0.1f, 0);
+
     private Vector3 moveVector = Vector3.zero;
 
     Character.State.IState state;
     Dictionary<Character.State.State, Character.State.IState> stateContainer;
     Vector3 reserveMoveVector = Vector3.zero;
     Vector3 acceleration = Vector3.zero;
+    bool cachedIsGround = true;
 
     private void Awake()
     {
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour
         stateContainer.Add(Character.State.State.Move, new Character.State.Move());
         stateContainer.Add(Character.State.State.Attack, new Character.State.Attack());
         stateContainer.Add(Character.State.State.Avoid, new Character.State.Avoid());
+        stateContainer.Add(Character.State.State.Grogy, new Character.State.Grogy());
 
         this.state = stateContainer[Character.State.State.Idle];
     }
@@ -66,16 +70,41 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // AppendGravity
-        if(this.characterController.isGrounded == false)
+        if(this.characterController.isGrounded != this.cachedIsGround)
         {
-            Vector3 gravityPerFrame = Physics.gravity * Time.deltaTime * Time.deltaTime;
+            if(this.characterController.isGrounded == true)
+            {
+                // OnGround
+                if(this.state.GetStateType() == Character.State.State.Grogy)
+                {
+                    var grogy = this.state as Character.State.Grogy;
+                    grogy.OnGround();
+                }
+            }
+            else
+            {
+                // ReleaseGround
+            }
+            this.cachedIsGround = this.characterController.isGrounded;
+        }
+
+        Vector3 gravityPerFrame = Physics.gravity * Time.deltaTime * Time.deltaTime;
+        // AppendGravity
+        if (this.characterController.isGrounded == false)
+        {
+            
             this.acceleration += gravityPerFrame;
         }
         else
         {
-            this.acceleration = new Vector3(0, -0.1f, 0);
+            this.acceleration = defaultMoveVector;
+            ////this.acceleration = new Vector3(0, -0.1f, 0);
+            //if(this.state.GetStateType() == Character.State.State.Grogy)
+            //{
+            //    this.acceleration = new Vector3(0, 0, 0);
+            //}
         }
+
         AppendMoveVectorPerFrame(this.acceleration);
         this.characterController.Move(this.moveVector);
         this.moveVector = Vector3.zero;
@@ -136,6 +165,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnAvoidPerform(InputAction.CallbackContext context)
     {
+        //OnDamage();
         if (this.state.GetStateType() == Character.State.State.Avoid)
             return;
 
@@ -147,7 +177,40 @@ public class PlayerController : MonoBehaviour
 
     public void OnDamage()
     {
-        Debug.Log("OnDamage");
+        if (this.state.GetStateType() == Character.State.State.Grogy)
+            return;
+
+        this.SetState(Character.State.State.Grogy);
+        var grogyState = this.state as Character.State.Grogy;
+
+        int type = Random.Range(0, 3);
+        if (type == 0)
+        {
+            Vector3 moveVector = this.characterController.transform.forward;
+            moveVector *= -1;
+            moveVector += new Vector3(0, 1f, 0);
+            moveVector *= 5;
+
+            Character.State.Grogy.GrogyType types = Character.State.Grogy.GrogyType.Push | Character.State.Grogy.GrogyType.Upper;
+            Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 3.0f, moveVector, 3.0f);
+            grogyState.SetContext(context);
+        }
+        else if (type == 1)
+        {
+            Vector3 moveVector = this.characterController.transform.forward;
+            moveVector *= -1;
+            moveVector *= 10;
+
+            Character.State.Grogy.GrogyType types = Character.State.Grogy.GrogyType.Push;
+            Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 1.5f, moveVector, 0.5f);
+            grogyState.SetContext(context);
+        }
+        else if(type == 2)
+        {
+            Character.State.Grogy.GrogyType types = Character.State.Grogy.GrogyType.None;
+            Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 1.0f, Vector3.zero, 1.0f);
+            grogyState.SetContext(context);
+        }
     }
 
     public void AppendMoveVectorPerFrame(Vector3 moveVector)

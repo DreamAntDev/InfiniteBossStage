@@ -59,7 +59,7 @@ namespace Character.State
 
         public override bool CanExit(State nextState)
         {
-            if (nextState == State.Avoid)
+            if (nextState == State.Avoid || nextState == State.Grogy)
                 return true;
 
             var curAnimatorStateInfo = PlayerController.instance.animator.GetCurrentAnimatorStateInfo(0);
