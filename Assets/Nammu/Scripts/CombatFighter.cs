@@ -12,7 +12,7 @@ namespace IBS.Combat
         Mover mover;
 
         [SerializeField]
-        float attackDistance = 3f;
+        float attackDistance = 2f;
 
         private void Awake()
         {
@@ -28,14 +28,22 @@ namespace IBS.Combat
         void Update()
         {
             if (target == null) return;
-            if (InAttackRangeOfPlayer())
+
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
             {
-                mover.Cancel();
-                animator.SetTrigger("Attack" + Mathf.RoundToInt(Random.Range(1, 3)));
+                if (InAttackRangeOfPlayer())
+                {
+                    mover.Cancel();
+                    AttackBehaviour();
+                }
+                else
+                {
+                    mover.MoveTo(target.transform.position, 0.5f);
+                }
             }
             else
             {
-                mover.MoveTo(target.transform.position, 1f);
+                mover.Cancel();
             }
         }
 
