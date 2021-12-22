@@ -32,12 +32,6 @@ public class Mover : MonoBehaviour
         UpdateAnimator();
     }
 
-    public void StartMoveAction(Vector3 destination, float speedFraction)
-    {
-        GetComponent<ActionScheduler>().StartAction(this);
-        MoveTo(destination, speedFraction);
-    }
-
     public bool CanMoveTo(Vector3 destination)
     {
         NavMeshPath path = new NavMeshPath();
