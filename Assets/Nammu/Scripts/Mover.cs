@@ -11,12 +11,15 @@ public class Mover : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] float maxSpeed = 6f;
     [SerializeField] float maxNavPathLength = 40f;
+    
 
     NavMeshAgent navMeshAgent;
+    Health health;
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        health = GetComponent<Health>();
     }
     private void Start()
     {
@@ -25,16 +28,15 @@ public class Mover : MonoBehaviour
 
     void Update()
     {
-       // navMeshAgent.enabled = !health.IsDead();
-
+        navMeshAgent.enabled = !health.IsDead();
         UpdateAnimator();
     }
 
-   /* public void StartMoveAction(Vector3 destination, float speedFraction)
+    public void StartMoveAction(Vector3 destination, float speedFraction)
     {
         GetComponent<ActionScheduler>().StartAction(this);
         MoveTo(destination, speedFraction);
-    }*/
+    }
 
     public bool CanMoveTo(Vector3 destination)
     {
@@ -52,11 +54,17 @@ public class Mover : MonoBehaviour
         navMeshAgent.destination = destination;
         navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
         navMeshAgent.isStopped = false;
+        navMeshAgent.updatePosition = true;
+        navMeshAgent.updateRotation = true;
     }
 
     public void Cancel()
     {
         navMeshAgent.isStopped = true;
+
+        navMeshAgent.updatePosition = false;
+        navMeshAgent.updateRotation = false;
+        navMeshAgent.velocity = Vector3.zero;
     }
 
     private void UpdateAnimator()
