@@ -10,6 +10,7 @@ namespace IBS.Combat
         GameObject target;
         Animator animator;
         Mover mover;
+        Health health;
 
         [SerializeField]
         float attackDistance = 2f;
@@ -18,6 +19,7 @@ namespace IBS.Combat
         {
             animator = GetComponent<Animator>();
             mover = GetComponent<Mover>();
+            health = GetComponent<Health>();
         }
 
         private void Start()
@@ -27,8 +29,9 @@ namespace IBS.Combat
 
         void Update()
         {
-            if (target == null) return;
+            if (target == null || health.IsDead()) return;
 
+            
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
             {
                 if (InAttackRangeOfPlayer())
@@ -59,12 +62,10 @@ namespace IBS.Combat
             return distanceToPlayer < attackDistance;
         }
 
-
-        public void CanAttack() { }
-        public void Attack() { }
-
-        public void Cancel() { }
-        public void Hit() { }
+        public void Hit(float damage) 
+        {
+            health.TakeDamage(damage);
+        }
 
 
         private void AttackBehaviour()

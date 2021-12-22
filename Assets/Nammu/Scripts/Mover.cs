@@ -6,29 +6,21 @@ using UnityEngine.AI;
 
 public class Mover : MonoBehaviour
 {
-    GameObject player;
-    
     [SerializeField] Transform target;
     [SerializeField] float maxSpeed = 6f;
     [SerializeField] float maxNavPathLength = 40f;
     
 
     NavMeshAgent navMeshAgent;
-    Health health;
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        health = GetComponent<Health>();
-    }
-    private void Start()
-    {
-        player = GameObject.FindWithTag("Player");
     }
 
     void Update()
     {
-        navMeshAgent.enabled = !health.IsDead();
+       // navMeshAgent.enabled = !health.IsDead();
         UpdateAnimator();
     }
 
@@ -43,6 +35,11 @@ public class Mover : MonoBehaviour
         return true;
     }
 
+    public void Stop()
+    {
+        navMeshAgent.enabled = false;
+    }
+
     public void MoveTo(Vector3 destination, float speedFraction)
     {
         navMeshAgent.destination = destination;
@@ -51,7 +48,6 @@ public class Mover : MonoBehaviour
         navMeshAgent.updatePosition = true;
         navMeshAgent.updateRotation = true;
     }
-
     public void Cancel()
     {
         navMeshAgent.isStopped = true;
