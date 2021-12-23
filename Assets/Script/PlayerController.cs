@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     public Animator animator { get; private set; }
 
+    [HideInInspector]
     public Vector3 defaultMoveVector = new Vector3(0, -0.1f, 0);
 
     private Vector3 moveVector = Vector3.zero;
