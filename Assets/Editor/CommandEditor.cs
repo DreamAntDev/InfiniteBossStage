@@ -5,17 +5,14 @@ using System.Collections.Generic;
 
 public class CommandEditor : EditorWindow
 {
+    static int ListCount = 20;
     static List<string> stringList;
 
     [MenuItem("Editor/CommandEditor")]
+
     static void Init()
     {
         CommandEditor window = (CommandEditor)EditorWindow.GetWindow(typeof(CommandEditor));
-        stringList = new List<string>();
-        for(int i=0;i<20;i++)
-        {
-            stringList.Add("");
-        }
         window.Show();
     }
 
@@ -23,7 +20,7 @@ public class CommandEditor : EditorWindow
     {
         GUILayout.Label("CommandEditor", EditorStyles.boldLabel);
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < ListCount; i++)
         {
             EditorGUILayout.BeginHorizontal();
             GUILayout.Label("Command", GUILayout.Width(60));
@@ -36,4 +33,13 @@ public class CommandEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
         }
     }
+    private void OnEnable()
+    {
+        stringList = new List<string>();
+        for (int i = 0; i < ListCount; i++)
+        {
+            stringList.Add("");
+        }
+    }
+
 }
