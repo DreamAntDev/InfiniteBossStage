@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 2a8f7e04285fce945bc2e1f9ed432617
+  - enabled: 1
+    path: Assets/Nammu/Scenes/NammuiScene.unity
+    guid: 18dd2df232a1bd54e9474eb3df118007
   m_configObjects: {}
