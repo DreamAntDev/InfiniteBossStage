@@ -6,6 +6,9 @@ namespace UI.Lobby
 {
     public class InventoryPage : LobbyPage
     {
-
+        public override string GetTitle()
+        {
+            return "Inventory";
+        }
     }
 }

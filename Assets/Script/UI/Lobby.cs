@@ -2,39 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace UI.Lobby
 {
     public class Lobby : MonoBehaviour
     {
+        public Button BackButton;
+        public TextMeshProUGUI TitleText;
+
         public List<LobbyPage> pages;
+
         private Dictionary<string, LobbyPage> cachedLobbyDictionary = new Dictionary<string, LobbyPage>();
         private LobbyPage currentPage = null;
         void Start()
         {
             GetComponent<Canvas>().worldCamera = Static.CameraManager.Instance.LobbyCamera;
+            this.BackButton.onClick.AddListener(()=>LoadPage());
+
             LoadPage();
         }
 
         public void LoadPage(string pageName = "MainPage")
         {
-            Transform pageTransform;
+            LobbyPage newPage;
             if(cachedLobbyDictionary.ContainsKey(pageName) == true)
             {
-                pageTransform = cachedLobbyDictionary[pageName].transform;
-                //페이지 노출
+                newPage = cachedLobbyDictionary[pageName];
             }
             else
             {
                 var obj = pages.Find(o => o.gameObject.name.Equals(pageName));
                 if(obj != null)
                 {
-                    var createdObj = Instantiate(obj);
-                    cachedLobbyDictionary.Add(pageName, createdObj);
-                    pageTransform = createdObj.transform;
-                    pageTransform.SetParent(this.transform);
-                    pageTransform.localScale = Vector3.one;
-                    createdObj.SetParentLobby(this);
+                    newPage = Instantiate(obj);
+                    cachedLobbyDictionary.Add(pageName, newPage);
+                    newPage.transform.SetParent(this.transform);
+                    newPage.transform.SetAsFirstSibling();
+                    newPage.transform.localScale = Vector3.one;
+                    newPage.SetParentLobby(this);
                 }
                 else
                 {
@@ -42,12 +48,22 @@ namespace UI.Lobby
                     return;
                 }
             }
+
+            newPage.transform.localPosition = Vector3.zero;
+            newPage.gameObject.SetActive(true);
+
+            // 이전페이지 처리
             if (this.currentPage != null)
             {
                 this.currentPage.gameObject.SetActive(false);
             }
-            pageTransform.localPosition = Vector3.zero;
-            pageTransform.gameObject.SetActive(true);
+
+            this.currentPage = newPage;
+
+            this.TitleText.gameObject.SetActive(this.currentPage.IsVisibleTitle());
+            this.TitleText.SetText(this.currentPage.GetTitle());
+
+            this.BackButton.gameObject.SetActive(this.currentPage.IsVisibleBackButton());
         }
     }
 }

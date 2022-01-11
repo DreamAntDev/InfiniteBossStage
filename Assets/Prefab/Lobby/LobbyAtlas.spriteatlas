@@ -32,24 +32,30 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 72437f919f736334c834d7bfc688e0ec, type: 3}
-    totalSpriteSurfaceArea: 116593
+    totalSpriteSurfaceArea: 128521
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: e9deb5715239b424d81c2a23af91fb62, type: 3}
+  - {fileID: 21300000, guid: dc952e12f788e8a4b8edef94cf2612f0, type: 3}
   - {fileID: 21300000, guid: 37fb47a304cc79d4ca429df55d676156, type: 3}
   - {fileID: 21300000, guid: bbed0084c6495544fa6619d99deb49c3, type: 3}
   - {fileID: 21300000, guid: ae8e79c55c44d9e40865627a3921d4de, type: 3}
+  - {fileID: 21300000, guid: 427e84a610d749444889fa52d33ccfb0, type: 3}
   - {fileID: 21300000, guid: 26e00e477e8df0d4e87fbc98f6c1cbe9, type: 3}
   - {fileID: 21300000, guid: d4ffbee924f7e864099e6a27c57c493b, type: 3}
   - {fileID: 21300000, guid: c1ddbd1fee95daf4092f5978cd9f3123, type: 3}
   - {fileID: 21300000, guid: daf9e3afefad7004fb28a75de7854ec8, type: 3}
   - {fileID: 21300000, guid: a3c9c8bf722903c42a1b53635413981d, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Btn_OtherButton_SideButton01_Left
+  - Background_06
   - Btn_OtherButton_Square08
   - Icon_ImageIcon_Map_l
   - Icon_ImageIcon_Knife_Battle
+  - Icon_PictoIcon_Back
   - Btn_OtherButton_Square01_Blue
   - Notify_Count_Red_l
   - Btn_OtherButton_Square01_Yellow

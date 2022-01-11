@@ -11,6 +11,20 @@ namespace UI.Lobby
         public Button InventoryButton;
         public Button StageButton;
 
+        public override string GetTitle()
+        {
+            return "Main";
+        }
+
+        public override bool IsVisibleTitle()
+        {
+            return false;
+        }
+        public override bool IsVisibleBackButton()
+        {
+            return false;
+        }
+
         private void Awake()
         {
             InventoryButton.onClick.AddListener(OnInventory);

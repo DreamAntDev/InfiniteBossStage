@@ -11,5 +11,8 @@ namespace UI.Lobby
         {
             parent = lobby;
         }
+        abstract public string GetTitle();
+        virtual public bool IsVisibleTitle() { return true; }
+        virtual public bool IsVisibleBackButton() { return true; }
     }
 }
