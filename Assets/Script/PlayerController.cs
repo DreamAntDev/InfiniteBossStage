@@ -51,7 +51,10 @@ public class PlayerController : MonoBehaviour
         stateContainer.Add(Character.State.State.Grogy, new Character.State.Grogy());
 
         this.state = stateContainer[Character.State.State.Idle];
+    }
 
+    private void Start()
+    {
         status = new Character.Status(statusData);
     }
 
