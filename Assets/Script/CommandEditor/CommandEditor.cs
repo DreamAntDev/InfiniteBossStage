@@ -13,7 +13,7 @@ namespace DebugCommand
                 return;
 
             List<string> splitArg = new List<string>(args.Split(' '));
-            if (CharacterAnimation(splitArg) == true)
+            if (CharacterDamage(splitArg) == true)
                 return;
 
             Debug.LogError("Not Exist Command");
@@ -21,27 +21,25 @@ namespace DebugCommand
         }
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
-        static bool CharacterAnimation(List<string> args)
+        static bool CharacterDamage(List<string> args)
         {
             if (args[0].Equals("Character") == false)
                 return false;
-            if (args[1].Equals("Animation") == false)
-                return false;
 
-            if (args[2].Equals("Damage") == false)
+            if (args[1].Equals("Damage") == false)
             {
                 UnityEngine.Debug.LogError("Not Define Command");
                 return false;
             }
 
-            int idx = 0;
-            if(int.TryParse(args[3],out idx) == false)
+            int damage = 0;
+            if(int.TryParse(args[2],out damage) == false)
             {
                 UnityEngine.Debug.LogError("Use Valid Args ex)Character Animation [string]Damage [int]0");
                 return false;
             }
 
-            PlayerController.instance.OnDamage();
+            PlayerController.instance.OnDamage(damage);
             return true;
         }
 

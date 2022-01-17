@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     Vector3 acceleration = Vector3.zero;
     bool cachedIsGround = true;
 
+    public Data.Character.CharacterStatus statusData;
+    Character.Status status;
+
     private void Awake()
     {
         if (PlayerController.instance != null)
@@ -48,6 +51,8 @@ public class PlayerController : MonoBehaviour
         stateContainer.Add(Character.State.State.Grogy, new Character.State.Grogy());
 
         this.state = stateContainer[Character.State.State.Idle];
+
+        status = new Character.Status(statusData);
     }
 
     private void Update()
@@ -109,6 +114,8 @@ public class PlayerController : MonoBehaviour
         AppendMoveVectorPerFrame(this.acceleration);
         this.characterController.Move(this.moveVector);
         this.moveVector = Vector3.zero;
+
+        this.status.RecoveryStamina();
     }
 
     private void SetState(Character.State.State state)
@@ -166,8 +173,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnAvoidPerform(InputAction.CallbackContext context)
     {
-        //OnDamage();
         if (this.state.GetStateType() == Character.State.State.Avoid)
+            return;
+
+        bool successAvoid = this.status.OnAvoid();
+        if (successAvoid == false)
             return;
 
         this.SetState(Character.State.State.Avoid);
@@ -176,8 +186,10 @@ public class PlayerController : MonoBehaviour
         avoidState.SetMoveVector(avoidVector);
     }
 
-    public void OnDamage()
+    public void OnDamage(int damage = 0)
     {
+        this.status.OnDamage(damage);
+
         if (this.state.GetStateType() == Character.State.State.Grogy)
             return;
 

@@ -1193,6 +1193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ded10c13c83d84c8f761e2c6ad0df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMoveVector: {x: 0, y: -0.1, z: 0}
+  statusData: {fileID: 11400000, guid: 0e618a5c34ed2724791eb34ef20b3d1b, type: 2}
 --- !u!1 &5503696083994807603
 GameObject:
   m_ObjectHideFlags: 0
