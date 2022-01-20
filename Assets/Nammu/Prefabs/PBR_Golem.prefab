@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 5567177273460022592}
   - component: {fileID: 5567177273460022607}
   - component: {fileID: 5567177273460022606}
+  - component: {fileID: 7583293479428830406}
   m_Layer: 0
   m_Name: PBR_Golem
   m_TagString: Boss
@@ -239,6 +240,20 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0.25}
+--- !u!114 &7583293479428830406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566833410643844168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fec1daaa673acf4a92cd5ad89c65e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relics: []
+  canvasGroup: {fileID: 0}
 --- !u!1 &5566845974488882890
 GameObject:
   m_ObjectHideFlags: 0

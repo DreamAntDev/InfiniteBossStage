@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
 	{
 		return isDead;
 	}
+
     private void Update()
     {
         if (Keyboard.current.spaceKey.wasReleasedThisFrame)
@@ -62,6 +63,8 @@ public class Health : MonoBehaviour
 		{
 			GetComponent<NavMeshAgent>().enabled = false;
 		}
+
+		SendMessage("OnDropRelic");
 	}
 
 }
