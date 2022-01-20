@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 5567177273460022607}
   - component: {fileID: 5567177273460022606}
   - component: {fileID: 7583293479428830406}
+  - component: {fileID: 1389686719}
   m_Layer: 0
   m_Name: PBR_Golem
   m_TagString: Boss
@@ -123,7 +124,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5566833410643844168}
-  m_LocalRotation: {x: -0, y: -0.12615281, z: -0, w: 0.99201083}
+  m_LocalRotation: {x: 0, y: -0.12615569, z: 0, w: 0.9920105}
   m_LocalPosition: {x: -0.3, y: 1, z: -9.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -254,6 +255,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relics: []
   canvasGroup: {fileID: 0}
+--- !u!114 &1389686719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566833410643844168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4a3779292b3a2478bfd7978d3dd098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5566845974488882890
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +525,7 @@ Transform:
   - {fileID: 5571685351152288670}
   m_Father: {fileID: 5570178034340111786}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 90, z: 298.4642}
 --- !u!1 &5568027954646387984
 GameObject:
   m_ObjectHideFlags: 0

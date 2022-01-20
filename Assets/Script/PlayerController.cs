@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttackPerform(InputAction.CallbackContext context)
     {
+        Debug.Log("Attack");
         if (this.state.GetStateType() == Character.State.State.Attack)
         {
             var attackState = this.state as Character.State.Attack;
