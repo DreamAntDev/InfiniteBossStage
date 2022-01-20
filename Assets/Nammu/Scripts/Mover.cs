@@ -51,7 +51,6 @@ public class Mover : MonoBehaviour
     public void Cancel()
     {
         navMeshAgent.isStopped = true;
-
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = false;
         navMeshAgent.velocity = Vector3.zero;

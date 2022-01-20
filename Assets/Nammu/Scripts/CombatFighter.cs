@@ -1,3 +1,5 @@
+using RPG.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +7,7 @@ using UnityEngine.AI;
 
 namespace IBS.Combat
 {
-    public class CombatFighter : MonoBehaviour
+    public class CombatFighter : MonoBehaviour, IAction
     {
         GameObject target;
         Animator animator;
@@ -15,11 +17,14 @@ namespace IBS.Combat
         [SerializeField]
         float attackDistance = 2f;
 
+        string attackName = string.Empty;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
+
         }
 
         private void Start()
@@ -29,9 +34,9 @@ namespace IBS.Combat
 
         void Update()
         {
-            if (target == null || health.IsDead()) return;
+            if (target == null || health.IsDead())
+                return;
 
-            
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
             {
                 if (InAttackRangeOfPlayer())
@@ -53,16 +58,26 @@ namespace IBS.Combat
 
         private float PlayerToDistance()
         {
+          
             return Vector3.Distance(target.transform.position, transform.position);
         }
 
         private bool InAttackRangeOfPlayer()
         {
             float distanceToPlayer = PlayerToDistance();
+            Debug.Log("Distance : " + PlayerToDistance() + " Value : " + (distanceToPlayer < attackDistance));
             return distanceToPlayer < attackDistance;
         }
 
         public void Hit(float damage) 
+        {
+            if (target != null)
+            {
+                target.GetComponent<PlayerController>().OnDamage(Convert.ToInt32(damage));
+            }
+        }
+
+        public void TakeDamage(float damage)
         {
             health.TakeDamage(damage);
         }
@@ -76,7 +91,21 @@ namespace IBS.Combat
 
         private void TriggerAttack()
         {
-            animator.SetTrigger("Attack" + Mathf.RoundToInt(Random.Range(1, 3)));
+            GetComponent<ActionScheduler>().StartAction(this);
+            attackName = "Attack" + Mathf.RoundToInt(UnityEngine.Random.Range(1, 3));
+            animator.SetTrigger(attackName);
+        }
+
+        public void Cancel()
+        {
+            StopAttacking();
+          //  target = null;
+        }
+
+        private void StopAttacking()
+        {
+            animator.ResetTrigger(attackName);
+            animator.SetTrigger("StopAttack");
         }
     }
 }
