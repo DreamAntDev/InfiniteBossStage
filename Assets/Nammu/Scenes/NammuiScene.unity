@@ -378,7 +378,7 @@ PrefabInstance:
     - target: {fileID: 1950236017971143681, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 69667629}
+      objectReference: {fileID: 0}
     - target: {fileID: 1950236017971143681, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -402,23 +402,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1950236017049353581, guid: b8147e19868374ba383a12cbaa398892, type: 3}
   m_PrefabInstance: {fileID: 69667626}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &69667628 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1950236017049353580, guid: b8147e19868374ba383a12cbaa398892, type: 3}
-  m_PrefabInstance: {fileID: 69667626}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &69667629
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69667628}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &217240174
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +839,7 @@ GameObject:
   - component: {fileID: 1166761572}
   - component: {fileID: 1166761571}
   - component: {fileID: 1166761570}
+  - component: {fileID: 1166761574}
   m_Layer: 5
   m_Name: RelicCanvas
   m_TagString: Untagged
@@ -944,6 +928,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1166761574
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166761569}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1389686718 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5566833410643844168, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
@@ -1110,6 +1106,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5503696083995299985, guid: 9e892557e2ca7cd4b8ca88d24854f56d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 5503696083995300113, guid: 9e892557e2ca7cd4b8ca88d24854f56d, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1235,7 +1235,7 @@ PrefabInstance:
     - target: {fileID: 7583293479428830406, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
       propertyPath: canvasGroup
       value: 
-      objectReference: {fileID: 69667629}
+      objectReference: {fileID: 1166761574}
     - target: {fileID: 7583293479428830406, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
       propertyPath: relics.Array.size
       value: 0
