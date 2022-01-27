@@ -253,7 +253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1950236017049353580, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_Name
-      value: Popup_Frame02
+      value: RelicFrame
       objectReference: {fileID: 0}
     - target: {fileID: 1950236017049353581, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_Pivot.x
@@ -373,23 +373,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1950236017971143681, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1950236017971143681, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1166761575}
     - target: {fileID: 1950236017971143681, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1950236017971143681, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_alpha
+      value: CloseUI
       objectReference: {fileID: 0}
     - target: {fileID: 1950236017971143681, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.CanvasGroup, UnityEngine
+      value: RelicUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1950236017971143681, guid: b8147e19868374ba383a12cbaa398892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -495,6 +495,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 26.233002, y: -141.26901, z: -8.202001}
+--- !u!1 &297274594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297274596}
+  - component: {fileID: 297274595}
+  m_Layer: 0
+  m_Name: RelicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &297274595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297274594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8b2c227ae705340a0685fbf4c7e7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &297274596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297274594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -35.69727, y: 5.61969, z: 10.496368}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &504506059
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +731,7 @@ GameObject:
   - component: {fileID: 644737569}
   - component: {fileID: 644737568}
   m_Layer: 5
-  m_Name: Image
+  m_Name: RelicImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -840,6 +883,7 @@ GameObject:
   - component: {fileID: 1166761571}
   - component: {fileID: 1166761570}
   - component: {fileID: 1166761574}
+  - component: {fileID: 1166761575}
   m_Layer: 5
   m_Name: RelicCanvas
   m_TagString: Untagged
@@ -940,6 +984,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1166761575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166761569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e9c3966edf66e4bb7d6353078d3ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relicImage: {fileID: 644737568}
+  relicContext: {fileID: 1673624261}
+  relicCanvasGroup: {fileID: 1166761574}
 --- !u!1 &1389686718 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5566833410643844168, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
@@ -969,7 +1028,7 @@ GameObject:
   - component: {fileID: 1673624262}
   - component: {fileID: 1673624261}
   m_Layer: 5
-  m_Name: Text_Title (1)
+  m_Name: RelicContext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1233,12 +1292,28 @@ PrefabInstance:
       value: 298.4642
       objectReference: {fileID: 0}
     - target: {fileID: 7583293479428830406, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
+      propertyPath: relicUI
+      value: 
+      objectReference: {fileID: 1166761575}
+    - target: {fileID: 7583293479428830406, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
       propertyPath: canvasGroup
       value: 
       objectReference: {fileID: 1166761574}
     - target: {fileID: 7583293479428830406, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
       propertyPath: relics.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7583293479428830406, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
+      propertyPath: relics.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2607652776e39f443bf000e0429cac85, type: 2}
+    - target: {fileID: 7583293479428830406, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
+      propertyPath: relics.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9038dbe636a70fe4cb6320c35ee2c1e5, type: 2}
+    - target: {fileID: 7583293479428830406, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
+      propertyPath: relics.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9040e52669f36814c80864def5fdc95c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
