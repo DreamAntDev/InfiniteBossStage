@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Nammu/Scenes/NammuiScene.unity
     guid: 18dd2df232a1bd54e9474eb3df118007
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 271e14c56eccc5c498b6a8eaa971a0aa, type: 2}

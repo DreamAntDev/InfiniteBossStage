@@ -37,7 +37,7 @@ namespace UI.Lobby
         }
         private void OnStage()
         {
-            SceneManager.LoadScene("NammuiScene");
+            StageManager.Instance.LoadStage(0);
         }
     }
 }

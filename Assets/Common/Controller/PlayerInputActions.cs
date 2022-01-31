@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Kwak/Controller/PlayerInputActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Common/Controller/PlayerInputActions.inputactions'
 
 using System;
 using System.Collections;
