@@ -36,4 +36,4 @@ jobs:
      # webhook noti
       - name: webhook noti
         run: |- 
-          curl -d '{"content":"Push Noti $LAST_COMMIT"}' -H "Content-Type: application/json" -X POST https://discord.com/api/webhooks/939571688339828746/3rpdMYC_Fdv8r_esoOYYONCjyK4tZugk5Itp8igpmEE6To0pbATgOV1H6CficPxbH7k5
+          curl -d '{"content":' $LAST_COMMIT '}' -H "Content-Type: application/json" -X POST https://discord.com/api/webhooks/939571688339828746/3rpdMYC_Fdv8r_esoOYYONCjyK4tZugk5Itp8igpmEE6To0pbATgOV1H6CficPxbH7k5
