@@ -21,16 +21,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: git log -n 1 > last_commit
-        
-      - name: Run a one-line script
-        run: export LAST_COMMIT=$(cat last_commit | tr -d '\n')
-
+      
       # Runs a set of commands using the runners shell
      # webhook noti
       - name: webhook noti
         run: |- 
-          curl -d '{"content":'"\"${LAST_COMMIT}\""'}' -H "Content-Type: application/json" -X POST https://discord.com/api/webhooks/939579625129009182/CjSdfwsCtkOJFitwX_qka9ty3KdlSJq_s9SU5b73-pPcXGkMfxLTx8Z5LApF321bhfNs
+          curl -d '{"content":'"\"$(git log -n 1 | tr -d '\n')\""'}' -H "Content-Type: application/json" -X POST https://discord.com/api/webhooks/939579625129009182/CjSdfwsCtkOJFitwX_qka9ty3KdlSJq_s9SU5b73-pPcXGkMfxLTx8Z5LApF321bhfNs
