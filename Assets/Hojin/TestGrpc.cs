@@ -6,12 +6,12 @@ using Haru;
 public class TestGrpc : MonoBehaviour
 {
     public static long UUID;
-    private string DOMAIN = "127.0.0.1:50051";
+    private string DOMAIN = "haru-maeelc6qba-du.a.run.app";
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("TestGrpc start");
-        Channel channel = new Channel(DOMAIN, ChannelCredentials.Insecure);
+        Channel channel = new Channel(DOMAIN, ChannelCredentials.SecureSsl);
         // 서버 커넥션 생성
         var client = new Haru.version1.version1Client(channel);
         // 신규 어카운트 아이디 발급
