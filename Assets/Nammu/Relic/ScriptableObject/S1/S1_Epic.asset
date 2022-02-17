@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348c88014edcc5b4bbca126470077e60, type: 3}
   m_Name: S1_Epic
   m_EditorClassIdentifier: 
-  id: "\uACE8\uB818\uC758 \uC2EC\uC7A5"
+  id: 1
+  itemName: "\uACE8\uB818\uC758 \uC2EC\uC7A5"
+  level: 0
   context: "\uBB38\uC744 \uC9C0\uD0A4\uB358 \uACE8\uB818\uC758 \uC2EC\uC7A5<br>HP
     + 10"
   rating: 1

@@ -2,6 +2,7 @@ using IBS.Resoruce;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DropRelic : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class DropRelic : MonoBehaviour
     [SerializeField]
     RelicUI relicUI;
 
+
     void OnDropRelic()
     {
         var itemRating = GetChanceResult();
+        Debug.Log("Relic Rating : " + itemRating);
         var relic = relics.Find(x => x.Rating == itemRating);
         if(relic is null)
         {
@@ -23,6 +26,18 @@ public class DropRelic : MonoBehaviour
         else
         {
             relicUI.SetRelicData(relic);
+            PlayerPrefs.SetInt(RelicDefine.RelicCount, relic.Level);
+            PlayerPrefs.SetInt(RelicDefine.InvenRelic + relic.Level, relic.ID);
+            //Relic »πµÊ æ÷¥œ∏ﬁ¿Ãº« ?!
+        }
+    }
+
+    //Test
+    private void Update()
+    {
+        if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            OnDropRelic();
         }
     }
 
@@ -45,7 +60,6 @@ public class DropRelic : MonoBehaviour
 
 
         int chanceIdx = Random.Range(0, 101);
-
         if (!itemChanceIdx.Contains(chanceIdx))
         {
             return Type.RelicRating.Normal;

@@ -48,12 +48,16 @@ public class Mover : MonoBehaviour
         navMeshAgent.updatePosition = true;
         navMeshAgent.updateRotation = true;
     }
+
     public void Cancel()
     {
-        navMeshAgent.isStopped = true;
-        navMeshAgent.updatePosition = false;
-        navMeshAgent.updateRotation = false;
-        navMeshAgent.velocity = Vector3.zero;
+        if (navMeshAgent.enabled)
+        {
+            navMeshAgent.isStopped = true;
+            navMeshAgent.updatePosition = false;
+            navMeshAgent.updateRotation = false;
+            navMeshAgent.velocity = Vector3.zero;
+        }
     }
 
     private void UpdateAnimator()

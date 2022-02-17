@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveRelicManager : MonoBehaviour
+public class ActiveRelic : MonoBehaviour
 {
     private List<Relic> relicList;
 
@@ -13,10 +13,10 @@ public class ActiveRelicManager : MonoBehaviour
 
     void Start()
     {
-        ActiveRelic();
+        Active();
     }
 
-    public void ActiveRelic()
+    public void Active()
     {
         //Relic 데이터 받아오기
 
@@ -31,7 +31,6 @@ public class ActiveRelicManager : MonoBehaviour
         }
         else { 
         }
-
         //RelicInven 추가
 
 

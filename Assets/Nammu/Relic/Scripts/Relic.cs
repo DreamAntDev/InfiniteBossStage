@@ -7,7 +7,13 @@ using IBS.Resoruce;
 public class Relic : ScriptableObject
 {
     [SerializeField]
-    private string id;
+    private int id;
+
+    [SerializeField]
+    private string itemName;
+
+    [SerializeField]
+    private int level;
 
     [SerializeField]
     private string context;
@@ -21,9 +27,19 @@ public class Relic : ScriptableObject
     [SerializeField]
     private Sprite relicSprite;
 
-    public string ID
+    public int ID
     {
         get { return id;}
+    }
+
+    public string Name
+    {
+        get { return itemName; }
+    }
+
+    public int Level
+    {
+        get { return level; }
     }
     public string Context
     {

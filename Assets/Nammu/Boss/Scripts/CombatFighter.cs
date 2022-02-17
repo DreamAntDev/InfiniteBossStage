@@ -65,7 +65,6 @@ namespace IBS.Combat
         private bool InAttackRangeOfPlayer()
         {
             float distanceToPlayer = PlayerToDistance();
-            Debug.Log("Distance : " + PlayerToDistance() + " Value : " + (distanceToPlayer < attackDistance));
             return distanceToPlayer < attackDistance;
         }
 

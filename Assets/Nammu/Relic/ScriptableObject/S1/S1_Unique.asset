@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348c88014edcc5b4bbca126470077e60, type: 3}
   m_Name: S1_Unique
   m_EditorClassIdentifier: 
-  id: "\uACE8\uB818\uC758 \uD575"
+  id: 3
+  itemName: "\uACE8\uB818\uC758 \uD575"
+  level: 0
   context: "\uBB38\uC744 \uC9C0\uD0A4\uB358 \uACE8\uB818\uC758 \uB9C8\uB825 \uC9D1\uD569
     \uD575<br>HP+5, \uAE30\uB825 + 10"
   rating: 2
