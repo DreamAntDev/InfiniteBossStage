@@ -2,62 +2,140 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-
-public class StageManager : MonoBehaviour
+using System.Linq;
+namespace Static
 {
-    Dictionary<int, Data.Stage.Stage> stageDataTree = new Dictionary<int, Data.Stage.Stage>();
-    static StageManager instance = null;
-    public static StageManager Instance
+    public class StageManager : MonoBehaviour
     {
-        get
+        Dictionary<int, Data.Stage.Stage> stageDataTree = new Dictionary<int, Data.Stage.Stage>();
+        static StageManager instance = null;
+        public static StageManager Instance
         {
-            if (instance == null)
+            get
             {
-                GameObject gameObject = new GameObject();
-                gameObject.AddComponent<StageManager>();
+                if (instance == null)
+                {
+                    GameObject gameObject = new GameObject();
+                    gameObject.AddComponent<StageManager>();
+                }
+                return instance;
             }
-            return instance;
         }
-    }
-    public void Awake()
-    {
-        if (instance != null)
-            Destroy(instance);
-
-        instance = this;
-    }
-
-    public void LoadStage(int index=1)
-    {
-        if (stageDataTree.ContainsKey(index) == false)
+        System.Action callback = null;
+        // 임시로 게임오브젝트로 설정
+        GameObject boss;
+        GameObject character;
+        GameObject world;
+        bool isLoading = false;
+        public void Awake()
         {
-            Addressables.LoadAssetAsync<Data.Stage.Stage>("Assets/Data/Stage/Stage1.asset").Completed += StageManager_DataCompleted;
+            if (instance != null)
+                Destroy(instance);
+
+            instance = this;
         }
-        else
+
+        public void Update()
         {
-            LoadStage(stageDataTree[index]);
+            if (this.isLoading == true && this.boss != null && this.character != null && this.world != null)
+            {
+                LoadSuccess();
+            }
         }
-    }
-    private void LoadStage(Data.Stage.Stage data)
-    {
-        string world = data.WorldPrefab;
-        string boss = data.BossPrefab;
+        private void LoadSuccess()
+        {
+            SetObjectPosition();
+            callback?.Invoke();
+            callback = null;
 
-        Addressables.InstantiateAsync(world).Completed += StageManager_WorldComplete;
-        Addressables.InstantiateAsync(boss).Completed += StageManager_BossComplete;
-    }
-    private void StageManager_DataCompleted(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Data.Stage.Stage> obj)
-    {
-        stageDataTree.Add(obj.Result.Index, obj.Result);
-        LoadStage(obj.Result);
-    }
+            Static.CameraManager.Instance.LobbyCamera.gameObject.SetActive(false);
+            Static.CameraManager.Instance.MainCamera.gameObject.SetActive(true);
+            Static.CameraManager.Instance.UICamera.gameObject.SetActive(true);
 
-    private void StageManager_WorldComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
-    {
-        Debug.Log("TestWorld");
-    }
-    private void StageManager_BossComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
-    {
-        Debug.Log("TestWorld2");
+            Static.CameraManager.Instance.MainCamera.GetComponent<Component.TargetTraceCamera>().target = this.character.transform;
+
+            this.isLoading = false;
+        }
+        public void LoadStage(int index, System.Action loadCallback = null)
+        {
+            if (this.isLoading == true)
+                return;
+
+            callback = loadCallback;
+            if (stageDataTree.ContainsKey(index) == false)
+            {
+                Addressables.LoadAssetAsync<Data.Stage.Stage>("Assets/Data/Stage/Stage1.asset").Completed += StageManager_DataCompleted;
+            }
+            else
+            {
+                LoadStage(stageDataTree[index]);
+            }
+        }
+
+        private void LoadStage(Data.Stage.Stage data)
+        {
+            InitStage();
+            string world = data.WorldPrefab;
+            string boss = data.BossPrefab;
+
+            //임시 캐릭터 경로
+            string character = "Assets/Prefab/DogPBR.prefab";
+
+            this.isLoading = true;
+            Addressables.InstantiateAsync(world).Completed += StageManager_WorldComplete;
+            Addressables.InstantiateAsync(boss).Completed += StageManager_BossComplete;
+            Addressables.InstantiateAsync(character).Completed += StageManager_CharacterComplete;
+        }
+
+        private void InitStage()
+        {
+            if (this.boss != null)
+                GameObject.Destroy(this.boss);
+            if (this.world != null)
+                GameObject.Destroy(this.world);
+            if (this.character != null)
+                GameObject.Destroy(this.character);
+
+            this.boss = null;
+            this.character = null;
+            this.world = null;
+        }
+
+        private void StageManager_DataCompleted(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Data.Stage.Stage> obj)
+        {
+            stageDataTree.Add(obj.Result.Index, obj.Result);
+            LoadStage(obj.Result);
+        }
+
+        private void StageManager_WorldComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
+        {
+            this.world = obj.Result;
+        }
+        private void StageManager_BossComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
+        {
+            this.boss = obj.Result;
+        }
+        private void StageManager_CharacterComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
+        {
+            this.character = obj.Result;
+        }
+        private void SetObjectPosition()
+        {
+            this.world.transform.position = Vector3.zero;
+            var spawnPointList = this.world.GetComponentsInChildren<MapComponent.SpawnPoint>();
+            foreach (var point in spawnPointList)
+            {
+                if (point.eSpawnType == MapComponent.SpawnPoint.SpawnType.Boss)
+                {
+                    this.boss.transform.position = point.transform.position;
+                }
+                else if (point.eSpawnType == MapComponent.SpawnPoint.SpawnType.Character)
+                {
+                    this.character.GetComponent<CharacterController>().enabled = false;
+                    this.character.transform.position = point.transform.position;
+                    this.character.GetComponent<CharacterController>().enabled = true;
+                }
+            }
+        }
     }
 }

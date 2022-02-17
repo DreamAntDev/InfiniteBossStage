@@ -34,7 +34,8 @@ public class Health : MonoBehaviour
 		health = Mathf.Max(health - damage, 0);
 
 		animator.SetTrigger("GetHit");
-		if (health == 0f)
+        UI.MainInterface.MainInterface.Instance.bossHpSlider.SetValue((float)this.health / 100.0f); // MaxHP정보가 없어서 임시로 100
+        if (health == 0f)
 		{
 			Death();
 		}

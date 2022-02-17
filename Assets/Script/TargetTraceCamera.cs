@@ -11,6 +11,9 @@ namespace Component
 
         private void LateUpdate()
         {
+            if (target == null)
+                return;
+
             var pos = target.position + offset;
             //var correctPos = Vector3.Lerp(transform.position, pos, Time.deltaTime *2);
             var correctPos = pos;

@@ -14,6 +14,7 @@ namespace UI.MainInterface
 
         public Common.UI.SlicedFilledSlider hpSlider;
         public Common.UI.SlicedFilledSlider staminaSlider;
+        public Common.UI.SlicedFilledSlider bossHpSlider;
 
         private void Awake()
         {
@@ -23,7 +24,7 @@ namespace UI.MainInterface
         // Start is called before the first frame update
         void Start()
         {
-
+            GetComponent<Canvas>().worldCamera = Static.CameraManager.Instance.UICamera;
         }
 
         // Update is called once per frame

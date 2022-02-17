@@ -35,6 +35,18 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 09b39f95dccaa5b49a4236f9039d9d3d
+    m_Address: Assets/Maps/Castle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9e892557e2ca7cd4b8ca88d24854f56d
+    m_Address: Assets/Prefab/DogPBR.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af505c5657199ba43aa773e5006a10f2, type: 2}
   m_SchemaSet:

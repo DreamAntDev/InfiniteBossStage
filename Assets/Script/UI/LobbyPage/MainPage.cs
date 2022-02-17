@@ -37,7 +37,7 @@ namespace UI.Lobby
         }
         private void OnStage()
         {
-            StageManager.Instance.LoadStage(0);
+            Static.StageManager.Instance.LoadStage(0);
         }
     }
 }

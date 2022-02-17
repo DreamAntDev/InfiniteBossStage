@@ -8,6 +8,7 @@ namespace Static
     {
         public static CameraManager Instance { get; private set; } = null;
 
+        public Camera MainCamera;
         public Camera UICamera;        
         public Camera LobbyCamera;
 
@@ -20,8 +21,13 @@ namespace Static
             }
             CameraManager.Instance = this;
 
-            this.UICamera = Instantiate(UICamera);
-            this.LobbyCamera = Instantiate(LobbyCamera);
+            this.MainCamera = Camera.main;
+            var targetTraceCamera = this.MainCamera.gameObject.AddComponent<Component.TargetTraceCamera>();
+            targetTraceCamera.offset = new Vector3(0, 20, -20);
+
+            this.UICamera = Instantiate(UICamera,this.transform);
+            this.LobbyCamera = Instantiate(LobbyCamera, this.transform);
+            this.UICamera.gameObject.SetActive(false);
         }
     }
 }

@@ -234,4 +234,18 @@ public class PlayerController : MonoBehaviour
     {
         this.moveVector += moveVector;
     }
+
+    private void AnimationEvent_Attack()
+    {
+        float damage = 10.0f;
+        var list = this.GetComponent<Detector>().GetCurrentList();
+        foreach(var obj in list)
+        {
+            var combatFighter = obj.GetComponent<IBS.Combat.CombatFighter>();
+            if(combatFighter != null)
+            {
+                combatFighter.TakeDamage(damage);
+            }
+        }
+    }
 }
