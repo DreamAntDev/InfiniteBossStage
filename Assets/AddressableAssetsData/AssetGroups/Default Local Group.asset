@@ -47,6 +47,24 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: ae2d2a94945dffd428cd3038bc74ff23
+    m_Address: Assets/Prefab/MainUI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d24e37ba5a1aba14f81cbe099e0f16f3
+    m_Address: Assets/Prefab/Lobby/Lobby.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6204380dd5b61f14085557d60e9a6707
+    m_Address: Assets/Prefab/Camera/CameraManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af505c5657199ba43aa773e5006a10f2, type: 2}
   m_SchemaSet:

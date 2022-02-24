@@ -25,6 +25,7 @@ namespace UI.MainInterface
         void Start()
         {
             GetComponent<Canvas>().worldCamera = Static.CameraManager.Instance.UICamera;
+            this.transform.SetParent(Static.CameraManager.Instance.UICamera.transform);
         }
 
         // Update is called once per frame

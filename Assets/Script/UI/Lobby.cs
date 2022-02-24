@@ -18,6 +18,7 @@ namespace UI.Lobby
         void Start()
         {
             GetComponent<Canvas>().worldCamera = Static.CameraManager.Instance.LobbyCamera;
+            this.transform.SetParent(Static.CameraManager.Instance.LobbyCamera.transform);
             this.BackButton.onClick.AddListener(()=>LoadPage());
 
             LoadPage();
