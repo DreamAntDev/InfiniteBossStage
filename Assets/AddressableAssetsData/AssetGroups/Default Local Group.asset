@@ -23,20 +23,8 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 6681f03a6045f426dba5e701f0e70538
-    m_Address: Assets/Maps/Desert.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 339193ac46ef9f14582e2e7b99039b0f
     m_Address: Assets/Data/Stage/Stage1.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: 09b39f95dccaa5b49a4236f9039d9d3d
-    m_Address: Assets/Maps/Castle.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
@@ -61,6 +49,18 @@ MonoBehaviour:
     m_TargetAsset: {fileID: 0}
   - m_GUID: 6204380dd5b61f14085557d60e9a6707
     m_Address: Assets/Prefab/Camera/CameraManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: dbf9974673ab44f7cbf8d3b61e338e58
+    m_Address: Assets/Maps/Map_2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 732f5b2943dac4c3f96a91e50979f215
+    m_Address: Assets/Maps/Map_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
