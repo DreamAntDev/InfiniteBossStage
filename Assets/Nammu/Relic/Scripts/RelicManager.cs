@@ -5,9 +5,14 @@ using UnityEngine;
 public class RelicManager : Singleton<RelicManager>
 {
     [SerializeField]
-    private List<Relic> relics;
+    public List<Relic> relics;
 
     List<Relic> haveRelics;
+
+    public List<Relic> Relics
+    {
+        get => haveRelics;
+    }
 
     //private readonly Dictionary<int, Relic> activeRelic = new Dictionary<int, Relic>();
 
@@ -24,6 +29,7 @@ public class RelicManager : Singleton<RelicManager>
     private void InitRelic()
     {
         int count = PlayerPrefs.GetInt(RelicDefine.RelicCount, 0);
+        Debug.Log($"Relic Count {count}");
         for (int i = 1; i <= count; i++)
         {
             int id = PlayerPrefs.GetInt(RelicDefine.InvenRelic + i);

@@ -12,17 +12,18 @@ public class RelicUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI relicContext;
 
-    [SerializeField]
-    CanvasGroup relicCanvasGroup;
-
+    private void Start()
+    {
+        CloseUI();
+    }
     public void ShowUI()
     {
-        relicCanvasGroup.alpha = 1;
+        gameObject.SetActive(true);
     }
 
     public void CloseUI()
     {
-        relicCanvasGroup.alpha = 0;
+        gameObject.SetActive(false);
     }
 
     public void SetRelicData(Relic relic)

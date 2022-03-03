@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 5567177273460022606}
   - component: {fileID: 7583293479428830406}
   - component: {fileID: 1389686719}
+  - component: {fileID: 3976886182860443356}
   m_Layer: 0
   m_Name: PBR_Golem
   m_TagString: Boss
@@ -253,9 +254,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fec1daaa673acf4a92cd5ad89c65e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relics: []
-  canvasGroup: {fileID: 0}
+  relics:
+  - {fileID: 11400000, guid: 2607652776e39f443bf000e0429cac85, type: 2}
+  - {fileID: 11400000, guid: 9038dbe636a70fe4cb6320c35ee2c1e5, type: 2}
+  - {fileID: 11400000, guid: 9040e52669f36814c80864def5fdc95c, type: 2}
+  relicUI: {fileID: 2571697180504247893, guid: 72e97f3cd603a8f488974c0b90cd1d0c, type: 3}
 --- !u!114 &1389686719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566833410643844168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4a3779292b3a2478bfd7978d3dd098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3976886182860443356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

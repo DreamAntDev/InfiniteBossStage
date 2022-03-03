@@ -19,6 +19,9 @@ public class Relic : ScriptableObject
     private string context;
 
     [SerializeField]
+    private string option;
+
+    [SerializeField]
     private Type.RelicRating rating;
 
     [SerializeField]
@@ -44,6 +47,10 @@ public class Relic : ScriptableObject
     public string Context
     {
         get { return context; }
+    }
+    public string Option
+    {
+        get { return option; }
     }
     public Type.RelicRating Rating
     {

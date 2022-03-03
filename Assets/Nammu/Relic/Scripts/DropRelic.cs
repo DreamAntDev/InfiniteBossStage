@@ -8,11 +8,14 @@ public class DropRelic : MonoBehaviour
 {
     [SerializeField]
     List<Relic> relics;
-
     [SerializeField]
     RelicUI relicUI;
 
-
+    private void Awake()
+    {
+        Instantiate(relicUI.gameObject);
+         
+    }
     void OnDropRelic()
     {
         var itemRating = GetChanceResult();
@@ -25,9 +28,10 @@ public class DropRelic : MonoBehaviour
         }
         else
         {
-            relicUI.SetRelicData(relic);
             PlayerPrefs.SetInt(RelicDefine.RelicCount, relic.Level);
             PlayerPrefs.SetInt(RelicDefine.InvenRelic + relic.Level, relic.ID);
+
+            relicUI.SetRelicData(relic);
             //Relic »πµÊ æ÷¥œ∏ﬁ¿Ãº« ?!
         }
     }
