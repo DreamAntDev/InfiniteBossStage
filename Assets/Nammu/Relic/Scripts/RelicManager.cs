@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RelicManager : MonoBehaviour
+public class RelicManager : Singleton<RelicManager>
 {
     [SerializeField]
     private List<Relic> relics;
