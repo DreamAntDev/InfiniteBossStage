@@ -12,6 +12,14 @@ namespace Static
 {
     public class StageManager : MonoBehaviour
     {
+        enum State
+        {
+            Idle,
+            DataLoading,
+            Loading,
+            LoadSuccess,
+        }
+
         Dictionary<int, Data.Stage.Stage> stageDataTree = new Dictionary<int, Data.Stage.Stage>();
         static StageManager instance = null;
         public static StageManager Instance
@@ -32,10 +40,27 @@ namespace Static
         GameObject character;
         GameObject world;
         AsyncOperationHandle<SceneInstance> currentWorldHandle;
-        Data.Stage.Stage curData = null;
 
+        List<AsyncOperationHandle> loadDataList = new List<AsyncOperationHandle>();
+        List<AsyncOperationHandle> loadList = new List<AsyncOperationHandle>();
 
-        bool isLoading = false;
+        State state
+        {
+            get
+            {
+                if (this.loadDataList.Count > 0)
+                    return State.DataLoading;
+
+                if (this.loadList.Count == 0)
+                    return State.Idle;
+
+                var waitIdx = this.loadList.FindIndex(o => o.Status == AsyncOperationStatus.None);
+                if (waitIdx >= 0)
+                    return State.Loading;
+
+                return State.LoadSuccess;
+            }
+        }
         public void Awake()
         {
             if (instance != null)
@@ -46,14 +71,32 @@ namespace Static
 
         public void Update()
         {
-            if (this.isLoading == true && this.boss != null && this.character != null && this.world != null)
+            if (state == State.LoadSuccess)
             {
                 LoadSuccess();
             }
+
+            if (UnityEngine.InputSystem.Keyboard.current.xKey.wasPressedThisFrame)
+            {
+                UnloadStage();
+            }
         }
+
+        public void UnloadStage()
+        {
+            InitStage();
+            Static.CameraManager.Instance.LobbyCamera.gameObject.SetActive(true);
+            Static.CameraManager.Instance.MainCamera.gameObject.SetActive(false);
+            Static.CameraManager.Instance.UICamera.gameObject.SetActive(false);
+
+            Static.CameraManager.Instance.MainCamera.GetComponent<Component.TargetTraceCamera>().target = null;
+        }
+
         private void LoadSuccess()
         {
+            this.loadList.Clear();
             SetObjectPosition();
+
             callback?.Invoke();
             callback = null;
 
@@ -62,18 +105,18 @@ namespace Static
             Static.CameraManager.Instance.UICamera.gameObject.SetActive(true);
 
             Static.CameraManager.Instance.MainCamera.GetComponent<Component.TargetTraceCamera>().target = this.character.transform;
-
-            this.isLoading = false;
         }
         public void LoadStage(int index, System.Action loadCallback = null)
         {
-            if (this.isLoading == true)
+            if (state != State.Idle)
                 return;
 
             callback = loadCallback;
             if (stageDataTree.ContainsKey(index) == false)
             {
-                Addressables.LoadAssetAsync<Data.Stage.Stage>("Assets/Data/Stage/Stage1.asset").Completed += StageManager_DataCompleted;
+                var handle = Addressables.LoadAssetAsync<Data.Stage.Stage>("Assets/Data/Stage/Stage1.asset");
+                handle.Completed += StageManager_DataCompleted;
+                loadDataList.Add(handle);
             }
             else
             {
@@ -84,17 +127,29 @@ namespace Static
         private void LoadStage(Data.Stage.Stage data)
         {
             InitStage();
-            curData = data;
-            string world = data.WorldPrefab;
+            if (this.loadDataList.Count > 0)
+                this.loadDataList.Clear();
 
-            this.isLoading = true;
-            Addressables.LoadSceneAsync(world, LoadSceneMode.Additive, true).Completed += StageManager_WorldComplete;
-            //Addressables.InstantiateAsync(world).Completed += StageManager_WorldComplete;
+            string world = data.WorldPrefab;
+            string boss = data.BossPrefab;
+            string character = "Assets/Prefab/DogPBR.prefab";
+
+            currentWorldHandle = Addressables.LoadSceneAsync(world, LoadSceneMode.Additive, true);
+            currentWorldHandle.Completed += StageManager_WorldComplete;
+            this.loadList.Add(currentWorldHandle);
+
+            var bossHandle = Addressables.InstantiateAsync(boss);
+            bossHandle.Completed += StageManager_BossComplete;
+            this.loadList.Add(bossHandle);
+
+            var characterHandle = Addressables.InstantiateAsync(character);
+            characterHandle.Completed += StageManager_CharacterComplete;
+            this.loadList.Add(characterHandle);
         }
 
         private void StageManager_WorldComplete(AsyncOperationHandle<SceneInstance> obj)
         {
-            currentWorldHandle = obj;
+            //currentWorldHandle = obj;
             foreach(var root in obj.Result.Scene.GetRootGameObjects())
             {
                 if(root.GetComponentsInChildren<MapComponent.SpawnPoint>().Length > 0)
@@ -103,14 +158,6 @@ namespace Static
                     break;
                 }
             }
-
-            string boss = curData.BossPrefab;
-
-            //임시 캐릭터 경로
-            string character = "Assets/Prefab/DogPBR.prefab";
-
-            Addressables.InstantiateAsync(boss).Completed += StageManager_BossComplete;
-            Addressables.InstantiateAsync(character).Completed += StageManager_CharacterComplete;
         }
 
         private void InitStage()
@@ -126,6 +173,7 @@ namespace Static
             this.character = null;
             this.world = null;
 
+            this.loadList.Clear();
             if (this.currentWorldHandle.IsValid())
             {
                 Addressables.UnloadSceneAsync(this.currentWorldHandle, true);
@@ -141,10 +189,12 @@ namespace Static
         private void StageManager_BossComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
         {
             this.boss = obj.Result;
+            this.boss.gameObject.SetActive(false);
         }
         private void StageManager_CharacterComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
         {
             this.character = obj.Result;
+            this.character.gameObject.SetActive(false);
         }
         private void SetObjectPosition()
         {
@@ -154,14 +204,13 @@ namespace Static
             {
                 if (point.eSpawnType == MapComponent.SpawnPoint.SpawnType.Boss)
                 {
-                    //this.boss.transform.position = point.transform.position;
                     NavMeshHit closestHit;
                     if (NavMesh.SamplePosition(point.transform.position, out closestHit, 500, 1))
                     {
                         this.boss.transform.position = closestHit.position;
-                        var navMeshAgent = this.boss.GetComponent<NavMeshAgent>();
-                        navMeshAgent.enabled = false;
-                        navMeshAgent.enabled = true;
+                        //var navMeshAgent = this.boss.GetComponent<NavMeshAgent>();
+                        //navMeshAgent.enabled = false;
+                        //navMeshAgent.enabled = true;
                     }
                     else
                     {
@@ -170,11 +219,14 @@ namespace Static
                 }
                 else if (point.eSpawnType == MapComponent.SpawnPoint.SpawnType.Character)
                 {
-                    this.character.GetComponent<CharacterController>().enabled = false;
+                    //var characterController = this.character.GetComponent<CharacterController>();
+                    //characterController.enabled = false;
                     this.character.transform.position = point.transform.position;
-                    this.character.GetComponent<CharacterController>().enabled = true;
+                    //characterController.enabled = true;
                 }
             }
+            this.character.gameObject.SetActive(true);
+            this.boss.gameObject.SetActive(true);
         }
     }
 }
