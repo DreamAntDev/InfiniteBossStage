@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
+using UnityEngine.AI;
+
 using System.Linq;
 namespace Static
 {
@@ -26,6 +31,10 @@ namespace Static
         GameObject boss;
         GameObject character;
         GameObject world;
+        AsyncOperationHandle<SceneInstance> currentWorldHandle;
+        Data.Stage.Stage curData = null;
+
+
         bool isLoading = false;
         public void Awake()
         {
@@ -75,14 +84,31 @@ namespace Static
         private void LoadStage(Data.Stage.Stage data)
         {
             InitStage();
+            curData = data;
             string world = data.WorldPrefab;
-            string boss = data.BossPrefab;
+
+            this.isLoading = true;
+            Addressables.LoadSceneAsync(world, LoadSceneMode.Additive, true).Completed += StageManager_WorldComplete;
+            //Addressables.InstantiateAsync(world).Completed += StageManager_WorldComplete;
+        }
+
+        private void StageManager_WorldComplete(AsyncOperationHandle<SceneInstance> obj)
+        {
+            currentWorldHandle = obj;
+            foreach(var root in obj.Result.Scene.GetRootGameObjects())
+            {
+                if(root.GetComponentsInChildren<MapComponent.SpawnPoint>().Length > 0)
+                {
+                    this.world = root;
+                    break;
+                }
+            }
+
+            string boss = curData.BossPrefab;
 
             //임시 캐릭터 경로
             string character = "Assets/Prefab/DogPBR.prefab";
 
-            this.isLoading = true;
-            Addressables.InstantiateAsync(world).Completed += StageManager_WorldComplete;
             Addressables.InstantiateAsync(boss).Completed += StageManager_BossComplete;
             Addressables.InstantiateAsync(character).Completed += StageManager_CharacterComplete;
         }
@@ -99,6 +125,11 @@ namespace Static
             this.boss = null;
             this.character = null;
             this.world = null;
+
+            if (this.currentWorldHandle.IsValid())
+            {
+                Addressables.UnloadSceneAsync(this.currentWorldHandle, true);
+            }
         }
 
         private void StageManager_DataCompleted(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Data.Stage.Stage> obj)
@@ -107,10 +138,6 @@ namespace Static
             LoadStage(obj.Result);
         }
 
-        private void StageManager_WorldComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
-        {
-            this.world = obj.Result;
-        }
         private void StageManager_BossComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
         {
             this.boss = obj.Result;
@@ -127,7 +154,19 @@ namespace Static
             {
                 if (point.eSpawnType == MapComponent.SpawnPoint.SpawnType.Boss)
                 {
-                    this.boss.transform.position = point.transform.position;
+                    //this.boss.transform.position = point.transform.position;
+                    NavMeshHit closestHit;
+                    if (NavMesh.SamplePosition(point.transform.position, out closestHit, 500, 1))
+                    {
+                        this.boss.transform.position = closestHit.position;
+                        var navMeshAgent = this.boss.GetComponent<NavMeshAgent>();
+                        navMeshAgent.enabled = false;
+                        navMeshAgent.enabled = true;
+                    }
+                    else
+                    {
+                        Debug.LogError("NavMesh Create Fail");
+                    }
                 }
                 else if (point.eSpawnType == MapComponent.SpawnPoint.SpawnType.Character)
                 {
