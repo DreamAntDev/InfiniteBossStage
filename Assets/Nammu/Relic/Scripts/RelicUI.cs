@@ -28,6 +28,7 @@ public class RelicUI : MonoBehaviour
     IEnumerator RelicTimer()
     {
         yield return new WaitForSeconds(5f);
+        gameObject.SetActive(false);
         GameManager.Instance.StageIndex = 0;
         Static.StageManager.Instance.UnloadStage();
     }

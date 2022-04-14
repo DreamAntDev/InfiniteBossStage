@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField]
     private int stageIdx = 1;
     #region ConstString
     public readonly string STAGE_INDEX = "StageIndex";
@@ -18,7 +19,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        
     }
 
     void Start()

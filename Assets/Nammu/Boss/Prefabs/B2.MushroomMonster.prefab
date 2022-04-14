@@ -146,7 +146,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b3e81d4f7f7ebf4aa7545e7b7dc4d91, type: 2}
   - {fileID: 11400000, guid: 38257e3a467f2cf46a158868c1a88fcf, type: 2}
   - {fileID: 11400000, guid: c20ca252e7ab1fd4a8a09ed8a5ee7a64, type: 2}
-  relicCanvas: {fileID: 0}
+  relicCanvas: {fileID: 2571697180504247891, guid: 72e97f3cd603a8f488974c0b90cd1d0c, type: 3}
 --- !u!114 &775898838
 MonoBehaviour:
   m_ObjectHideFlags: 0
