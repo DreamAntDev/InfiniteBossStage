@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Stage2
   m_EditorClassIdentifier: 
   Index: 2
-  BossPrefab: Assets/Nammu/Boss/Prefabs/B2.MushroomMonster.prefab
-  WorldPrefab: Assets/Maps/Map_2.unity
+  BossPrefab: B2.MushroomMonster
+  WorldPrefab: Map_2

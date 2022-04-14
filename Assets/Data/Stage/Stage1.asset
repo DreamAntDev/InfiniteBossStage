@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   Index: 1
-  BossPrefab: Assets/Nammu/Boss/Prefabs/PBR_Golem.prefab
-  WorldPrefab: Assets/Maps/Map_1.unity
+  BossPrefab: PBR_Golem
+  WorldPrefab: Map_1

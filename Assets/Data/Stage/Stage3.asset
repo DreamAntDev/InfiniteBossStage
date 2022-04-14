@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Stage3
   m_EditorClassIdentifier: 
   Index: 3
-  BossPrefab: Assets/Nammu/Boss/Prefabs/B3.Spider_Flower.prefab
-  WorldPrefab: Assets/Maps/Map_2.unity
+  BossPrefab: B3.Spider_Flower
+  WorldPrefab: Map_2

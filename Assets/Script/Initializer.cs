@@ -11,8 +11,6 @@ public class Initializer : MonoBehaviour
 
     private void OnLoadCamera(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
     {
-        Addressables.InstantiateAsync("MainUI");
-        Addressables.InstantiateAsync("Lobby");
         UI.UILoader.Load("MainUI");
         UI.UILoader.Load("Lobby");
         UI.UILoader.Load("LoadingPage");
