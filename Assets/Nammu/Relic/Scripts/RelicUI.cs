@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RelicUI : MonoBehaviour
 {
@@ -16,9 +17,19 @@ public class RelicUI : MonoBehaviour
     {
         CloseUI();
     }
+
     public void ShowUI()
     {
+        Debug.Log("Show");
         gameObject.SetActive(true);
+        StartCoroutine(RelicTimer());
+    }
+
+    IEnumerator RelicTimer()
+    {
+        yield return new WaitForSeconds(5f);
+        GameManager.Instance.StageIndex = 0;
+        Static.StageManager.Instance.UnloadStage();
     }
 
     public void CloseUI()

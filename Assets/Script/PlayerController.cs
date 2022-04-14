@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
         this.SetState(Character.State.State.Avoid);
         var avoidState = this.state as Character.State.Avoid;
         Vector3 avoidVector = (reserveMoveVector == Vector3.zero) ? this.characterController.transform.forward : reserveMoveVector;
-        avoidState.SetMoveVector(avoidVector);
+        avoidState?.SetMoveVector(avoidVector);
     }
 
     public void OnDamage(int damage = 0)
@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviour
 
             Character.State.Grogy.GrogyType types = Character.State.Grogy.GrogyType.Push | Character.State.Grogy.GrogyType.Upper;
             Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 3.0f, moveVector, 3.0f);
-            grogyState.SetContext(context);
+            grogyState?.SetContext(context);
         }
         else if (type == 1)
         {
@@ -220,13 +220,13 @@ public class PlayerController : MonoBehaviour
 
             Character.State.Grogy.GrogyType types = Character.State.Grogy.GrogyType.Push;
             Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 1.5f, moveVector, 0.5f);
-            grogyState.SetContext(context);
+            grogyState?.SetContext(context);
         }
         else if(type == 2)
         {
             Character.State.Grogy.GrogyType types = Character.State.Grogy.GrogyType.None;
             Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 1.0f, Vector3.zero, 1.0f);
-            grogyState.SetContext(context);
+            grogyState?.SetContext(context);
         }
     }
 

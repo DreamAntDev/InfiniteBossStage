@@ -5,9 +5,15 @@ using UnityEngine.AI;
 
 namespace IBS.Monster
 {
+    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(CapsuleCollider))]
+    [RequireComponent(typeof(Combat.CombatFighter))]
+    [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(DropRelic))]
+
     public abstract class AIController : MonoBehaviour
     {
-
         float distance = 0;
 
         Animator animator;
@@ -22,8 +28,5 @@ namespace IBS.Monster
         {
             player = GameObject.FindWithTag("Player");
         }
-
-        
-        
     }
 }

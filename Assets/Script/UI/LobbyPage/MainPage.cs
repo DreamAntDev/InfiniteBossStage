@@ -37,7 +37,8 @@ namespace UI.Lobby
         }
         private void OnStage()
         {
-            Static.StageManager.Instance.LoadStage(1);
+            Debug.Log("Stage");
+            Static.StageManager.Instance.LoadStage(GameManager.Instance.StageIndex);
         }
     }
 }

@@ -18,59 +18,83 @@ MonoBehaviour:
   m_GUID: 008532857f7ec6f42af11954e3ee06e7
   m_SerializeEntries:
   - m_GUID: 883975a8fd651fb46a95fc071b7d0645
-    m_Address: Assets/Nammu/Boss/Prefabs/PBR_Golem.prefab
+    m_Address: PBR_Golem
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 5566833410643844168, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
+    m_TargetAsset: {fileID: 5566833410643844168, guid: 883975a8fd651fb46a95fc071b7d0645, type: 3}
   - m_GUID: 339193ac46ef9f14582e2e7b99039b0f
-    m_Address: Assets/Data/Stage/Stage1.asset
+    m_Address: Stage1
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 339193ac46ef9f14582e2e7b99039b0f, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 339193ac46ef9f14582e2e7b99039b0f, type: 2}
   - m_GUID: 9e892557e2ca7cd4b8ca88d24854f56d
-    m_Address: Assets/Prefab/DogPBR.prefab
+    m_Address: DogPBR
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 5503696083994807601, guid: 9e892557e2ca7cd4b8ca88d24854f56d, type: 3}
+    m_TargetAsset: {fileID: 5503696083994807601, guid: 9e892557e2ca7cd4b8ca88d24854f56d, type: 3}
   - m_GUID: ae2d2a94945dffd428cd3038bc74ff23
-    m_Address: Assets/Prefab/MainUI.prefab
+    m_Address: MainUI
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 444019276379752848, guid: ae2d2a94945dffd428cd3038bc74ff23, type: 3}
+    m_TargetAsset: {fileID: 444019276379752848, guid: ae2d2a94945dffd428cd3038bc74ff23, type: 3}
   - m_GUID: d24e37ba5a1aba14f81cbe099e0f16f3
-    m_Address: Assets/Prefab/Lobby/Lobby.prefab
+    m_Address: Lobby
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 1023292691755875352, guid: d24e37ba5a1aba14f81cbe099e0f16f3, type: 3}
+    m_TargetAsset: {fileID: 1023292691755875352, guid: d24e37ba5a1aba14f81cbe099e0f16f3, type: 3}
   - m_GUID: 6204380dd5b61f14085557d60e9a6707
-    m_Address: Assets/Prefab/Camera/CameraManager.prefab
+    m_Address: CameraManager
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2357320762501805129, guid: 6204380dd5b61f14085557d60e9a6707, type: 3}
+    m_TargetAsset: {fileID: 2357320762501805129, guid: 6204380dd5b61f14085557d60e9a6707, type: 3}
   - m_GUID: dbf9974673ab44f7cbf8d3b61e338e58
-    m_Address: Assets/Maps/Map_2.prefab
+    m_Address: Map_2
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 1853438266484525148, guid: dbf9974673ab44f7cbf8d3b61e338e58, type: 3}
+    m_TargetAsset: {fileID: 1853438266484525148, guid: dbf9974673ab44f7cbf8d3b61e338e58, type: 3}
   - m_GUID: 732f5b2943dac4c3f96a91e50979f215
-    m_Address: Assets/Maps/Map_1.prefab
+    m_Address: Map_1
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 5388460449092787602, guid: 732f5b2943dac4c3f96a91e50979f215, type: 3}
+    m_TargetAsset: {fileID: 5388460449092787602, guid: 732f5b2943dac4c3f96a91e50979f215, type: 3}
   - m_GUID: c2c417710de34dd47ab5ad0f4115c2c1
-    m_Address: Assets/Maps/Map_1.unity
+    m_Address: Map_1
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 102900000, guid: c2c417710de34dd47ab5ad0f4115c2c1, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: c2c417710de34dd47ab5ad0f4115c2c1, type: 3}
+  - m_GUID: 78d99177580fe454cabc23a95c339dd2
+    m_Address: Stage2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 11400000, guid: 78d99177580fe454cabc23a95c339dd2, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 78d99177580fe454cabc23a95c339dd2, type: 2}
+  - m_GUID: bd380a4de82b0b64b933ea15bc8683bb
+    m_Address: Stage3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 11400000, guid: bd380a4de82b0b64b933ea15bc8683bb, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: bd380a4de82b0b64b933ea15bc8683bb, type: 2}
+  - m_GUID: f7769b1fc067cae44b63ccdcc8288127
+    m_Address: B3.Spider_Flower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
+    m_TargetAsset: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
+  - m_GUID: 8edb2fa3dc2112246b53357be701f37b
+    m_Address: B2.MushroomMonster
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1382258774799692, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
+    m_TargetAsset: {fileID: 1382258774799692, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af505c5657199ba43aa773e5006a10f2, type: 2}
   m_SchemaSet:
