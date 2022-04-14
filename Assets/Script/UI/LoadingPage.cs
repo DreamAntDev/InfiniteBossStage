@@ -19,9 +19,9 @@ namespace UI
                 this.fadeOutTime = fadeOutTime;
                 this.fadeInTime = fadeInTime;
             }
-
         }
         public Image image;
+        private bool isLoading = false;
         void Start()
         {
             GetComponent<Canvas>().worldCamera = Static.CameraManager.Instance.LoadingCamera;
@@ -30,6 +30,7 @@ namespace UI
 
         public void SetLoading(FadeData data)
         {
+            isLoading = true;
             Static.CameraManager.Instance.LoadingCamera.gameObject.SetActive(true);
             this.gameObject.SetActive(true);
             StartCoroutine(Loading_Co(data));
@@ -44,10 +45,16 @@ namespace UI
             yield return new WaitForSeconds(data.fadeOutTime);
             yield return new WaitForSeconds(0.5f);
             yield return new WaitUntil(() => (data.waitFunc() == true));
+            isLoading = false;
             this.image.CrossFadeAlpha(0.0f, data.fadeInTime, true);
             yield return new WaitForSeconds(data.fadeInTime);
             this.gameObject.SetActive(false);
             Static.CameraManager.Instance.LoadingCamera.gameObject.SetActive(false);
+        }
+
+        public bool IsLoading()
+        {
+            return this.isLoading;
         }
     }
 }

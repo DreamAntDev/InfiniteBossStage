@@ -43,7 +43,7 @@ namespace Static
 
         List<AsyncOperationHandle> loadDataList = new List<AsyncOperationHandle>();
         List<AsyncOperationHandle> loadList = new List<AsyncOperationHandle>();
-
+        UI.LoadingPage loadingPage = null;
         State state
         {
             get
@@ -71,8 +71,9 @@ namespace Static
 
         public void Update()
         {
-            if (state == State.LoadSuccess)
+            if (state == State.LoadSuccess && this.loadingPage != null && this.loadingPage.IsLoading() == false)
             {
+                this.loadingPage = null;
                 LoadSuccess();
             }
 
@@ -122,11 +123,12 @@ namespace Static
             {
                 LoadStage(stageDataTree[index]);
             }
-            var loadingPage = UI.UILoader.GetUI("LoadingPage");
-            if (loadingPage != null)
+            var loading = UI.UILoader.GetUI("LoadingPage");
+            if (loading != null)
             {
-                var data = new UI.LoadingPage.FadeData(() => { return this.state == State.Idle; });
-                loadingPage.GetComponent<UI.LoadingPage>().SetLoading(data);
+                var data = new UI.LoadingPage.FadeData(() => { return this.state != State.Loading; });
+                this.loadingPage = loading.GetComponent<UI.LoadingPage>();
+                this.loadingPage.SetLoading(data);
             }
         }
 
