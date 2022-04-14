@@ -114,7 +114,7 @@ namespace Static
             callback = loadCallback;
             if (stageDataTree.ContainsKey(index) == false)
             {
-                var handle = Addressables.LoadAssetAsync<Data.Stage.Stage>("Assets/Data/Stage/Stage" + GameManager.Instance.StageIndex +".asset");
+                var handle = Addressables.LoadAssetAsync<Data.Stage.Stage>("Stage" + GameManager.Instance.StageIndex);
                 handle.Completed += StageManager_DataCompleted;
                 loadDataList.Add(handle);
             }
@@ -132,7 +132,7 @@ namespace Static
 
             string world = data.WorldPrefab;
             string boss = data.BossPrefab;
-            string character = "Assets/Prefab/DogPBR.prefab";
+            string character = "DogPBR";
 
             currentWorldHandle = Addressables.LoadSceneAsync(world, LoadSceneMode.Additive, true);
             currentWorldHandle.Completed += StageManager_WorldComplete;

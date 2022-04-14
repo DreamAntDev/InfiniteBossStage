@@ -6,12 +6,12 @@ public class Initializer : MonoBehaviour
 {
     private void Awake()
     {
-        Addressables.InstantiateAsync("Assets/Prefab/Camera/CameraManager.prefab").Completed += OnLoadCamera;
+        Addressables.InstantiateAsync("CameraManager").Completed += OnLoadCamera;
     }
 
     private void OnLoadCamera(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
     {
-        Addressables.InstantiateAsync("Assets/Prefab/MainUI.prefab");
-        Addressables.InstantiateAsync("Assets/Prefab/Lobby/Lobby.prefab");
+        Addressables.InstantiateAsync("MainUI");
+        Addressables.InstantiateAsync("Lobby");
     }
 }
