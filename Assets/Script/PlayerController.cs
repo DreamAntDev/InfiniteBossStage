@@ -180,6 +180,9 @@ public class PlayerController : MonoBehaviour
         if (this.state.GetStateType() == Character.State.State.Avoid)
             return;
 
+        if (this.state.GetStateType() == Character.State.State.Grogy)
+            return;
+
         bool successAvoid = this.status.OnAvoid();
         if (successAvoid == false)
             return;
