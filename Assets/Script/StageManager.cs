@@ -122,6 +122,12 @@ namespace Static
             {
                 LoadStage(stageDataTree[index]);
             }
+            var loadingPage = UI.UILoader.GetUI("LoadingPage");
+            if (loadingPage != null)
+            {
+                var data = new UI.LoadingPage.FadeData(() => { return this.state == State.Idle; });
+                loadingPage.GetComponent<UI.LoadingPage>().SetLoading(data);
+            }
         }
 
         private void LoadStage(Data.Stage.Stage data)
