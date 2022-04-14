@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
     private void OnMovePerform(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
-        Vector3 moveVec = new Vector3(input.x, 0, input.y);// Ä«¸Þ¶ó°¡ º¸´Â ¹æÇâ¿¡ µû¶ó ¿¬»êÀÌ ÇÊ¿äÇÔ
+        Vector3 moveVec = new Vector3(input.x, 0, input.y);// Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½
 
         this.reserveMoveVector = moveVec;
         if (this.state.GetStateType() == Character.State.State.Attack)
@@ -195,6 +195,9 @@ public class PlayerController : MonoBehaviour
         this.status.OnDamage(damage);
 
         if (this.state.GetStateType() == Character.State.State.Grogy)
+            return;
+
+        if (this.state.GetStateType() == Character.State.State.Avoid)
             return;
 
         this.SetState(Character.State.State.Grogy);
