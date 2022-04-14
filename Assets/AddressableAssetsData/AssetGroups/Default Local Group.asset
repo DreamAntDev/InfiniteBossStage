@@ -99,8 +99,14 @@ MonoBehaviour:
     m_Address: LoadingPage
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 179310182945473696, guid: 2b7a26ec0a357c346adb38412b6621f2, type: 3}
-    m_TargetAsset: {fileID: 179310182945473696, guid: 2b7a26ec0a357c346adb38412b6621f2, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: fbb593492709f4c5eb170475cdb9e9cc
+    m_Address: Map_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af505c5657199ba43aa773e5006a10f2, type: 2}
   m_SchemaSet:
