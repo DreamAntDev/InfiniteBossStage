@@ -95,6 +95,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 1382258774799692, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
     m_TargetAsset: {fileID: 1382258774799692, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
+  - m_GUID: 2b7a26ec0a357c346adb38412b6621f2
+    m_Address: Assets/Prefab/LoadingPage/LoadingPage.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af505c5657199ba43aa773e5006a10f2, type: 2}
   m_SchemaSet:

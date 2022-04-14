@@ -11,7 +11,8 @@ public class Initializer : MonoBehaviour
 
     private void OnLoadCamera(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
     {
-        Addressables.InstantiateAsync("Assets/Prefab/MainUI.prefab");
-        Addressables.InstantiateAsync("Assets/Prefab/Lobby/Lobby.prefab");
+        UI.UILoader.Load("Assets/Prefab/MainUI.prefab");
+        UI.UILoader.Load("Assets/Prefab/Lobby/Lobby.prefab");
+        UI.UILoader.Load("Assets/Prefab/LoadingPage/LoadingPage.prefab");
     }
 }

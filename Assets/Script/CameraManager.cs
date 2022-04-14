@@ -11,6 +11,7 @@ namespace Static
         public Camera MainCamera;
         public Camera UICamera;        
         public Camera LobbyCamera;
+        public Camera LoadingCamera;
 
         private void Awake()
         {
@@ -27,7 +28,9 @@ namespace Static
 
             this.UICamera = Instantiate(UICamera,this.transform);
             this.LobbyCamera = Instantiate(LobbyCamera, this.transform);
+            this.LoadingCamera = Instantiate(LoadingCamera, this.transform);
             this.UICamera.gameObject.SetActive(false);
+            this.LoadingCamera.gameObject.SetActive(false);
         }
     }
 }

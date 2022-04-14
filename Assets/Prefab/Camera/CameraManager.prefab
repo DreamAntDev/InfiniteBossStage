@@ -43,5 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7971febd6a649ac4884c0a8da96667be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
   UICamera: {fileID: 3743889160560794750, guid: 5fbb23ac6b02ce34abfcdfa425ce5c73, type: 3}
   LobbyCamera: {fileID: 254608987850744531, guid: 6a182008b7eb6fb46a9069805b816848, type: 3}
+  LoadingCamera: {fileID: 670026110934703092, guid: aa0d1dd4fab6d5146afa122bb9e4cd20, type: 3}
