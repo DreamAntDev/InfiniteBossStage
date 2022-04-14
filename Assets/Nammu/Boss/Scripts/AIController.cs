@@ -1,3 +1,4 @@
+using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace IBS.Monster
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(Health))]
     [RequireComponent(typeof(DropRelic))]
+    [RequireComponent(typeof(ActionScheduler))]
 
     public abstract class AIController : MonoBehaviour
     {
