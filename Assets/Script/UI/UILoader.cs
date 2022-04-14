@@ -12,8 +12,7 @@ namespace UI
 
         public static void Load(string addressable, System.Action loadComplete = null)
         {
-            GameObject obj;
-            if (uiTree.TryGetValue(addressable, out obj) == true)
+            if (uiTree.ContainsKey(addressable) == true)
             {
                 return;
             }
