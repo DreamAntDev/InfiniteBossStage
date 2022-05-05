@@ -24,7 +24,6 @@ namespace IBS.Combat
             animator = GetComponent<Animator>();
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
-
         }
 
         private void Start()
@@ -67,12 +66,21 @@ namespace IBS.Combat
             float distanceToPlayer = PlayerToDistance();
             return distanceToPlayer < attackDistance;
         }
+        private bool InAttackRangeOfPlayer(float value)
+        {
+            float distanceToPlayer = PlayerToDistance();
+            return distanceToPlayer * value < attackDistance;
+        }
 
         public void Hit(float damage) 
         {
+            Debug.Log("Target : " + target.name);
             if (target != null)
             {
-                target.GetComponent<PlayerController>().OnDamage(Convert.ToInt32(damage));
+                if (InAttackRangeOfPlayer(1.2f))
+                {
+                    target.GetComponent<PlayerController>().OnDamage(Convert.ToInt32(damage));
+                }
             }
         }
 

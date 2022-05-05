@@ -109,9 +109,10 @@ GameObject:
   - component: {fileID: 3301531508916852519}
   - component: {fileID: -3175772976842600463}
   - component: {fileID: -2274686731498261402}
+  - component: {fileID: 4364410691232996474}
   m_Layer: 0
   m_Name: B3.Spider_Flower
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,10 +184,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.8
+  m_Height: 1.8
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &8079023175128810125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8147c6276abcd045a596bc218fbd85d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4364410691232996474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143180963066806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4a3779292b3a2478bfd7978d3dd098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1149313386028478
@@ -1113,7 +1126,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4698042749127678}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.6834252, y: 0.08038642, z: 90.49583}
+  m_LocalEulerAnglesHint: {x: -2.2263888e-14, y: 2.2263885e-14, z: 90}
 --- !u!1 &1837487503747734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1157,7 @@ Transform:
   - {fileID: 4464437153727264}
   m_Father: {fileID: 4132062451354648}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -1.6725309, y: 6.507721, z: -84.886826}
+  m_LocalEulerAnglesHint: {x: -0, y: -0, z: 231.59999}
 --- !u!1 &1907669423578978
 GameObject:
   m_ObjectHideFlags: 0
