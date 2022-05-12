@@ -11,7 +11,7 @@ public class RelicManager : Singleton<RelicManager>
 
     public List<Relic> Relics
     {
-        get => haveRelics;
+        get { InitRelic(); return haveRelics; }
     }
 
     //private readonly Dictionary<int, Relic> activeRelic = new Dictionary<int, Relic>();
