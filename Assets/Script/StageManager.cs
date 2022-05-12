@@ -115,7 +115,7 @@ namespace Static
             callback = loadCallback;
             if (stageDataTree.ContainsKey(index) == false)
             {
-                var handle = Addressables.LoadAssetAsync<Data.Stage.Stage>("Stage" + (index+1));//Stage1부터 시작해서.... 나중에 수정
+                var handle = Addressables.LoadAssetAsync<Data.Stage.Stage>("Stage" + index);//Stage1부터 시작해서.... 나중에 수정
                 handle.Completed += StageManager_DataCompleted;
                 loadDataList.Add(handle);
             }

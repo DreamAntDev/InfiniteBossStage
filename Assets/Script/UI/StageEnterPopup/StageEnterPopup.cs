@@ -48,7 +48,7 @@ namespace UI.StageEnterPopup
         }
         private void Enter()
         {
-            Static.StageManager.Instance.LoadStage(this.selectedItem.GetData() - 1);
+            Static.StageManager.Instance.LoadStage(this.selectedItem.GetData());
             Close();
         }
     }
