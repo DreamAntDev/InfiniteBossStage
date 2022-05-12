@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: S1_Epic
   m_EditorClassIdentifier: 
   id: 1
-  itemName: "\uACE8\uB818\uC758 \uC2EC\uC7A5"
+  itemName: Golem's Drivestone
   level: 1
-  context: "\uBB38\uC744 \uC9C0\uD0A4\uB358 \uACE8\uB818\uC758 \uC2EC\uC7A5<br>HP
-    + 10"
+  context: The driving stone of the golem that guarded the entrance to the tower<br>HP+10,
+    Energyt+5
   option: 
   rating: 1
   dropProbability: 10

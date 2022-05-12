@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: S1_Normal
   m_EditorClassIdentifier: 
   id: 2
-  itemName: "\uACE8\uB818\uC758 \uB208"
+  itemName: Golem's Eye
   level: 1
-  context: "\uBB38\uC744 \uC9C0\uD0A4\uB358 \uACE8\uB818\uC758 \uB208<br>\uBCF4\uC2A4\uC758
-    HP\uB97C \uBCF4\uC5EC\uC900\uB2E4."
+  context: Eye of the golem guarding the entrance to the tower<br>HP+10
   option: 
   rating: 0
   dropProbability: 89
