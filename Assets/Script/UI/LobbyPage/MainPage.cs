@@ -28,17 +28,18 @@ namespace UI.Lobby
         private void Awake()
         {
             InventoryButton.onClick.AddListener(OnInventory);
-            StageButton.onClick.AddListener(OnStage);
+            StageButton.onClick.AddListener(OnStageEnterPopup);
         }
 
         private void OnInventory()
         {
             this.parent.LoadPage("InventoryPage");
         }
-        private void OnStage()
+        private void OnStageEnterPopup()
         {
-            Debug.Log("Stage");
-            Static.StageManager.Instance.LoadStage(GameManager.Instance.StageIndex);
+            UI.UILoader.Load("StageEnterPopup");
+            //Debug.Log("Stage");
+            //Static.StageManager.Instance.LoadStage(GameManager.Instance.StageIndex);
         }
     }
 }
