@@ -69,7 +69,7 @@ namespace IBS.Combat
         private bool InAttackRangeOfPlayer(float value)
         {
             float distanceToPlayer = PlayerToDistance();
-            return distanceToPlayer * value < attackDistance;
+            return distanceToPlayer < attackDistance * value;
         }
 
         public void Hit(float damage) 
@@ -77,7 +77,7 @@ namespace IBS.Combat
             Debug.Log("Target : " + target.name);
             if (target != null)
             {
-                if (InAttackRangeOfPlayer(1.2f))
+                if (InAttackRangeOfPlayer(1.1f))
                 {
                     target.GetComponent<PlayerController>().OnDamage(Convert.ToInt32(damage));
                 }
