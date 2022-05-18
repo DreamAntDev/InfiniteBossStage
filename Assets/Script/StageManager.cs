@@ -111,14 +111,14 @@ namespace Static
             if (state != State.Idle)
                 return;
 
-            var loading = UI.UILoader.GetUI("LoadingPage");
+            var loading = UI.UILoader.GetUI<UI.LoadingPage>("LoadingPage");
             if (loading != null)
             {
                 var data = new UI.LoadingPage.FadeData(
                     () => LoadStage(Data.Stage.Instance.Container[index]),
                     () => { return this.state != State.Loading; }
                     );
-                this.loadingPage = loading.GetComponent<UI.LoadingPage>();
+                this.loadingPage = loading;
                 this.loadingPage.SetLoading(data);
             }
             //LoadStage(Data.Stage.Instance.Container[index]);

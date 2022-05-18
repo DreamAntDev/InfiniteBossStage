@@ -8,15 +8,10 @@ public class DropRelic : MonoBehaviour
 {
     [SerializeField]
     List<Relic> relics;
-    [SerializeField]
-    GameObject relicCanvas;
 
-
-    RelicUI relicUI;
     private void Awake()
     {
-        var canvas = Instantiate(relicCanvas);
-        relicUI = canvas.GetComponent<RelicUI>();
+        
     }
     void OnDropRelic()
     {
@@ -32,7 +27,7 @@ public class DropRelic : MonoBehaviour
         {
             PlayerPrefs.SetInt(RelicDefine.RelicCount, relic.Level);
             PlayerPrefs.SetInt(RelicDefine.InvenRelic + relic.Level, relic.ID);
-            relicUI.SetRelicData(relic);
+            UI.UILoader.Load("RelicRewardPopup", () => UI.UILoader.GetUI<UI.RelicRewardPopup.RelicRewardPopup>("RelicRewardPopup").SetRelicData(relic));
             //Relic »πµÊ æ÷¥œ∏ﬁ¿Ãº« ?!
         }
     }

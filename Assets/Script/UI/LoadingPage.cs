@@ -47,7 +47,7 @@ namespace UI
             this.image.CrossFadeAlpha(1.0f, data.fadeOutTime, true);
             yield return new WaitForSeconds(data.fadeOutTime);
             data.loadFunc();
-            yield return new WaitForSeconds(0.5f);
+            //yield return new WaitForSeconds(0.5f);
             yield return new WaitUntil(() => (data.waitFunc() == true));
             isLoading = false;
             this.image.CrossFadeAlpha(0.0f, data.fadeInTime, true);

@@ -58,14 +58,14 @@ namespace UI
             }
             GameObject.Destroy(obj);
         }
-        public static GameObject GetUI(string addressable)
+        public static T GetUI<T>(string addressable)
         {
             GameObject ret = null;
             if(uiTree.TryGetValue(addressable,out ret))
             {
-                return ret;
+                return ret.GetComponent<T>();
             }
-            return null;
+            return default(T);
         }
     }
 }
