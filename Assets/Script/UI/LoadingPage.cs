@@ -8,13 +8,16 @@ namespace UI
     public class LoadingPage : MonoBehaviour
     {
         public delegate bool WaitFunc();
+        public delegate void LoadFunc();
         public class FadeData
         {
             public float fadeInTime = 0.3f;
             public float fadeOutTime = 0.3f;
             public WaitFunc waitFunc; // false°¡ µÇ¸é fadein
-            public FadeData(WaitFunc waitFunc, float fadeOutTime = 0.5f, float fadeInTime = 0.5f)
+            public LoadFunc loadFunc;
+            public FadeData(LoadFunc loadFunc, WaitFunc waitFunc, float fadeOutTime = 0.5f, float fadeInTime = 0.5f)
             {
+                this.loadFunc = loadFunc;
                 this.waitFunc = waitFunc;
                 this.fadeOutTime = fadeOutTime;
                 this.fadeInTime = fadeInTime;
@@ -43,6 +46,7 @@ namespace UI
             this.image.canvasRenderer.SetAlpha(0);
             this.image.CrossFadeAlpha(1.0f, data.fadeOutTime, true);
             yield return new WaitForSeconds(data.fadeOutTime);
+            data.loadFunc();
             yield return new WaitForSeconds(0.5f);
             yield return new WaitUntil(() => (data.waitFunc() == true));
             isLoading = false;
