@@ -24,10 +24,10 @@ namespace UI.StageEnterPopup
         private void SetList()
         {
             //StageData 로딩방식 변경후에 나중에 수정
-            for(int i=0;i<3;i++)
+            foreach(var stage in Data.Stage.Instance.Container)
             {
                 var stageListItem = GameObject.Instantiate(this.listItem.gameObject, scrollRect.content.transform).GetComponent<StageListItem>();
-                stageListItem.SetData(i + 1);
+                stageListItem.SetData(stage.Value);
                 stageListItem.button.onClick.AddListener(() => OnClick(stageListItem));
             }
             var list = this.scrollRect.content.transform.GetComponentsInChildren<StageListItem>();
@@ -48,7 +48,7 @@ namespace UI.StageEnterPopup
         }
         private void Enter()
         {
-            Static.StageManager.Instance.LoadStage(this.selectedItem.GetData());
+            Static.StageManager.Instance.LoadStage(this.selectedItem.GetStageIndex());
             Close();
         }
     }

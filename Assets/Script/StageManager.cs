@@ -20,7 +20,6 @@ namespace Static
             LoadSuccess,
         }
 
-        Dictionary<int, Data.Stage.Stage> stageDataTree = new Dictionary<int, Data.Stage.Stage>();
         static StageManager instance = null;
         public static StageManager Instance
         {
@@ -107,22 +106,13 @@ namespace Static
 
             Static.CameraManager.Instance.MainCamera.GetComponent<Component.TargetTraceCamera>().target = this.character.transform;
         }
-        public void LoadStage(int index, System.Action loadCallback = null)
+        public void LoadStage(int index)
         {
             if (state != State.Idle)
                 return;
 
-            callback = loadCallback;
-            if (stageDataTree.ContainsKey(index) == false)
-            {
-                var handle = Addressables.LoadAssetAsync<Data.Stage.Stage>("Stage" + index);//Stage1부터 시작해서.... 나중에 수정
-                handle.Completed += StageManager_DataCompleted;
-                loadDataList.Add(handle);
-            }
-            else
-            {
-                LoadStage(stageDataTree[index]);
-            }
+            LoadStage(Data.Stage.Instance.Container[index]);
+
             var loading = UI.UILoader.GetUI("LoadingPage");
             if (loading != null)
             {
@@ -186,12 +176,6 @@ namespace Static
             {
                 Addressables.UnloadSceneAsync(this.currentWorldHandle, true);
             }
-        }
-
-        private void StageManager_DataCompleted(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Data.Stage.Stage> obj)
-        {
-            stageDataTree.Add(obj.Result.Index, obj.Result);
-            LoadStage(obj.Result);
         }
 
         private void StageManager_BossComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)

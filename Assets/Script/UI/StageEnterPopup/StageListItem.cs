@@ -12,15 +12,15 @@ namespace UI.StageEnterPopup
         public GameObject selectObject;
         public Button button;
 
-        private int data;
-        public void SetData(int i) // 나중에 수정
+        private Data.Stage.Stage data;
+        public void SetData(Data.Stage.Stage stage)
         {
-            this.data = i;
-            text.SetText(i.ToString());
+            this.data = stage;
+            text.SetText(stage.Index.ToString());
         }
-        public int GetData()
+        public int GetStageIndex()
         {
-            return this.data;
+            return this.data.Index;
         }
     }
 }

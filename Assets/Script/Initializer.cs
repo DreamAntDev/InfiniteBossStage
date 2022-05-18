@@ -6,6 +6,8 @@ public class Initializer : MonoBehaviour
 {
     private void Awake()
     {
+        Data.Stage.Instance.Load();
+
         Addressables.InstantiateAsync("CameraManager").Completed += OnLoadCamera;
     }
 

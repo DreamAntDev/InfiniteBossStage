@@ -23,12 +23,6 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 339193ac46ef9f14582e2e7b99039b0f
-    m_Address: Stage1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 9e892557e2ca7cd4b8ca88d24854f56d
     m_Address: DogPBR
     m_ReadOnly: 0
@@ -71,18 +65,6 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 78d99177580fe454cabc23a95c339dd2
-    m_Address: Stage2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: bd380a4de82b0b64b933ea15bc8683bb
-    m_Address: Stage3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: f7769b1fc067cae44b63ccdcc8288127
     m_Address: B3.Spider_Flower
     m_ReadOnly: 0
@@ -109,6 +91,12 @@ MonoBehaviour:
     m_TargetAsset: {fileID: 0}
   - m_GUID: 0f3e44f15b1089649be9fb8e13b2b70c
     m_Address: StageEnterPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 403cc5654409166489363e086265ee24
+    m_Address: Assets/Data/Stage
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
