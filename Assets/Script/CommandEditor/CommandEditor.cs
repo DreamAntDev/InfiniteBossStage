@@ -16,6 +16,9 @@ namespace DebugCommand
             if (CharacterDamage(splitArg) == true)
                 return;
 
+            if(BossKill(splitArg) == true)
+                return;
+
             Debug.LogError("Not Exist Command");
 #endif
         }
@@ -44,7 +47,18 @@ namespace DebugCommand
         }
 
 
+        static bool BossKill(List<string> args)
+        {
+            if (args[0].Equals("BossKill") == false)
+                return false;
 
+            var boss = GameObject.FindObjectOfType<IBS.Combat.CombatFighter>();
+            if(boss != null)
+            {
+                boss.TakeDamage(int.MaxValue);
+            }
+            return true;
+        }
 
 #endif
     }

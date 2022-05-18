@@ -36,7 +36,10 @@ public class CommandEditor : EditorWindow
     private void OnEnable()
     {
         stringList = new List<string>();
-        for (int i = 0; i < ListCount; i++)
+        stringList.Add("Character Damage 10");
+        stringList.Add("BossKill");
+
+        for (int i = stringList.Count-1; i < ListCount; i++)
         {
             stringList.Add("");
         }
