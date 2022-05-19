@@ -29,14 +29,14 @@ namespace UI.RelicRewardPopup
         IEnumerator RelicTimer()
         {
             yield return new WaitForSeconds(5f);
-            gameObject.SetActive(false);
             GameManager.Instance.StageIndex = 0;
             Static.StageManager.Instance.UnloadStage();
+            CloseUI();
         }
 
         public void CloseUI()
         {
-            gameObject.SetActive(false);
+            UI.UILoader.Unload("RelicRewardPopup");
         }
 
         public void SetRelicData(Relic relic)
