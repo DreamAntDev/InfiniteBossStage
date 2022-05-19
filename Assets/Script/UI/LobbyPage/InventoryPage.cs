@@ -38,6 +38,7 @@ namespace UI.Lobby
         [SerializeField]
         protected GameObject selectIcon;
 
+        private Relic currentRelic;
         private void Start()
         {
             InitUI();
@@ -82,6 +83,13 @@ namespace UI.Lobby
             menu_RelicName.text = relic.Name;
             menu_Info.text = relic.Context;
             //menu_Status.text = relic.
+
+            currentRelic = relic;
+        }
+
+        public void SelectRelic()
+        {
+            RelicManager.Instance.SelectRelic(currentRelic);
         }
 
         public override string GetTitle()

@@ -15,9 +15,15 @@ MonoBehaviour:
   id: 3
   itemName: Golem's Core
   level: 1
-  context: It is the core of the golem that guards the entrance to the tower.<br>HP+20,
-    Energy+10
+  context: It is the core of the golem that guards the entrance to the tower.<br>HP
+    +5%, Energy +5%
   option: 
+  applyType: 1
+  effects:
+  - effectType: 0
+    effect: 5
+  - effectType: 1
+    effect: 5
   rating: 2
   dropProbability: 1
   relicSprite: {fileID: 21300000, guid: a3f6ade06695e433b90d2395867e368a, type: 3}

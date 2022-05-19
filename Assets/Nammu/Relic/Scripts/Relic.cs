@@ -22,6 +22,12 @@ public class Relic : ScriptableObject
     private string option;
 
     [SerializeField]
+    private Type.RelicApplyType applyType;
+
+    [SerializeField]
+    private List<Effect> effects = new List<Effect>();
+
+    [SerializeField]
     private Type.RelicRating rating;
 
     [SerializeField]
@@ -51,6 +57,16 @@ public class Relic : ScriptableObject
     public string Option
     {
         get { return option; }
+    }
+
+    public Type.RelicApplyType ApplyType
+    {
+        get { return applyType; }
+    }
+
+    public List<Effect> Effects
+    {
+        get { return effects; }
     }
     public Type.RelicRating Rating
     {

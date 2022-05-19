@@ -1,3 +1,4 @@
+using IBS.Resoruce;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,8 +27,38 @@ namespace Character
             StaminaRecoveryValuePerSec = data.StaminaRecoveryValuePerSec;
             AvoidUsingStamina = data.AvoidUsingStamina;
 
+            RelicApply();
+
             UI.MainInterface.MainInterface.Instance.hpSlider.SetValue(1.0f, forceApply: true);
             UI.MainInterface.MainInterface.Instance.staminaSlider.SetValue(1.0f, forceApply: true);
+        }
+
+        private void RelicApply()
+        {
+            List<Relic> activeRelics = RelicManager.Instance.ActivePlayerRelic();
+            foreach(var relic in activeRelics)
+            {
+                foreach(var effect in relic.Effects)
+                {
+                    switch (effect.EffectType)
+                    {
+                        case Type.RelicEffect.Attack:
+                            //데미지 증가
+                            break;
+                        case Type.RelicEffect.HP:
+                            //HP 증가
+                            MaxHP *= effect.EffectValue;
+                            break;
+                        case Type.RelicEffect.Energy:
+                            //스테미너 증가
+                            MaxStamina *= effect.EffectValue;
+                            break;
+                        case Type.RelicEffect.Move:
+                            //이동 속도 증가
+                            break;
+                    }
+                }
+            }
         }
 
         public void RecoveryStamina()

@@ -17,6 +17,8 @@ MonoBehaviour:
   level: 1
   context: Eye of the golem guarding the entrance to the tower<br>HP+10
   option: 
+  applyType: 1
+  effects: []
   rating: 0
   dropProbability: 89
   relicSprite: {fileID: 21300000, guid: bfd61c98d74144657b1aa56db3fd048a, type: 3}

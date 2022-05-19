@@ -24,8 +24,6 @@ public class RelicIcon : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("OnPointerClick");
-
         if(OnItemClick != null)
         {
             OnItemClick.Invoke(currentRelic);

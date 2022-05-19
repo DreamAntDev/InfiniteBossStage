@@ -25,8 +25,7 @@ public class DropRelic : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt(RelicDefine.RelicCount, relic.Level);
-            PlayerPrefs.SetInt(RelicDefine.InvenRelic + relic.Level, relic.ID);
+            RelicManager.Instance.AddRelic(relic);
             UI.UILoader.Load("RelicRewardPopup", () => UI.UILoader.GetUI<UI.RelicRewardPopup.RelicRewardPopup>("RelicRewardPopup").SetRelicData(relic));
             //Relic »πµÊ æ÷¥œ∏ﬁ¿Ãº« ?!
         }

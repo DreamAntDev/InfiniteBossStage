@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using IBS.Resoruce;
 using UnityEngine;
 
-public class Effect : MonoBehaviour
+[System.Serializable]
+public class Effect
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private Type.RelicEffect effectType;
+    [SerializeField]
+    private int effect;
+
+    public Type.RelicEffect EffectType
     {
-        
+        get => effectType;
+    }
+    public int EffectValue
+    {
+        get => effect;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

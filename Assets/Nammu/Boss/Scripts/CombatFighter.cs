@@ -19,6 +19,13 @@ namespace IBS.Combat
 
         string attackName = string.Empty;
 
+        float damageReduction = 1;
+
+        public float DamageReduction
+        {
+            set => damageReduction = 1-value;
+        }
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -79,7 +86,7 @@ namespace IBS.Combat
             {
                 if (InAttackRangeOfPlayer(1.1f))
                 {
-                    target.GetComponent<PlayerController>().OnDamage(Convert.ToInt32(damage));
+                    target.GetComponent<PlayerController>().OnDamage(Convert.ToInt32(damage * damageReduction) );
                 }
             }
         }

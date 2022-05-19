@@ -10,6 +10,11 @@ public class Mover : MonoBehaviour
     [SerializeField] float maxSpeed = 6f;
     [SerializeField] float maxNavPathLength = 40f;
     
+    public float Speed
+    {
+        set => maxSpeed *= 1-value;
+        get => maxSpeed;
+    }
 
     NavMeshAgent navMeshAgent;
 

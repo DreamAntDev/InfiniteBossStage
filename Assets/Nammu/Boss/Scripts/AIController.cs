@@ -1,3 +1,4 @@
+using IBS.Resoruce;
 using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace IBS.Monster
 
         GameObject player;
 
+        Combat.CombatFighter combatFighter;
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -29,6 +31,36 @@ namespace IBS.Monster
         private void Start()
         {
             player = GameObject.FindWithTag("Player");
+            combatFighter = GetComponent<Combat.CombatFighter>();
+            RelicApply();
+        }
+        private void RelicApply()
+        {
+            List<Relic> activeRelics = RelicManager.Instance.ActivePlayerRelic();
+            foreach (var relic in activeRelics)
+            {
+                foreach (var effect in relic.Effects)
+                {
+                    switch (effect.EffectType)
+                    {
+                        case Type.RelicEffect.Attack:
+                            //데미지 감소
+                            combatFighter.DamageReduction = effect.EffectValue;
+                            break;
+                        case Type.RelicEffect.HP:
+                            //HP 감소
+                            GetComponent<Health>().HealthValue = effect.EffectValue;
+                            break;
+                        case Type.RelicEffect.Energy:
+                            //스테미너 감소
+                            break;
+                        case Type.RelicEffect.Move:
+                            //이동 속도 감소
+                            GetComponent<Mover>().Speed = effect.EffectValue;
+                            break;
+                    }
+                }
+            }
         }
     }
 }

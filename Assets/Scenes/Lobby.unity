@@ -177,6 +177,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94544624e45ea9b49bd8da418f49785b, type: 2}
   - {fileID: 11400000, guid: 7d1895c32b17ea14b800e864c9a16e53, type: 2}
   - {fileID: 11400000, guid: 079b97d87e76bc9449dc814c67b73a0f, type: 2}
+  limitRelicCount: 3
 --- !u!114 &51075030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd70617886406041846ac61df3f74ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageIdx: 1
 --- !u!1 &171155774
 GameObject:
   m_ObjectHideFlags: 0

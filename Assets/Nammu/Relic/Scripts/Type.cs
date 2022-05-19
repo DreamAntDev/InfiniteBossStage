@@ -12,5 +12,19 @@ namespace IBS.Resoruce
             Epic,
             Unique
         }
+
+        public enum RelicApplyType
+        {
+            Boss,
+            Player
+        }
+
+        public enum RelicEffect
+        {
+            HP,
+            Energy,
+            Move,
+            Attack
+        }
     }
 }

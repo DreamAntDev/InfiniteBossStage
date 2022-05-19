@@ -9,6 +9,13 @@ public class Health : MonoBehaviour
 {
 
 	[SerializeField] float health = 100f;
+
+	public float HealthValue
+    {
+		set => health *= 1-value;
+		get => health;
+    }
+
 	bool isDead = false;
 	Animator animator;
     private void Start()
