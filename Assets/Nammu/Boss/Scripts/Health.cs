@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
 {
 
 	[SerializeField] float health = 100f;
+    float maxHealth;
 
 	public float HealthValue
     {
@@ -21,7 +22,10 @@ public class Health : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-	}
+        maxHealth = health;
+        UI.MainInterface.MainInterface.Instance.bossHpSlider.SetValue((float)this.health / this.maxHealth);
+
+    }
 
     public bool IsDead()
 	{
@@ -41,7 +45,7 @@ public class Health : MonoBehaviour
 		health = Mathf.Max(health - damage, 0);
 
 		animator.SetTrigger("GetHit");
-        UI.MainInterface.MainInterface.Instance.bossHpSlider.SetValue((float)this.health / 100.0f); // MaxHP정보가 없어서 임시로 100
+        UI.MainInterface.MainInterface.Instance.bossHpSlider.SetValue((float)this.health / this.maxHealth); // MaxHP정보가 없어서 임시로 100
         if (health == 0f)
 		{
 			Death();
