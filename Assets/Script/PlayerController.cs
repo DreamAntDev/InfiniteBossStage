@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         stateContainer.Add(Character.State.State.Attack, new Character.State.Attack());
         stateContainer.Add(Character.State.State.Avoid, new Character.State.Avoid());
         stateContainer.Add(Character.State.State.Grogy, new Character.State.Grogy());
+        stateContainer.Add(Character.State.State.Dead, new Character.State.Dead());
 
         this.state = stateContainer[Character.State.State.Idle];
     }
@@ -164,7 +165,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttackPerform(InputAction.CallbackContext context)
     {
-        Debug.Log("Attack");
         if (this.state.GetStateType() == Character.State.State.Attack)
         {
             var attackState = this.state as Character.State.Attack;
@@ -192,15 +192,17 @@ public class PlayerController : MonoBehaviour
         Vector3 avoidVector = (reserveMoveVector == Vector3.zero) ? this.characterController.transform.forward : reserveMoveVector;
         avoidState?.SetMoveVector(avoidVector);
     }
-
+    
     public void OnDamage(int damage = 0)
     {
-        this.status.OnDamage(damage);
-
-        if (this.state.GetStateType() == Character.State.State.Grogy)
+        if (this.state.GetStateType() == Character.State.State.Avoid)
             return;
 
-        if (this.state.GetStateType() == Character.State.State.Avoid)
+        this.status.OnDamage(damage);
+        if (this.status.CurrentHP <= 0)
+            this.SetState(Character.State.State.Dead);
+
+        if (this.state.GetStateType() == Character.State.State.Grogy)
             return;
 
         this.SetState(Character.State.State.Grogy);

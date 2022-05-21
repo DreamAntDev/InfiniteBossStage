@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -31,10 +32,19 @@ namespace UI
                 if (uiTree.ContainsKey(addressable) == false) // 로딩전 Unload
                 {
                     GameObject.Destroy(obj.Result);// 바로제거
+                    if(loadCompleteTree.ContainsKey(addressable) == true)
+                    {
+                        loadCompleteTree.Remove(addressable);
+                    }
                 }
                 else
                 {
                     uiTree[addressable] = obj.Result;
+                    var popup = obj.Result.GetComponent<Popup>();
+                    if (popup != null)
+                    {
+                        popup.Enable();
+                    }
                 }
 
                 System.Action loadComplete;

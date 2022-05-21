@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace UI.RelicRewardPopup
 {
-    public class RelicRewardPopup : MonoBehaviour
+    public class RelicRewardPopup : UI.Popup
     {
         [SerializeField]
         Image relicImage;

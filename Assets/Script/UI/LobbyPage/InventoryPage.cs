@@ -65,7 +65,7 @@ namespace UI.Lobby
                 }
                 GameObject obj = Instantiate(iconData.gameObject);
 
-                obj.transform.parent = relicParent;
+                obj.transform.SetParent(relicParent);
                 obj.transform.localPosition = Vector3.zero;
                 obj.transform.localScale = Vector3.one;
 

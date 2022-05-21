@@ -20,5 +20,6 @@ namespace Character.State
         Attack,
         Avoid,
         Grogy,
+        Dead,
     }
 }

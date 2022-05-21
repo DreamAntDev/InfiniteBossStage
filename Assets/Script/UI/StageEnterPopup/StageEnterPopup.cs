@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 namespace UI.StageEnterPopup
 {
-    public class StageEnterPopup : MonoBehaviour
+    public class StageEnterPopup : UI.Popup
     {
         public ScrollRect scrollRect;
         public StageListItem listItem;
         public Button enterButton;
         public Button closeButton;
-        public Button dim; // 팝업에 기본으로 BG깔리게 해야할 듯? 나중에 수정
 
         private StageListItem selectedItem = null;
         private void Start()
