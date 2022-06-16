@@ -375,4 +375,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb08968e3a65cec439fde84ab4064f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relicImage: {fileID: 6198984772067156926}
+  relicImage: {fileID: 6198984771547431461}
+  text_itemCount: {fileID: 6198984770229864509}

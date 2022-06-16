@@ -11,10 +11,18 @@ public class RelicIcon : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     protected Image relicImage;
+    [SerializeField]
+    protected TMPro.TextMeshProUGUI text_itemCount;
+    private int itemCount = 0;
 
     private Relic currentRelic;
 
-    public event Action<Relic> OnItemClick;
+    public event Action<RelicIcon> OnItemClick;
+
+    public Relic Relic
+    {
+        get => currentRelic;
+    }
 
     public void SetRelicIcon(Relic relic)
     {
@@ -22,11 +30,34 @@ public class RelicIcon : MonoBehaviour, IPointerClickHandler
         relicImage.sprite = relic.Sprite;
     }
 
+    public void UpdateItemCount()
+    {
+        itemCount++;
+        if (!text_itemCount.gameObject.activeSelf)
+        {
+            if(itemCount > 1)
+            {
+                text_itemCount.gameObject.SetActive(true);
+            }
+        }
+        text_itemCount.text = itemCount.ToString();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if(OnItemClick != null)
         {
-            OnItemClick.Invoke(currentRelic);
+            OnItemClick.Invoke(this);
         }
+    }
+
+    public bool Equals(Relic relic) 
+    {
+        if(currentRelic == relic)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

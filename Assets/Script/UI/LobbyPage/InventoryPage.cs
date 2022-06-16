@@ -13,8 +13,8 @@ namespace UI.Lobby
     public class InventoryPage : LobbyPage
     {
         private const int RATING_NORMAL = 0;
-        private const int RATING_EPIC = 0;
-        private const int RATING_UNIQUE = 0;
+        private const int RATING_EPIC = 1;
+        private const int RATING_UNIQUE = 2;
 
 
         [SerializeField]
@@ -28,6 +28,8 @@ namespace UI.Lobby
         protected TextMeshProUGUI menu_Info;
         [SerializeField]
         protected TextMeshProUGUI menu_Status;
+        [SerializeField]
+        protected GameObject menu_Focus;
 
         [SerializeField]
         protected List<RelicIcon> relicIcons;
@@ -39,6 +41,11 @@ namespace UI.Lobby
         protected GameObject selectIcon;
 
         private Relic currentRelic;
+        private List<RelicIcon> relicIconList;
+        private void Awake()
+        {
+            relicIconList = new List<RelicIcon>();
+        }
         private void Start()
         {
             InitUI();
@@ -48,6 +55,7 @@ namespace UI.Lobby
         {
             var relics = RelicManager.Instance.Relics;
             Debug.Log($"### InitUI Relic List {relics.Count}");
+
             foreach(var relic in relics)
             {
                 RelicIcon iconData = null;
@@ -63,21 +71,38 @@ namespace UI.Lobby
                         iconData = relicIcons[RATING_UNIQUE];
                         break;
                 }
-                GameObject obj = Instantiate(iconData.gameObject);
 
-                obj.transform.SetParent(relicParent);
-                obj.transform.localPosition = Vector3.zero;
-                obj.transform.localScale = Vector3.one;
+                var relicFindData = relicIconList.Find(x => x.Equals(relic));
+                if (relicFindData is null)
+                {
+                    GameObject obj = Instantiate(iconData.gameObject);
+                    obj.transform.SetParent(relicParent);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.transform.localScale = Vector3.one;
 
+                    RelicIcon icon = obj.GetComponent<RelicIcon>();
+                    icon.OnItemClick += OnRelicIconClick;
+                    icon.SetRelicIcon(relic);
 
-                RelicIcon icon = obj.GetComponent<RelicIcon>();
-                icon.OnItemClick += OnRelicIconClick;
-                icon.SetRelicIcon(relic);
+                    relicIconList.Add(icon);
+                }
+                else
+                {
+                    relicFindData.UpdateItemCount();
+                }
             }
         }
 
-        public void OnRelicIconClick(Relic relic)
+        public void OnRelicIconClick(RelicIcon relicicon)
         {
+            
+            menu_Focus.transform.parent = relicicon.gameObject.transform;
+            menu_Focus.transform.localPosition = Vector3.zero;
+            if (!menu_Focus.activeSelf)
+            {
+                menu_Focus.SetActive(true);
+            }
+            Relic relic = relicicon.Relic;
             //Selectd Relic
             menu_Rating.text = relic.Rating.ToString();
             menu_RelicName.text = relic.Name;

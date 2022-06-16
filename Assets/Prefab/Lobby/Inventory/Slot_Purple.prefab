@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb08968e3a65cec439fde84ab4064f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relicImage: {fileID: 3203896667435326547}
+  relicImage: {fileID: 8157273016541070147}
+  text_itemCount: {fileID: 8157273016839617909}
 --- !u!1 &8157273016486037224
 GameObject:
   m_ObjectHideFlags: 0

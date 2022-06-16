@@ -65,13 +65,14 @@ public class RelicManager : Singleton<RelicManager>
 
     public void SelectRelic(Relic relic)
     {
-        Debug.Log("Select Relic Count : " + activeRelicList.Count);
         if(activeRelicList.Count >= limitRelicCount)
             return;
+
         if (activeRelicList.Count(x => x.ID == relic.ID) >= 1)
             return;
 
         activeRelicList.Add(relic);
+        Debug.Log("Select Relic Count : " + activeRelicList.Count);
     }
 
     public List<Relic> ActivePlayerRelic()

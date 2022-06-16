@@ -24,4 +24,4 @@ MonoBehaviour:
     effect: 10
   rating: 2
   dropProbability: 1
-  relicSprite: {fileID: 21300000, guid: a3f6ade06695e433b90d2395867e368a, type: 3}
+  relicSprite: {fileID: 21300000, guid: 12aeed38be02a418590ffc45a09f0bdd, type: 3}
