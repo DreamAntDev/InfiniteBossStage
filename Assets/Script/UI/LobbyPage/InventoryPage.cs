@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Type = IBS.Resoruce.Type;
 using TMPro;
+using UnityEngine.UI;
 
 namespace UI.Lobby
 {
@@ -32,7 +33,18 @@ namespace UI.Lobby
         protected GameObject menu_Focus;
 
         [SerializeField]
+        protected List<GameObject> menu_ActiveRelicPointList;
+
+        [SerializeField]
+        protected Transform subTransform;
+
+        [SerializeField]
         protected List<RelicIcon> relicIcons;
+
+        [SerializeField]
+        protected GameObject menu_SelectButton;
+        [SerializeField]
+        protected GameObject menu_DeSelectButton;
 
         [SerializeField]
         protected GameObject newIcon;
@@ -40,8 +52,9 @@ namespace UI.Lobby
         [SerializeField]
         protected GameObject selectIcon;
 
-        private Relic currentRelic;
+        private RelicIcon currentRelicIcon;
         private List<RelicIcon> relicIconList;
+        private List<RelicIcon> activeRelicIconList;
         private void Awake()
         {
             relicIconList = new List<RelicIcon>();
@@ -85,23 +98,41 @@ namespace UI.Lobby
                     icon.SetRelicIcon(relic);
 
                     relicIconList.Add(icon);
+
+                    if (RelicManager.Instance.ActiveRelics.Exists(x => x.ID == relic.ID))
+                    {
+                        SetSelectRelicPoint();
+                    }
                 }
                 else
                 {
                     relicFindData.UpdateItemCount();
                 }
+
             }
         }
 
         public void OnRelicIconClick(RelicIcon relicicon)
         {
-            
-            menu_Focus.transform.parent = relicicon.gameObject.transform;
+            menu_Focus.transform.SetParent(relicicon.gameObject.transform);
             menu_Focus.transform.localPosition = Vector3.zero;
+
             if (!menu_Focus.activeSelf)
             {
                 menu_Focus.SetActive(true);
             }
+
+            if(relicicon.point == null)
+            {
+                menu_SelectButton.SetActive(true);
+                menu_DeSelectButton.SetActive(false);
+            }
+            else
+            {
+                menu_DeSelectButton.SetActive(true);
+                menu_SelectButton.SetActive(false);
+            }
+
             Relic relic = relicicon.Relic;
             //Selectd Relic
             menu_Rating.text = relic.Rating.ToString();
@@ -109,12 +140,48 @@ namespace UI.Lobby
             menu_Info.text = relic.Context;
             //menu_Status.text = relic.
 
-            currentRelic = relic;
+            currentRelicIcon = relicicon;
         }
 
-        public void SelectRelic()
+        public void SelectRelic(bool isSelect)
         {
-            RelicManager.Instance.SelectRelic(currentRelic);
+            if (isSelect)
+            {
+                SetSelectRelicPoint();
+                RelicManager.Instance.SelectRelic(currentRelicIcon.Relic);
+            }
+            else
+            {
+                DeSelectRelicPoint();
+                RelicManager.Instance.DeSelectRelic(currentRelicIcon.Relic);
+            }
+        }
+
+        private void SetSelectRelicPoint()
+        {
+            GameObject activePointObj = subTransform.Find("ActiveRelicTap").gameObject;
+            if (activePointObj == null)
+            {
+                activeRelicIconList[0].point.transform.SetParent(subTransform);
+            }
+
+            activePointObj.transform.SetParent(currentRelicIcon.transform);
+            activePointObj.transform.localPosition = Vector3.zero;
+            currentRelicIcon.point = activePointObj;
+            
+            menu_DeSelectButton.SetActive(true);
+            menu_SelectButton.SetActive(false);
+        }
+
+        private void DeSelectRelicPoint()
+        {
+            Debug.Log("DeSelect");
+            var point = currentRelicIcon.point;
+            point.transform.SetParent(subTransform);
+
+            menu_DeSelectButton.SetActive(false);
+            menu_SelectButton.SetActive(true);
+            currentRelicIcon.point = null;
         }
 
         public override string GetTitle()

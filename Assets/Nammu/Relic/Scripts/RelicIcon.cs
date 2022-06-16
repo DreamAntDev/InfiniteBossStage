@@ -19,6 +19,8 @@ public class RelicIcon : MonoBehaviour, IPointerClickHandler
 
     public event Action<RelicIcon> OnItemClick;
 
+    public GameObject point = null;
+
     public Relic Relic
     {
         get => currentRelic;
