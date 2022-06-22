@@ -15,6 +15,9 @@ namespace UI.Lobby
 
         private Dictionary<string, LobbyPage> cachedLobbyDictionary = new Dictionary<string, LobbyPage>();
         private LobbyPage currentPage = null;
+
+        private TextMeshPro tempTMP;
+
         void Start()
         {
             GetComponent<Canvas>().worldCamera = Static.CameraManager.Instance.LobbyCamera;
@@ -22,6 +25,7 @@ namespace UI.Lobby
             this.BackButton.onClick.AddListener(()=>LoadPage());
 
             LoadPage();
+            setCharacterStatus();
         }
 
         public void LoadPage(string pageName = "MainPage")
@@ -53,7 +57,7 @@ namespace UI.Lobby
             newPage.transform.localPosition = Vector3.zero;
             newPage.gameObject.SetActive(true);
 
-            // ÀÌÀüÆäÀÌÁö Ã³¸®
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
             if (this.currentPage != null)
             {
                 this.currentPage.gameObject.SetActive(false);
@@ -65,6 +69,11 @@ namespace UI.Lobby
             this.TitleText.SetText(this.currentPage.GetTitle());
 
             this.BackButton.gameObject.SetActive(this.currentPage.IsVisibleBackButton());
+        }
+
+        public void setCharacterStatus()
+        {
+            // TODO ìºë¦­í„° ìŠ¤í…Œì´í„°ìŠ¤ ì¡°íšŒ
         }
     }
 }
