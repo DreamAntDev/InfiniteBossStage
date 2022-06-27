@@ -47,18 +47,6 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: dbf9974673ab44f7cbf8d3b61e338e58
-    m_Address: Map_2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: 732f5b2943dac4c3f96a91e50979f215
-    m_Address: Map_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: c2c417710de34dd47ab5ad0f4115c2c1
     m_Address: Map_1
     m_ReadOnly: 0
@@ -116,6 +104,18 @@ MonoBehaviour:
     m_TargetAsset: {fileID: 0}
   - m_GUID: 161f99b1008bc0543a17260bac8adeb3
     m_Address: CommonPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: da771db48ed5fa04d8f5454d8046a80d
+    m_Address: Sound/Lobby
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8b91f86b45e5953468553d3934f712c4
+    m_Address: Sound/Stage1BGM
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

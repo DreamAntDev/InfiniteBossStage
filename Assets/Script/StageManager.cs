@@ -38,6 +38,7 @@ namespace Static
         GameObject boss;
         GameObject character;
         GameObject world;
+        AudioClip bgmClip;
         AsyncOperationHandle<SceneInstance> currentWorldHandle;
 
         List<AsyncOperationHandle> loadDataList = new List<AsyncOperationHandle>();
@@ -95,6 +96,10 @@ namespace Static
         private void LoadSuccess()
         {
             this.loadList.Clear();
+            if (this.bgmClip != null)
+            {
+                Static.SoundManager.Instance.PlaySound(this.bgmClip, SoundManager.SoundType.BGM);
+            }
             SetObjectPosition();
 
             callback?.Invoke();
@@ -145,6 +150,13 @@ namespace Static
             var characterHandle = Addressables.InstantiateAsync(character);
             characterHandle.Completed += StageManager_CharacterComplete;
             this.loadList.Add(characterHandle);
+
+            if (string.IsNullOrEmpty(data.BGM) == false)
+            {
+                var bgmHandle = Static.SoundManager.Instance.LoadSound(data.BGM);
+                bgmHandle.Completed += StageManager_BGMComplete;
+                this.loadList.Add(bgmHandle);
+            }
         }
 
         private void StageManager_WorldComplete(AsyncOperationHandle<SceneInstance> obj)
@@ -169,9 +181,12 @@ namespace Static
             if (this.character != null)
                 GameObject.Destroy(this.character);
 
+            Static.SoundManager.Instance.ClearSound();
+
             this.boss = null;
             this.character = null;
             this.world = null;
+            this.bgmClip = null;
 
             this.loadList.Clear();
             if (this.currentWorldHandle.IsValid())
@@ -190,6 +205,11 @@ namespace Static
             this.character = obj.Result;
             this.character.gameObject.SetActive(false);
         }
+        private void StageManager_BGMComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<AudioClip> obj)
+        {
+            this.bgmClip = obj.Result;
+        }
+
         private void SetObjectPosition()
         {
             this.world.transform.position = Vector3.zero;

@@ -13,6 +13,7 @@ namespace Data.Stage
         public int Index;
         public string BossPrefab;
         public string WorldPrefab;
+        public string BGM;
     }
 
     public static class Instance

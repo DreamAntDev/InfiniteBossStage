@@ -15,3 +15,4 @@ MonoBehaviour:
   Index: 1
   BossPrefab: PBR_Golem
   WorldPrefab: Map_1
+  BGM: Sound/Stage1BGM
