@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using Type = IBS.Resoruce.Type;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace UI.Lobby
 {
@@ -54,7 +55,7 @@ namespace UI.Lobby
 
         private RelicIcon currentRelicIcon;
         private List<RelicIcon> relicIconList;
-        private List<RelicIcon> activeRelicIconList;
+        private List<RelicIcon> activeRelicIconList = new List<RelicIcon>();
         private void Awake()
         {
             relicIconList = new List<RelicIcon>();
@@ -152,36 +153,41 @@ namespace UI.Lobby
             }
             else
             {
-                DeSelectRelicPoint();
+                DeSelectRelicPoint(currentRelicIcon);
                 RelicManager.Instance.DeSelectRelic(currentRelicIcon.Relic);
             }
         }
 
         private void SetSelectRelicPoint()
         {
-            GameObject activePointObj = subTransform.Find("ActiveRelicTap").gameObject;
-            if (activePointObj == null)
+            if(activeRelicIconList.Count == 3)
             {
-                activeRelicIconList[0].point.transform.SetParent(subTransform);
+                RelicIcon icon = activeRelicIconList.First();
+                DeSelectRelicPoint(icon);
+                activeRelicIconList.Remove(icon);
             }
+
+            GameObject activePointObj = subTransform.Find("ActiveRelicTap")?.gameObject;
 
             activePointObj.transform.SetParent(currentRelicIcon.transform);
             activePointObj.transform.localPosition = Vector3.zero;
             currentRelicIcon.point = activePointObj;
+
+            activeRelicIconList.Add(currentRelicIcon);
             
             menu_DeSelectButton.SetActive(true);
             menu_SelectButton.SetActive(false);
         }
 
-        private void DeSelectRelicPoint()
+        private void DeSelectRelicPoint(RelicIcon ri)
         {
             Debug.Log("DeSelect");
-            var point = currentRelicIcon.point;
+            var point = ri.point;
             point.transform.SetParent(subTransform);
 
             menu_DeSelectButton.SetActive(false);
             menu_SelectButton.SetActive(true);
-            currentRelicIcon.point = null;
+            ri.point = null;
         }
 
         public override string GetTitle()
