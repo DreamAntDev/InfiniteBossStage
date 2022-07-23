@@ -76,21 +76,11 @@ namespace Static
                 this.loadingPage = null;
                 LoadSuccess();
             }
-
-            if (UnityEngine.InputSystem.Keyboard.current.xKey.wasPressedThisFrame)
-            {
-                UnloadStage();
-            }
         }
 
         public void UnloadStage()
         {
             InitStage();
-            Static.CameraManager.Instance.LobbyCamera.gameObject.SetActive(true);
-            Static.CameraManager.Instance.MainCamera.gameObject.SetActive(false);
-            Static.CameraManager.Instance.UICamera.gameObject.SetActive(false);
-
-            Static.CameraManager.Instance.MainCamera.GetComponent<Component.TargetTraceCamera>().target = null;
         }
 
         private void LoadSuccess()
@@ -105,10 +95,7 @@ namespace Static
             callback?.Invoke();
             callback = null;
 
-            Static.CameraManager.Instance.LobbyCamera.gameObject.SetActive(false);
-            Static.CameraManager.Instance.MainCamera.gameObject.SetActive(true);
-            Static.CameraManager.Instance.UICamera.gameObject.SetActive(true);
-
+            Static.CameraManager.Instance.OnStage();
             Static.CameraManager.Instance.MainCamera.GetComponent<Component.TargetTraceCamera>().target = this.character.transform;
         }
         public void LoadStage(int index)

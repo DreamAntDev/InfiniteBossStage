@@ -29,8 +29,22 @@ namespace Static
             this.UICamera = Instantiate(UICamera,this.transform);
             this.LobbyCamera = Instantiate(LobbyCamera, this.transform);
             this.LoadingCamera = Instantiate(LoadingCamera, this.transform);
-            this.UICamera.gameObject.SetActive(false);
             this.LoadingCamera.gameObject.SetActive(false);
+            OnLobby();
+        }
+
+        public void OnLobby()
+        {
+            Static.CameraManager.Instance.LobbyCamera.gameObject.SetActive(true);
+            //Static.CameraManager.Instance.MainCamera.gameObject.SetActive(false); // MainCam 없으면 Sound 안들림
+            Static.CameraManager.Instance.UICamera.gameObject.SetActive(false);
+        }
+
+        public void OnStage()
+        {
+            Static.CameraManager.Instance.LobbyCamera.gameObject.SetActive(false);
+            //Static.CameraManager.Instance.MainCamera.gameObject.SetActive(true);
+            Static.CameraManager.Instance.UICamera.gameObject.SetActive(true);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace UI.Lobby
             this.BackButton.onClick.AddListener(()=>LoadPage());
 
             LoadPage();
-            Static.SoundManager.Instance.PlaySound("Sound/Lobby",Static.SoundManager.SoundType.BGM);
+            
             setCharacterStatus();
         }
 

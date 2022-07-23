@@ -47,7 +47,7 @@ namespace UI.StageEnterPopup
         }
         private void Enter()
         {
-            Static.StageManager.Instance.LoadStage(this.selectedItem.GetStageIndex());
+            GameManager.Instance.OnStage(this.selectedItem.GetStageIndex());
             Close();
         }
     }
