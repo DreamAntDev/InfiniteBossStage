@@ -16,3 +16,5 @@ MonoBehaviour:
   MaxStamina: 100
   StaminaRecoveryValuePerSec: 10
   AvoidUsingStamina: 50
+  MaxAttack: 100
+  MaxMove: 100

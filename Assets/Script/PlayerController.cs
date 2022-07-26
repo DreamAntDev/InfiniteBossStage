@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
     private void OnMovePerform(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
-        Vector3 moveVec = new Vector3(input.x, 0, input.y);// ì¹´ë©”ë¼ê°€ ë³´ëŠ” ë°©í–¥ì— ë”°ë¼ ì—°ì‚°ì´ í•„ìš”í•¨
+        Vector3 moveVec = new Vector3(input.x, 0, input.y);// ì¹´ë©”?¼ê°? ë³´ëŠ” ë°©í–¥?— ?”°?¼ ?—°?‚°?´ ?•„?š”?•¨
 
         this.reserveMoveVector = moveVec;
         if (this.state.GetStateType() == Character.State.State.Attack)

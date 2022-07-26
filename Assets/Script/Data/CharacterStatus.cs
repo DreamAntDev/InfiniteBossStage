@@ -11,5 +11,7 @@ namespace Data.Character
         public int MaxStamina;
         public int StaminaRecoveryValuePerSec;
         public int AvoidUsingStamina;
+        public int MaxAttack;
+        public int MaxMove;
     }
 }

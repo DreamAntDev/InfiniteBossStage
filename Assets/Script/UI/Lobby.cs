@@ -16,8 +16,6 @@ namespace UI.Lobby
         private Dictionary<string, LobbyPage> cachedLobbyDictionary = new Dictionary<string, LobbyPage>();
         private LobbyPage currentPage = null;
 
-        private TextMeshPro tempTMP;
-
         void Start()
         {
             GetComponent<Canvas>().worldCamera = Static.CameraManager.Instance.LobbyCamera;
@@ -25,8 +23,6 @@ namespace UI.Lobby
             this.BackButton.onClick.AddListener(()=>LoadPage());
 
             LoadPage();
-            
-            setCharacterStatus();
         }
 
         public void LoadPage(string pageName = "MainPage")
@@ -70,11 +66,6 @@ namespace UI.Lobby
             this.TitleText.SetText(this.currentPage.GetTitle());
 
             this.BackButton.gameObject.SetActive(this.currentPage.IsVisibleBackButton());
-        }
-
-        public void setCharacterStatus()
-        {
-            // TODO 캐릭터 스테이터스 조회
         }
     }
 }

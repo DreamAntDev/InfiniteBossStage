@@ -16,13 +16,23 @@ namespace Character
         private int StaminaRecoveryValuePerSec;
         private int AvoidUsingStamina;
 
+        public int MaxAttack { get; private set; }
+        public int CurrentAttack { get; private set; }
+
+        public int MaxMove { get; private set; }
+        public int CurrentMove { get; private set; }        
+
         public Status(Data.Character.CharacterStatus data)
         {
             MaxHP = data.MaxHP;
             MaxStamina = data.MaxStamina;
+            MaxAttack = data.MaxAttack;
+            MaxMove = data.MaxMove;
 
             CurrentHP = MaxHP;
             CurrentStamina = (float)MaxStamina;
+            CurrentAttack = MaxAttack;
+            CurrentMove = MaxMove;
 
             StaminaRecoveryValuePerSec = data.StaminaRecoveryValuePerSec;
             AvoidUsingStamina = data.AvoidUsingStamina;
