@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
     private void OnMovePerform(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
-        Vector3 moveVec = new Vector3(input.x, 0, input.y);// ī�޶� ���� ���⿡ ���� ������ �ʿ���
+        Vector3 moveVec = new Vector3(input.x, 0, input.y);// 카메라가 보는 방향에 따라 연산이 필요함
 
         this.reserveMoveVector = moveVec;
         if (this.state.GetStateType() == Character.State.State.Attack)
