@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator { get; private set; }
 
     [HideInInspector]
-    public Vector3 defaultMoveVector = new Vector3(0, -0.1f, 0);
+    public Vector3 defaultMoveVector = new Vector3(0, -10f, 0);
 
     private Vector3 moveVector = Vector3.zero;
 
@@ -245,7 +245,8 @@ public class PlayerController : MonoBehaviour
 
     private void AnimationEvent_Attack()
     {
-        float damage = 10.0f;
+        float damage = this.status.CurrentAttack;
+        Debug.Log("Attack : " + damage.ToString());
         var list = this.GetComponent<Detector>().GetCurrentList();
         foreach(var obj in list)
         {
