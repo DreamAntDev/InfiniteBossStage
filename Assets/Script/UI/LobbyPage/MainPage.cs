@@ -88,7 +88,7 @@ namespace UI.Lobby
                 Text_Relic.text = relic.ToString();
                 i++;
                 // todo 유물 개수 제한 3개 const 선언 참조
-                if (i > 3) {
+                if (i > 2) {
                     break;
                 }
             }
