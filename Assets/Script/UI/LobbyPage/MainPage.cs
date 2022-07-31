@@ -12,6 +12,7 @@ namespace UI.Lobby
         public Button InventoryButton;
         public Button StageButton;
         public Button BattleButton;
+        public Button SettingButton;
         public TextMeshProUGUI Text_HP;
         public TextMeshProUGUI Text_Stamina;
         public TextMeshProUGUI Text_Attack;
@@ -41,6 +42,7 @@ namespace UI.Lobby
             InventoryButton.onClick.AddListener(OnInventory);
             StageButton.onClick.AddListener(OnStageEnterPopup);
             BattleButton.onClick.AddListener(OnStage);
+            SettingButton.onClick.AddListener(OnSettingPopup);
         }
 
         private void OnInventory()
@@ -52,6 +54,11 @@ namespace UI.Lobby
             UI.UILoader.Load("StageEnterPopup");
             //Debug.Log("Stage");
             //Static.StageManager.Instance.LoadStage(GameManager.Instance.StageIndex);
+        }
+
+        private void OnSettingPopup()
+        {
+            UI.UILoader.Load("SettingPopup");
         }
 
         private void OnStage()
@@ -74,7 +81,6 @@ namespace UI.Lobby
         
         private void PlayerStatus()
         {
-            Debug.Log("MainPage Player Status Display");
             Text_HP.text =  this.status.MaxHP.ToString();
             Text_Stamina.text = this.status.MaxStamina.ToString();
             Text_Attack.text = this.status.MaxAttack.ToString();
