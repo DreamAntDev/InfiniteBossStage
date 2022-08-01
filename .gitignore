@@ -67,3 +67,5 @@ UserSettings/EditorUserSettings.asset
 
 # Nammu Editor Asseets
 Assets/Nammu/Editor
+
+*.DS_Store
