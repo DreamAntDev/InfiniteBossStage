@@ -18,7 +18,6 @@ namespace UI.Lobby
         public TextMeshProUGUI Text_Attack;
         public TextMeshProUGUI Text_Move;
 
-        public TextMeshProUGUI Text_Relic; 
 
         public Data.Character.CharacterStatus statusData;
         Character.Status status;
@@ -87,16 +86,13 @@ namespace UI.Lobby
             Text_Move.text = this.status.MaxMove.ToString();
             
             List<Relic> activeRelics = RelicManager.Instance.ActivePlayerRelic();
-            int i = 0;
-            foreach(var relic in activeRelics)
+            for(int i = 0; i < activeRelics.Count; i++)
             {
-                Text_Relic = GameObject.Find("Text_Relic_" + i.ToString()).GetComponent<TextMeshProUGUI>(); 
-                Text_Relic.text = relic.ToString();
-                i++;
-                // todo 유물 개수 제한 3개 const 선언 참조
-                if (i > 2) {
-                    break;
-                }
+                var relicUI = GameObject.Find("Button_Relic_" + i.ToString()).GetComponent<TextMeshProUGUI>();
+                var image_Relic = relicUI.GetComponentInChildren<Image>();
+                var text_Relic = relicUI.GetComponentInChildren<TextMeshProUGUI>();
+                image_Relic.sprite = activeRelics[i].Sprite;
+                text_Relic.text = activeRelics[i].ToString();
             }
         }
     }

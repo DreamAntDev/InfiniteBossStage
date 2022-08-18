@@ -91,7 +91,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5572067332950466270}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 359.33936, y: 343.2088, z: 357.8117}
 --- !u!1 &5566833410643844168
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 7583293479428830406}
   - component: {fileID: 1389686719}
   m_Layer: 0
-  m_Name: B1
+  m_Name: B1.PBR_Golem
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ Transform:
   - {fileID: 5570170403840007274}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -14.495001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.26081157, y: 273.95905, z: 0.037837107}
 --- !u!95 &5480966050611604320
 Animator:
   serializedVersion: 3
@@ -148,7 +148,10 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Upper_Arm_R'\n\tTransform 'Lower_Arm_R'\n\tTransform
+    'Upper_Arm_L'\n\tFrom animation clip 'PowerAttack02'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -257,7 +260,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2607652776e39f443bf000e0429cac85, type: 2}
   - {fileID: 11400000, guid: 9038dbe636a70fe4cb6320c35ee2c1e5, type: 2}
   - {fileID: 11400000, guid: 9040e52669f36814c80864def5fdc95c, type: 2}
-  relicCanvas: {fileID: 2571697180504247891, guid: 72e97f3cd603a8f488974c0b90cd1d0c, type: 3}
 --- !u!114 &1389686719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +466,7 @@ Transform:
   - {fileID: 5572067332950466270}
   m_Father: {fileID: 5571763570780007104}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 359.8347, y: 81.85798, z: 0.020025484}
 --- !u!1 &5567826190003195272
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +655,7 @@ Transform:
   - {fileID: 5571747457382898132}
   m_Father: {fileID: 5570153246283640020}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 68.521736, y: 224.32866, z: 353.89673}
 --- !u!1 &5568317611236320878
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +839,7 @@ Transform:
   - {fileID: 5570061336511676432}
   m_Father: {fileID: 5570153246283640020}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 305.46664, y: 79.901726, z: 53.84524}
 --- !u!1 &5568582938895595738
 GameObject:
   m_ObjectHideFlags: 0
