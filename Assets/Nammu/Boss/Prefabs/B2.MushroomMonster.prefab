@@ -147,7 +147,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b3e81d4f7f7ebf4aa7545e7b7dc4d91, type: 2}
   - {fileID: 11400000, guid: 38257e3a467f2cf46a158868c1a88fcf, type: 2}
   - {fileID: 11400000, guid: c20ca252e7ab1fd4a8a09ed8a5ee7a64, type: 2}
-  relicCanvas: {fileID: 2571697180504247891, guid: 72e97f3cd603a8f488974c0b90cd1d0c, type: 3}
 --- !u!114 &775898838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +367,7 @@ Transform:
   - {fileID: 4179035465635902}
   m_Father: {fileID: 4627633284843166}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 9.33228e-13, y: -1.0793629e-11, z: 3.2085671}
+  m_LocalEulerAnglesHint: {x: -4.7218526e-18, y: -8.865127e-12, z: -0.000030517578}
 --- !u!1 &1951465148328858
 GameObject:
   m_ObjectHideFlags: 0
