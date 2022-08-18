@@ -132,7 +132,7 @@ Transform:
   - {fileID: 5570170403840007274}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.26081157, y: 273.95905, z: 0.037837107}
+  m_LocalEulerAnglesHint: {x: 0, y: 345.505, z: 0}
 --- !u!95 &5480966050611604320
 Animator:
   serializedVersion: 3

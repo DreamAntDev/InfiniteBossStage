@@ -16,12 +16,12 @@ MonoBehaviour:
   itemName: Golem's Core
   level: 1
   context: It is the core of the golem that guards the entrance to the tower.<br>HP
-    +5%, Energy +5%
+    +10%, Energy +5%
   option: 
   applyType: 1
   effects:
   - effectType: 0
-    effect: 5
+    effect: 10
   - effectType: 1
     effect: 5
   rating: 2

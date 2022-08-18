@@ -102,6 +102,7 @@ namespace UI.Lobby
 
                     if (RelicManager.Instance.ActiveRelics.Exists(x => x.ID == relic.ID))
                     {
+                        currentRelicIcon = icon;
                         SetSelectRelicPoint();
                     }
                 }
