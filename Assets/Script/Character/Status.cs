@@ -29,15 +29,13 @@ namespace Character
             MaxAttack = data.MaxAttack;
             MaxMove = data.MaxMove;
 
-            CurrentHP = MaxHP;
-            CurrentStamina = (float)MaxStamina;
-            CurrentAttack = MaxAttack;
-            CurrentMove = MaxMove;
+            RelicApply();
+
+            Debug.Log($"Player Status\n========\nHP:{MaxHP}/{CurrentHP}\nS:{MaxStamina}/{CurrentStamina}\nA:{MaxAttack}/{CurrentAttack}\nM:{MaxMove}/{CurrentMove}\n==========");
 
             StaminaRecoveryValuePerSec = data.StaminaRecoveryValuePerSec;
             AvoidUsingStamina = data.AvoidUsingStamina;
 
-            RelicApply();
 
             UI.MainInterface.MainInterface.Instance.hpSlider.SetValue(1.0f, forceApply: true);
             UI.MainInterface.MainInterface.Instance.staminaSlider.SetValue(1.0f, forceApply: true);
@@ -46,6 +44,10 @@ namespace Character
         private void RelicApply()
         {
             List<Relic> activeRelics = RelicManager.Instance.ActivePlayerRelic();
+            int add_Attack = 0;
+            int add_HP = 0;
+            int add_Energy = 0;
+            int add_Move = 0;
             foreach(var relic in activeRelics)
             {
                 foreach(var effect in relic.Effects)
@@ -54,21 +56,28 @@ namespace Character
                     {
                         case Type.RelicEffect.Attack:
                             //데미지 증가
+                            add_Attack += effect.EffectValue;
                             break;
                         case Type.RelicEffect.HP:
                             //HP 증가
-                            MaxHP *= effect.EffectValue;
+                            add_HP += effect.EffectValue;
                             break;
                         case Type.RelicEffect.Energy:
                             //스테미너 증가
-                            MaxStamina *= effect.EffectValue;
+                            add_Energy += effect.EffectValue;
                             break;
                         case Type.RelicEffect.Move:
                             //이동 속도 증가
+                            add_Move += effect.EffectValue;
                             break;
                     }
                 }
             }
+
+            CurrentHP = Mathf.RoundToInt(MaxHP * (1 +(float)(add_HP * 0.01)));
+            CurrentStamina = Mathf.RoundToInt(MaxStamina * (1 + (float)(add_Energy * 0.01)));
+            CurrentAttack = Mathf.RoundToInt(MaxAttack * (1 + (float)(add_Attack * 0.01)));
+            CurrentMove = Mathf.RoundToInt(MaxMove * (1 + (float)(add_Move * 0.01)));
         }
 
         public void RecoveryStamina()
