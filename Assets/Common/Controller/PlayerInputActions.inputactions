@@ -7,9 +7,9 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "0d7b0ada-7621-4838-9639-fce997f57815",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -33,6 +33,14 @@
                     "name": "Avoid",
                     "type": "Button",
                     "id": "cd412b8c-c50f-4960-a39d-6fdc5bed80cb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "549491c3-e483-452d-8cf3-4a23e53598b7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -289,6 +297,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Avoid",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c4fd1e2-ddc0-45e2-8fd9-9d56088b2b9a",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f923b33-aab4-49b3-a419-6faf4ed551a0",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

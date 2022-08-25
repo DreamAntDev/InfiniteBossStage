@@ -10,6 +10,7 @@ namespace UI
     {
         static Dictionary<string, GameObject> uiTree = new Dictionary<string, GameObject>();
         static Dictionary<string, System.Action> loadCompleteTree = new Dictionary<string, System.Action>();
+        static Stack<Button> backButtonStack = new Stack<Button>();
 
         public static void Load(string addressable, System.Action loadComplete = null)
         {
@@ -76,6 +77,24 @@ namespace UI
                 return ret.GetComponent<T>();
             }
             return default(T);
+        }
+
+        public static void PushBackButton(Button backButton)
+        {
+            backButtonStack.Push(backButton);
+        }
+
+        public static void PopBackButton()
+        {
+            while(backButtonStack.Count > 0)
+            {
+                var button = backButtonStack.Pop();
+                if (button != null)
+                {
+                    button.onClick.Invoke();
+                    break;
+                }
+            }
         }
     }
 }

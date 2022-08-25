@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace UI.MainInterface
 {
@@ -19,6 +20,10 @@ namespace UI.MainInterface
         private void Awake()
         {
             MainInterface.instance = this;
+
+            Common.Controller.PlayerInputActions playerInputActions = new Common.Controller.PlayerInputActions();
+            playerInputActions.Enable();
+            playerInputActions.Player.Menu.performed += OnMenuPerform;
         }
 
         // Start is called before the first frame update
@@ -33,5 +38,26 @@ namespace UI.MainInterface
         {
 
         }
+
+        void OnMenuPerform(InputAction.CallbackContext context)
+        {
+            if (UI.CommonPopup.CommonPopup.popup == null)
+            {
+                // MenuUI
+                UI.CommonPopup.CommonPopup.CommonPopupContext popupContext = new UI.CommonPopup.CommonPopup.CommonPopupContext();
+                popupContext.confirm = () =>
+                {
+                    GameManager.Instance.OnLobby();
+                    UI.CommonPopup.CommonPopup.Close();
+                };
+                popupContext.needCloseButton = true;
+                UI.CommonPopup.CommonPopup.Open(popupContext);
+            }
+            else
+            {
+                UI.UILoader.PopBackButton();
+            }
+        }
+
     }
 }

@@ -32,9 +32,11 @@ namespace Character.State
                 UI.CommonPopup.CommonPopup.CommonPopupContext popupContext = new UI.CommonPopup.CommonPopup.CommonPopupContext();
                 popupContext.confirm = () =>
                 {
-                    Static.StageManager.Instance.UnloadStage();
+                    GameManager.Instance.OnLobby();
                     UI.CommonPopup.CommonPopup.Close();
                 };
+                popupContext.needCloseButton = false;
+
                 UI.CommonPopup.CommonPopup.Open(popupContext);
             }
             return true;
