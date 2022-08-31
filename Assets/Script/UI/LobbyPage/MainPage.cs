@@ -66,18 +66,12 @@ namespace UI.Lobby
             GameManager.Instance.OnStage(1);
         }
 
-        private void Start() {    
+        private void OnEnable()
+        {
             status = new Character.Status(statusData);
             PlayerStatus();
         }
 
-        private void Update() 
-        {
-            // todo Update로 갱신하지 말고, 유물 변경 이벤트에 따라 갱신시키도록
-            status = new Character.Status(statusData);
-            PlayerStatus(); 
-        }
-        
         private void PlayerStatus()
         {
             Text_HP.text =  this.status.MaxHP.ToString();
@@ -86,10 +80,11 @@ namespace UI.Lobby
             Text_Move.text = this.status.MaxMove.ToString();
             
             List<Relic> activeRelics = RelicManager.Instance.ActivePlayerRelic();
+            Debug.Log("PlayerStatus ActiveRelic:" + activeRelics.Count);
             for(int i = 0; i < activeRelics.Count; i++)
             {
-                var relicUI = GameObject.Find("Button_Relic_" + i.ToString()).GetComponent<TextMeshProUGUI>();
-                var image_Relic = relicUI.GetComponentInChildren<Image>();
+                var relicUI = GameObject.Find("Button_Relic_" + i.ToString());
+                var image_Relic = relicUI.transform.Find("Icon_Sub").GetComponent<Image>();
                 var text_Relic = relicUI.GetComponentInChildren<TextMeshProUGUI>();
                 image_Relic.sprite = activeRelics[i].Sprite;
                 text_Relic.text = activeRelics[i].ToString();

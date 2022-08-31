@@ -30,7 +30,7 @@ namespace UI.RelicRewardPopup
         {
             yield return new WaitForSeconds(5f);
             GameManager.Instance.StageIndex = 0;
-            Static.StageManager.Instance.UnloadStage();
+            GameManager.Instance.OnLobby();
             CloseUI();
         }
 

@@ -40,6 +40,7 @@ public class RelicManager : Singleton<RelicManager>
             var relic = relics.Find(x => x.ID == relicID);
             activeRelicList.Add(relic);
         }
+        Debug.Log("ActiveRelic:" + activeRelicList.Count);
     }
 
     private void MyRelic()
@@ -74,6 +75,7 @@ public class RelicManager : Singleton<RelicManager>
     {
         if (activeRelicList.Count(x => x.ID == relic.ID) >= 1)
             return;
+
         if (activeRelicList.Count >= limitRelicCount)
         {
             activeRelicList.RemoveAt(0);
@@ -103,6 +105,8 @@ public class RelicManager : Singleton<RelicManager>
     {
         var removeRelic = activeRelicList.Find(x => x.ID == relic.ID);
         activeRelicList.Remove(removeRelic);
+        Debug.Log("DeSelectRelic ActiveRelic:" + activeRelicList.Count);
+        PlayerPrefs.SetInt(RelicDefine.ActiveRelicCount, activeRelicList.Count);
     }
 
     public List<Relic> ActivePlayerRelic()

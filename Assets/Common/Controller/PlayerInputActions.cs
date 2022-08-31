@@ -22,9 +22,9 @@ namespace Common.Controller
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""0d7b0ada-7621-4838-9639-fce997f57815"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -48,6 +48,14 @@ namespace Common.Controller
                     ""name"": ""Avoid"",
                     ""type"": ""Button"",
                     ""id"": ""cd412b8c-c50f-4960-a39d-6fdc5bed80cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""549491c3-e483-452d-8cf3-4a23e53598b7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -304,6 +312,28 @@ namespace Common.Controller
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Avoid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c4fd1e2-ddc0-45e2-8fd9-9d56088b2b9a"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f923b33-aab4-49b3-a419-6faf4ed551a0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -885,6 +915,7 @@ namespace Common.Controller
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Avoid = m_Player.FindAction("Avoid", throwIfNotFound: true);
+            m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -950,6 +981,7 @@ namespace Common.Controller
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Avoid;
+        private readonly InputAction m_Player_Menu;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -958,6 +990,7 @@ namespace Common.Controller
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @Avoid => m_Wrapper.m_Player_Avoid;
+            public InputAction @Menu => m_Wrapper.m_Player_Menu;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -979,6 +1012,9 @@ namespace Common.Controller
                     @Avoid.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
                     @Avoid.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
                     @Avoid.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
+                    @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                    @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                    @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -995,6 +1031,9 @@ namespace Common.Controller
                     @Avoid.started += instance.OnAvoid;
                     @Avoid.performed += instance.OnAvoid;
                     @Avoid.canceled += instance.OnAvoid;
+                    @Menu.started += instance.OnMenu;
+                    @Menu.performed += instance.OnMenu;
+                    @Menu.canceled += instance.OnMenu;
                 }
             }
         }
@@ -1155,6 +1194,7 @@ namespace Common.Controller
             void OnLook(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
             void OnAvoid(InputAction.CallbackContext context);
+            void OnMenu(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
