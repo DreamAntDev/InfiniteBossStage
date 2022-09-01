@@ -10,6 +10,13 @@ namespace UI.SettingPopup
         public Button enterButton;
         public Button closeButton;
 
+        [System.Serializable]
+        public class BackgroundSound
+        {
+            public Slider slider;
+        }
+        public BackgroundSound backgroundSound;
+
         public override void SetBackButton()
         {
             UI.UILoader.PushBackButton(closeButton);
@@ -19,6 +26,9 @@ namespace UI.SettingPopup
         {
             this.enterButton.onClick.AddListener(() => Enter());
             this.closeButton.onClick.AddListener(() => Close());
+
+            backgroundSound.slider.value = Static.SoundManager.Instance.backgroundSoundValue;
+            backgroundSound.slider.onValueChanged.AddListener((float val) => ChangeBackgroundSoundValue(val));
         }
 
 
@@ -33,6 +43,11 @@ namespace UI.SettingPopup
         private void Enter()
         {
             Close();
+        }
+
+        private void ChangeBackgroundSoundValue(float value)
+        {
+            Static.SoundManager.Instance.SetSoundValue(value);
         }
     }
 }

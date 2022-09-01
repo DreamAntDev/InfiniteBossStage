@@ -26,6 +26,9 @@ namespace Static
             }
         }
 
+        public float backgroundSoundValue { get; private set; } = 1.0f;
+
+
         private Dictionary<SoundType, List<AudioSource>> soundContainer;
 
         public enum SoundType
@@ -43,6 +46,8 @@ namespace Static
             }
 
             SoundManager.instance = this;
+
+            this.backgroundSoundValue = UnityEngine.PlayerPrefs.GetFloat("BGMVolume", 1.0f);
         }
 
         private void LateUpdate()
@@ -95,6 +100,7 @@ namespace Static
             if (soundType == SoundType.BGM)
             {
                 audio.loop = true;
+                audio.volume = this.backgroundSoundValue;
             }
             else
             {
@@ -118,6 +124,16 @@ namespace Static
         private void PlayEffect(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<AudioClip> obj)
         {
             PlaySound(obj.Result, SoundType.Effect);
+        }
+
+        public void SetSoundValue(float value)
+        {
+            UnityEngine.PlayerPrefs.SetFloat("BGMVolume", value);
+            this.backgroundSoundValue = value;
+            foreach(var source in this.soundContainer[SoundType.BGM])
+            {
+                source.volume = this.backgroundSoundValue;
+            }
         }
     }
 }
