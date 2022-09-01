@@ -17,6 +17,11 @@ namespace UI.CommonPopup
             public bool needCloseButton;
         }
 
+        public override void SetBackButton()
+        {
+            UI.UILoader.PushBackButton(closeButton);
+        }
+
         private void Start()
         {
 
@@ -40,7 +45,6 @@ namespace UI.CommonPopup
             if (context.needCloseButton == true)
             {
                 popup.closeButton.onClick.AddListener(Close);
-                UI.UILoader.PushBackButton(popup.closeButton);
             }
         }
     }

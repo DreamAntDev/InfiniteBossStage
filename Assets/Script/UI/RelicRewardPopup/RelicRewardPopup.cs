@@ -15,6 +15,11 @@ namespace UI.RelicRewardPopup
         [SerializeField]
         TextMeshProUGUI relicContext;
 
+        public override void SetBackButton()
+        {
+
+        }
+
         private void Start()
         {
             //CloseUI();

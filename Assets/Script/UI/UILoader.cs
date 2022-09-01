@@ -45,6 +45,7 @@ namespace UI
                     if (popup != null)
                     {
                         popup.Enable();
+                        popup.SetBackButton();
                     }
                 }
 
@@ -84,7 +85,7 @@ namespace UI
             backButtonStack.Push(backButton);
         }
 
-        public static void PopBackButton()
+        public static bool PopBackButton()
         {
             while(backButtonStack.Count > 0)
             {
@@ -92,9 +93,11 @@ namespace UI
                 if (button != null)
                 {
                     button.onClick.Invoke();
-                    break;
+                    return true;
                 }
             }
+            
+            return false;
         }
     }
 }

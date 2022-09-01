@@ -10,6 +10,11 @@ namespace UI.SettingPopup
         public Button enterButton;
         public Button closeButton;
 
+        public override void SetBackButton()
+        {
+            UI.UILoader.PushBackButton(closeButton);
+        }
+
         private void Start()
         {
             this.enterButton.onClick.AddListener(() => Enter());

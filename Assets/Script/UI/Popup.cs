@@ -24,5 +24,7 @@ namespace UI
             image.color = new Color(0, 0, 0, 0.4f);
             bg.AddComponent<Button>();
         }
+
+        public abstract void SetBackButton();
     }
 }

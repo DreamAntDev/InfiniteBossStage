@@ -36,10 +36,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void Update()
     {
-        if (UnityEngine.InputSystem.Keyboard.current.xKey.wasPressedThisFrame)
-        {
-            OnLobby();
-        }
+
     }
     public void OnStage(int stageIndex)
     {

@@ -39,23 +39,26 @@ namespace UI.MainInterface
 
         }
 
-        void OnMenuPerform(InputAction.CallbackContext context)
+        void OnMenuPerform(InputAction.CallbackContext context) // input관련 코드정리가 필요
         {
-            if (UI.CommonPopup.CommonPopup.popup == null)
+            bool UIBackButtonSuccess = UI.UILoader.PopBackButton();
+            if (UIBackButtonSuccess == true)
+                return;
+
+            if (GameManager.Instance.state == GameManager.GameState.Stage)
             {
-                // MenuUI
-                UI.CommonPopup.CommonPopup.CommonPopupContext popupContext = new UI.CommonPopup.CommonPopup.CommonPopupContext();
-                popupContext.confirm = () =>
+                if (UI.CommonPopup.CommonPopup.popup == null)
                 {
-                    GameManager.Instance.OnLobby();
-                    UI.CommonPopup.CommonPopup.Close();
-                };
-                popupContext.needCloseButton = true;
-                UI.CommonPopup.CommonPopup.Open(popupContext);
-            }
-            else
-            {
-                UI.UILoader.PopBackButton();
+                    // MenuUI
+                    UI.CommonPopup.CommonPopup.CommonPopupContext popupContext = new UI.CommonPopup.CommonPopup.CommonPopupContext();
+                    popupContext.confirm = () =>
+                    {
+                        GameManager.Instance.OnLobby();
+                        UI.CommonPopup.CommonPopup.Close();
+                    };
+                    popupContext.needCloseButton = true;
+                    UI.CommonPopup.CommonPopup.Open(popupContext);
+                }
             }
         }
 

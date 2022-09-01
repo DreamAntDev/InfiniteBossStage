@@ -13,6 +13,12 @@ namespace UI.StageEnterPopup
         public Button closeButton;
 
         private StageListItem selectedItem = null;
+
+        public override void SetBackButton()
+        {
+            UI.UILoader.PushBackButton(closeButton);
+        }
+
         private void Start()
         {
             SetList();
