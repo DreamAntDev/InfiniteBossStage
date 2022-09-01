@@ -16,6 +16,8 @@ namespace IBS.Combat
 
         [SerializeField]
         float attackDistance = 2f;
+        [SerializeField]
+        int attackCount = 3;
 
         string attackName = string.Empty;
 
@@ -81,10 +83,9 @@ namespace IBS.Combat
 
         public void Hit(float damage) 
         {
-            Debug.Log("Target : " + target.name);
             if (target != null)
             {
-                if (InAttackRangeOfPlayer(1.1f))
+                if (InAttackRangeOfPlayer(1.05f))
                 {
                     target.GetComponent<PlayerController>().OnDamage(Convert.ToInt32(damage * damageReduction) );
                 }
@@ -106,7 +107,7 @@ namespace IBS.Combat
         private void TriggerAttack()
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            attackName = "Attack" + Mathf.RoundToInt(UnityEngine.Random.Range(1, 3));
+            attackName = "Attack" + Mathf.RoundToInt(UnityEngine.Random.Range(1, attackCount +1));
             animator.SetTrigger(attackName);
         }
 

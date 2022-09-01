@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 1.5
+  attackCount: 4
 --- !u!114 &775898841
 MonoBehaviour:
   m_ObjectHideFlags: 0
