@@ -82,7 +82,7 @@ namespace UI.Lobby
             Text_Attack.text = this.status.MaxAttack.ToString() + ((this.status.CurrentAttack > this.status.MaxAttack) ?  " +"+(this.status.CurrentAttack - this.status.MaxAttack).ToString() : "");
             Text_Move.text = this.status.MaxMove.ToString() + ((this.status.CurrentMove > this.status.MaxMove) ?  " +"+(this.status.CurrentMove - this.status.MaxMove).ToString() : "");
 
-            List<Relic> activeRelics = RelicManager.Instance.ActivePlayerRelic();
+            List<Relic> activeRelics = RelicManager.Instance.ActiveRelics;
             Debug.Log("PlayerStatus ActiveRelic:" + activeRelics.Count);
             // var image_Relic_default = relicUI.transform.Find("relic_icon_default").GetComponent<Image>();
             for(int i = 0; i < RELIC_CNT_LIMIT; i++)

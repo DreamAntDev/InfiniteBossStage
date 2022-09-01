@@ -55,11 +55,12 @@ namespace UI.Lobby
 
         private RelicIcon currentRelicIcon;
         private List<RelicIcon> relicIconList;
-        private List<RelicIcon> activeRelicIconList = new List<RelicIcon>();
+        private List<RelicIcon> selectRelicIconList = new List<RelicIcon>();
         private void Awake()
         {
             relicIconList = new List<RelicIcon>();
         }
+
         private void Start()
         {
             InitUI();
@@ -161,11 +162,11 @@ namespace UI.Lobby
 
         private void SetSelectRelicPoint()
         {
-            if(activeRelicIconList.Count == 3)
+            if(selectRelicIconList.Count == 3)
             {
-                RelicIcon icon = activeRelicIconList.First();
+                RelicIcon icon = selectRelicIconList.First();
                 DeSelectRelicPoint(icon);
-                activeRelicIconList.Remove(icon);
+                selectRelicIconList.Remove(icon);
             }
 
             GameObject activePointObj = subTransform.Find("ActiveRelicTap")?.gameObject;
@@ -174,7 +175,7 @@ namespace UI.Lobby
             activePointObj.transform.localPosition = Vector3.zero;
             currentRelicIcon.point = activePointObj;
 
-            activeRelicIconList.Add(currentRelicIcon);
+            selectRelicIconList.Add(currentRelicIcon);
             
             menu_DeSelectButton.SetActive(true);
             menu_SelectButton.SetActive(false);
@@ -184,10 +185,11 @@ namespace UI.Lobby
         {
             Debug.Log("DeSelect");
             var point = ri.point;
-            point.transform.SetParent(subTransform);
+            point?.transform.SetParent(subTransform);
 
             menu_DeSelectButton.SetActive(false);
             menu_SelectButton.SetActive(true);
+            selectRelicIconList.Remove(ri);
             ri.point = null;
         }
 

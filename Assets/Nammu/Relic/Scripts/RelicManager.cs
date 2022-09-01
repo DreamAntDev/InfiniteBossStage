@@ -31,13 +31,16 @@ public class RelicManager : Singleton<RelicManager>
         InitRelic();
     }
 
+    
+
     private void InitRelic()
     {
         int count = PlayerPrefs.GetInt(RelicDefine.ActiveRelicCount, 0);
         
-        for(int i = 0; i < count; i++) { 
-            var relicID = PlayerPrefs.GetInt(RelicDefine.ActiveRelic + count);
+        for(int i = 1; i <= count; i++) { 
+            var relicID = PlayerPrefs.GetInt(RelicDefine.ActiveRelic + i);
             var relic = relics.Find(x => x.ID == relicID);
+            Debug.Log($"InitAR:{RelicDefine.ActiveRelic + count}/{relicID}/{relic.Name}");
             activeRelicList.Add(relic);
         }
         Debug.Log("ActiveRelic:" + activeRelicList.Count);
@@ -96,7 +99,7 @@ public class RelicManager : Singleton<RelicManager>
             PlayerPrefs.SetInt(RelicDefine.ActiveRelic + (count - 1),
                 PlayerPrefs.GetInt(RelicDefine.ActiveRelic + count));
         }
-
+        Debug.Log("SaveAR:" + count + "/" + relic.ID);
         PlayerPrefs.SetInt(RelicDefine.ActiveRelicCount, count);
         PlayerPrefs.SetInt(RelicDefine.ActiveRelic + count, relic.ID);
     }

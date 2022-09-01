@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
 
 	public float HealthValue
     {
-		set => health *= 1-value;
+		set => health *= (float)(1-(value/100));
 		get => health;
     }
 
