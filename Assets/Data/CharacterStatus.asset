@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 282af1ce2e606ef45b93a19d7ff2349f, type: 3}
   m_Name: CharacterStatus
-  m_EditorClassIdentifier: 
-  MaxHP: 100
-  MaxStamina: 100
-  StaminaRecoveryValuePerSec: 10
-  AvoidUsingStamina: 50
-  MaxAttack: 10
+  m_EditorClassIdentifier:
+  MaxHP: 50
+  MaxStamina: 50
+  StaminaRecoveryValuePerSec: 5
+  AvoidUsingStamina: 25
+  MaxAttack: 5
   MaxMove: 100
