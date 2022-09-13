@@ -11,7 +11,6 @@ namespace UI.Lobby
     {
         public Button InventoryButton;
         public Button StageButton;
-        public Button BattleButton;
         public Button SettingButton;
         public TextMeshProUGUI Text_HP;
         public TextMeshProUGUI Text_Stamina;
@@ -42,7 +41,6 @@ namespace UI.Lobby
         {
             InventoryButton.onClick.AddListener(OnInventory);
             StageButton.onClick.AddListener(OnStageEnterPopup);
-            BattleButton.onClick.AddListener(OnStage);
             SettingButton.onClick.AddListener(OnSettingPopup);
         }
 
@@ -62,12 +60,6 @@ namespace UI.Lobby
             UI.UILoader.Load("SettingPopup");
         }
 
-        private void OnStage()
-        {
-            // todo 가장 마지막 인덱스 조회해서 반영
-            GameManager.Instance.OnStage(1);
-        }
-
         private void OnEnable()
         {
             status = new Character.Status(statusData);
@@ -84,19 +76,25 @@ namespace UI.Lobby
 
             List<Relic> activeRelics = RelicManager.Instance.ActiveRelics;
             Debug.Log("PlayerStatus ActiveRelic:" + activeRelics.Count);
-            // var image_Relic_default = relicUI.transform.Find("relic_icon_default").GetComponent<Image>();
             for(int i = 0; i < RELIC_CNT_LIMIT; i++)
             {
                 var relicUI = GameObject.Find("Button_Relic_" + i.ToString());
                 var image_Relic = relicUI.transform.Find("Icon_Sub").GetComponent<Image>();
-                var text_Relic = relicUI.GetComponentInChildren<TextMeshProUGUI>();
+                var Text_Relic_Name = relicUI.transform.Find("Text_Relic_Name").GetComponent<TextMeshProUGUI>();
+                var Text_Relic_Rating = relicUI.transform.Find("Text_Relic_Rating").GetComponent<TextMeshProUGUI>();
+                var Text_Relic_Context = relicUI.transform.Find("Text_Relic_Context").GetComponent<TextMeshProUGUI>();
+
                 if ((activeRelics.Count - i) > 0) {
                     image_Relic.enabled = true;
                     image_Relic.sprite = activeRelics[i].Sprite;
-                    text_Relic.text = activeRelics[i].ToString();
+                    Text_Relic_Name.text = activeRelics[i].Name;
+                    Text_Relic_Rating.text = activeRelics[i].Rating.ToString();
+                    Text_Relic_Context.text = activeRelics[i].Context;
                 } else {
                     image_Relic.enabled = false;
-                    text_Relic.text = "";
+                    Text_Relic_Name.text = "";
+                    Text_Relic_Rating.text = "";
+                    Text_Relic_Context.text = "";
                 }
             }
         }
