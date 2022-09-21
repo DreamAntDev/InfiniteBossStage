@@ -7,11 +7,13 @@ using TMPro;
 
 namespace UI.Lobby
 {
+    [RequireComponent(typeof(DropRelic))]
     public class MainPage :LobbyPage
     {
         public Button InventoryButton;
         public Button StageButton;
         public Button SettingButton;
+        public Button ShopButton;
         public TextMeshProUGUI Text_HP;
         public TextMeshProUGUI Text_Stamina;
         public TextMeshProUGUI Text_Attack;
@@ -42,6 +44,7 @@ namespace UI.Lobby
             InventoryButton.onClick.AddListener(OnInventory);
             StageButton.onClick.AddListener(OnStageEnterPopup);
             SettingButton.onClick.AddListener(OnSettingPopup);
+            ShopButton.onClick.AddListener(OnShop);
         }
 
         private void OnInventory()
@@ -64,6 +67,24 @@ namespace UI.Lobby
         {
             status = new Character.Status(statusData);
             PlayerStatus();
+        }
+
+        private void OnShop()
+        {
+            var relics = RelicManager.Instance.Relics;
+            var itemRating = DropRelic.GetChanceResult();
+            Debug.Log("Relic Rating : " + itemRating);
+            var relic = relics.Find(x => x.Rating == itemRating);
+            if(relic is null)
+            {
+                Debug.Log($"{gameObject.name} Not Relic : {itemRating}");
+                return;
+            }
+            else
+            {
+                RelicManager.Instance.AddRelic(relic);
+                UI.UILoader.Load("RelicRewardPopup", () => UI.UILoader.GetUI<UI.RelicRewardPopup.RelicRewardPopup>("RelicRewardPopup").SetRelicData(relic));
+            }
         }
 
         private void PlayerStatus()

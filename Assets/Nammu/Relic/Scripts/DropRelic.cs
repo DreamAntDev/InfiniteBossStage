@@ -11,7 +11,7 @@ public class DropRelic : MonoBehaviour
 
     private void Awake()
     {
-        
+
     }
     void OnDropRelic()
     {
@@ -27,7 +27,7 @@ public class DropRelic : MonoBehaviour
         {
             RelicManager.Instance.AddRelic(relic);
             UI.UILoader.Load("RelicRewardPopup", () => UI.UILoader.GetUI<UI.RelicRewardPopup.RelicRewardPopup>("RelicRewardPopup").SetRelicData(relic));
-            //Relic È¹µæ ¾Ö´Ï¸ÞÀÌ¼Ç ?!
+            //Relic È¹ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ?!
         }
     }
 
@@ -40,7 +40,7 @@ public class DropRelic : MonoBehaviour
         }
     }
 
-    private Type.RelicRating GetChanceResult()
+    public static Type.RelicRating GetChanceResult()
     {
         List<int> itemChanceIdx = new List<int>();
 
