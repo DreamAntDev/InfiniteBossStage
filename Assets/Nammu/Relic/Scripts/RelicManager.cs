@@ -40,7 +40,6 @@ public class RelicManager : Singleton<RelicManager>
         for(int i = 1; i <= count; i++) { 
             var relicID = PlayerPrefs.GetInt(RelicDefine.ActiveRelic + i);
             var relic = relics.Find(x => x.ID == relicID);
-            Debug.Log($"InitAR:{RelicDefine.ActiveRelic + count}/{relicID}/{relic.Name}");
             activeRelicList.Add(relic);
         }
         Debug.Log("ActiveRelic:" + activeRelicList.Count);
@@ -91,6 +90,7 @@ public class RelicManager : Singleton<RelicManager>
     private void SaveRelicData(Relic relic)
     {
         int count = PlayerPrefs.GetInt(RelicDefine.ActiveRelicCount, 0) + 1;
+
         if (count == 4)
         {
             count = 3;
@@ -99,6 +99,7 @@ public class RelicManager : Singleton<RelicManager>
             PlayerPrefs.SetInt(RelicDefine.ActiveRelic + (count - 1),
                 PlayerPrefs.GetInt(RelicDefine.ActiveRelic + count));
         }
+
         Debug.Log("SaveAR:" + count + "/" + relic.ID);
         PlayerPrefs.SetInt(RelicDefine.ActiveRelicCount, count);
         PlayerPrefs.SetInt(RelicDefine.ActiveRelic + count, relic.ID);

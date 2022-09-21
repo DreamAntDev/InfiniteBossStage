@@ -59,12 +59,6 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 8edb2fa3dc2112246b53357be701f37b
-    m_Address: B2.MushroomMonster
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 2b7a26ec0a357c346adb38412b6621f2
     m_Address: LoadingPage
     m_ReadOnly: 0
@@ -122,6 +116,12 @@ MonoBehaviour:
     m_TargetAsset: {fileID: 0}
   - m_GUID: db77447c101a3417c9fceca42706204c
     m_Address: SettingPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 1d12b1c5b4eaa8e4caa8a54b24b25d18
+    m_Address: B2.MushroomMonster
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
