@@ -24,6 +24,8 @@ using UnityEngine.SceneManagement;
 #endif
 #if UNITY_CHANGE4
 using UnityEngine.Networking;
+using System.Linq;
+using System;
 #endif
 
 #if ENABLE_INPUT_SYSTEM
@@ -217,6 +219,8 @@ public class Reporter : MonoBehaviour
 	public UnityEngine.UI.Text OpenButtonText;
 	private int openButtonClickCount = 0;
 	private Coroutine openButtonClickCoroutine = null;
+
+	public string DiscordWebHook = "https://discord.com/api/webhooks/1022492656808493066/7MYCrjE_9V1kZELw7e_BQeAjJjYTPOnjHF5EBqZJmrBD9lNkvATGrHBT_vReuIK0Wj2Q";
 
 #if ENABLE_INPUT_SYSTEM
 	Common.Controller.PlayerInputActions playerInputActions = null;
@@ -1180,10 +1184,13 @@ public class Reporter : MonoBehaviour
         if (GUILayout.Button(infoContent, barStyle, GUILayout.Width(size.x * 2), GUILayout.Height(size.y * 2))) {
 			currentView = ReportView.Info;
 		}
-       
 
+		if (GUILayout.Button(userContent, barStyle, GUILayout.Width(size.x * 2), GUILayout.Height(size.y * 2)))
+		{
+			SendWebhook();
+		}
 
-        GUILayout.FlexibleSpace();
+		GUILayout.FlexibleSpace();
 
 
 		string logsText = " ";
@@ -2215,6 +2222,45 @@ public class Reporter : MonoBehaviour
             fileContentsList.Add(logs[i].logType + "\n" + logs[i].condition + "\n" + logs[i].stacktrace);
         }
         File.WriteAllLines(filePath, fileContentsList.ToArray());
+    }
+
+	private void SendWebhook()
+    {
+		StartCoroutine(SendWebhook(DiscordWebHook, "Hello Unity To Discord", (success) =>
+		{
+			if (success)
+				Debug.Log("Send Discord Success!");
+		}));
+    }
+	private IEnumerator SendWebhook(string link, string message, System.Action<bool> action)
+    {
+		List<string> fileContentsList = new List<string>();
+		for (int i = 0; i < logs.Count; i++)
+		{
+			fileContentsList.Add(logs[i].logType + "\n" + logs[i].condition + "\n" + logs[i].stacktrace);
+		}
+
+		byte[] dataAsBytes = fileContentsList.SelectMany(s =>System.Text.Encoding.UTF8.GetBytes(s + Environment.NewLine)).ToArray();
+
+		WWWForm form = new WWWForm();
+		form.AddField("content", message);
+		form.AddBinaryData("file", dataAsBytes, "log.txt");
+		using (UnityWebRequest www = UnityWebRequest.Post(link, form))
+		{
+			yield return www.SendWebRequest();
+			if (www.result == UnityWebRequest.Result.ConnectionError
+				||www.result == UnityWebRequest.Result.DataProcessingError
+				||www.result == UnityWebRequest.Result.ProtocolError
+				)
+            {
+				Debug.Log(www.error);
+				action(false);
+            }
+			else
+            {
+				action(true);
+            }
+        }
     }
 }
 
