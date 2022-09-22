@@ -15,6 +15,7 @@ namespace Common.Controller
         public int range;
 
         private RectTransform rectTransform;
+        private Camera canvasCamera;
         private void Awake()
         {
             // Common하게 쓰려면 InputActionAsset을 링크해서 사용하도록 수정해야 한다.
@@ -75,7 +76,27 @@ namespace Common.Controller
             // eventData.position 은 좌하단 기준 좌표, rectTransform도 앵커를 좌하단으로 잡고 피봇을 중심으로 맞추면 동일 좌표계로 사용 가능하다
             // Common하게 앵커에 맞도록 UI상 좌표와 스크린좌표를 맞추는 작업이 필요하다
             // eventData로 넘어오는건 스크린 좌표, 앵커의 위치에 따라 this의 중심 위치가 달라진다.
-            var dirVec = eventData.position - this.rectTransform.anchoredPosition;
+            if (canvasCamera == null)
+            {
+                var canvas = this.GetComponentInParent<Canvas>();
+                if (canvas != null)
+                {
+                    if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
+                    {
+                        canvasCamera = canvas.worldCamera;
+                    }
+                }
+            }
+
+            var dirVec = eventData.position;
+            if (canvasCamera != null)
+            {
+                dirVec -= RectTransformUtility.WorldToScreenPoint(canvasCamera, this.transform.position);
+            }
+            else
+            {
+                dirVec -= this.rectTransform.anchoredPosition;
+            }
             
             if (dirVec.magnitude > range)
             {
@@ -91,7 +112,27 @@ namespace Common.Controller
 
         public void OnDrag(PointerEventData eventData)
         {
-            var dirVec = eventData.position - this.rectTransform.anchoredPosition;
+            var dirVec = eventData.position;
+            if(canvasCamera == null)
+            {
+                var canvas = this.GetComponentInParent<Canvas>();
+                if (canvas != null)
+                {
+                    if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
+                    {
+                        canvasCamera = canvas.worldCamera;
+                    }
+                }
+            }
+
+            if (canvasCamera != null)
+            {
+                dirVec -= RectTransformUtility.WorldToScreenPoint(canvasCamera, this.transform.position);
+            }
+            else
+            {
+                dirVec -= this.rectTransform.anchoredPosition;
+            }
 
             if (dirVec.magnitude > range)
             {
