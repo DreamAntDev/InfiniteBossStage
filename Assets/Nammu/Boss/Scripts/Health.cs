@@ -24,7 +24,6 @@ public class Health : MonoBehaviour
         animator = GetComponent<Animator>();
         maxHealth = health;
         UI.MainInterface.MainInterface.Instance.bossHpSlider.SetValue((float)this.health / this.maxHealth);
-
     }
 
     public bool IsDead()

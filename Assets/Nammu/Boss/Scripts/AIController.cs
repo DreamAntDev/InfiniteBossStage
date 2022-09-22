@@ -39,30 +39,33 @@ namespace IBS.Monster
             List<Relic> activeRelics = RelicManager.Instance.ActivePlayerRelic();
             foreach (var relic in activeRelics)
             {
-                foreach (var effect in relic.Effects)
+                if (relic.ApplyType == Type.RelicApplyType.Boss)
                 {
-                    switch (effect.EffectType)
+                    foreach (var effect in relic.Effects)
                     {
-                        case Type.RelicEffect.Attack:
-                            //데미지 감소
-                            combatFighter.DamageReduction = effect.EffectValue;
-                            break;
-                        case Type.RelicEffect.HP:
-                            //HP 감소
-                            GetComponent<Health>().HealthValue = effect.EffectValue;
-                            break;
-                        case Type.RelicEffect.Energy:
-                            //스테미너 감소
-                            break;
-                        case Type.RelicEffect.Move:
-                            //이동 속도 감소
-                            Debug.Log(effect.EffectValue);
-                            GetComponent<Mover>().Speed = effect.EffectValue;
-                            break;
+                        switch (effect.EffectType)
+                        {
+                            case Type.RelicEffect.Attack:
+                                //데미지 감소
+                                combatFighter.DamageReduction = effect.EffectValue;
+                                break;
+                            case Type.RelicEffect.HP:
+                                //HP 감소
+                                GetComponent<Health>().HealthValue = effect.EffectValue;
+                                break;
+                            case Type.RelicEffect.Energy:
+                                //스테미너 감소
+                                break;
+                            case Type.RelicEffect.Move:
+                                //이동 속도 감소
+                                Debug.Log(effect.EffectValue);
+                                GetComponent<Mover>().Speed = effect.EffectValue;
+                                break;
+                        }
                     }
-                }
-                //Value 합산해서 한꺼번에 적용 필요.
+                    //Value 합산해서 한꺼번에 적용 필요.
 
+                }
             }
         }
     }

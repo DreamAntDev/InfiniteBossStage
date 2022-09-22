@@ -12,7 +12,7 @@ public class Mover : MonoBehaviour
     
     public float Speed
     {
-        set => maxSpeed = maxSpeed * (1-value)/100;
+        set => maxSpeed = maxSpeed * (100-value)/100;
         get => maxSpeed;
     }
 

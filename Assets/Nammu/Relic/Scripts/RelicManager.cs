@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -61,7 +61,7 @@ public class RelicManager : Singleton<RelicManager>
             }
             else
             {
-                Debug.Log($"ÇØ´ç itemID:{id}ÀÇ À¯¹°ÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+                Debug.Log($"í•´ë‹¹ itemID:{id}ì˜ ìœ ë¬¼ì´ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
             }
         }
     }
