@@ -21,6 +21,8 @@ MonoBehaviour:
   applyType: 1
   effects:
   - effectType: 0
+    effect: 10
+  - effectType: 1
     effect: 5
   rating: 1
   dropProbability: 10

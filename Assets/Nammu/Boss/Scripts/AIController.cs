@@ -56,10 +56,13 @@ namespace IBS.Monster
                             break;
                         case Type.RelicEffect.Move:
                             //이동 속도 감소
+                            Debug.Log(effect.EffectValue);
                             GetComponent<Mover>().Speed = effect.EffectValue;
                             break;
                     }
                 }
+                //Value 합산해서 한꺼번에 적용 필요.
+
             }
         }
     }
