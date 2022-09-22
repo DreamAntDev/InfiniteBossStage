@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
         avoidState?.SetMoveVector(avoidVector);
     }
     
-    public void OnDamage(int damage = 0)
+    public void OnDamage(int damage = 0, int grogyValue = 0)
     {
         if (this.state.GetStateType() == Character.State.State.Avoid)
             return;
@@ -208,8 +208,8 @@ public class PlayerController : MonoBehaviour
         this.SetState(Character.State.State.Grogy);
         var grogyState = this.state as Character.State.Grogy;
 
-        int type = Random.Range(0, 3);
-        if (type == 0)
+        // Max를 100으로 기준잡고 임시 값 설정
+        if (grogyValue > 70)
         {
             Vector3 moveVector = this.characterController.transform.forward;
             moveVector *= -1;
@@ -220,7 +220,7 @@ public class PlayerController : MonoBehaviour
             Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 3.0f, moveVector, 3.0f);
             grogyState?.SetContext(context);
         }
-        else if (type == 1)
+        else if (grogyValue > 30)
         {
             Vector3 moveVector = this.characterController.transform.forward;
             moveVector *= -1;
@@ -230,7 +230,7 @@ public class PlayerController : MonoBehaviour
             Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 1.5f, moveVector, 0.5f);
             grogyState?.SetContext(context);
         }
-        else if(type == 2)
+        else
         {
             Character.State.Grogy.GrogyType types = Character.State.Grogy.GrogyType.None;
             Character.State.Grogy.Context context = new Character.State.Grogy.Context(types, 1.0f, Vector3.zero, 1.0f);
