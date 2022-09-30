@@ -216,9 +216,11 @@ public class Reporter : MonoBehaviour
 	public string fpsText;
 
 	public UnityEngine.UI.Button OpenButton;
-	public UnityEngine.UI.Text OpenButtonText;
+	private UnityEngine.CanvasGroup OpenButtonCanvasGroup = null;
 	private int openButtonClickCount = 0;
 	private Coroutine openButtonClickCoroutine = null;
+
+	public GameObject ErrorNotify = null;
 
 	public string DiscordWebHook = "https://discord.com/api/webhooks/1022492656808493066/7MYCrjE_9V1kZELw7e_BQeAjJjYTPOnjHF5EBqZJmrBD9lNkvATGrHBT_vReuIK0Wj2Q";
 
@@ -470,6 +472,11 @@ public class Reporter : MonoBehaviour
 
 		if(OpenButton != null)
         {
+			this.OpenButtonCanvasGroup = OpenButton.GetComponent<CanvasGroup>();
+			if(this.OpenButtonCanvasGroup == null)
+            {
+				this.OpenButtonCanvasGroup = this.OpenButton.gameObject.AddComponent<CanvasGroup>();
+            }
 			SetOpenButtonAlpha(0.0f);
 			OpenButton.onClick.AddListener(OnClickOpenButton);
         }
@@ -482,13 +489,7 @@ public class Reporter : MonoBehaviour
 
 	private void SetOpenButtonAlpha(float alpha)
     {
-		Color color = this.OpenButton.image.color;
-		color.a = alpha;
-		this.OpenButton.image.color = color;
-
-		Color textColor = this.OpenButtonText.color;
-		textColor.a = alpha;
-		this.OpenButtonText.color = textColor;
+		this.OpenButtonCanvasGroup.alpha = alpha;
 	}
 
 	private void OnClickOpenButton()
@@ -2113,6 +2114,33 @@ public class Reporter : MonoBehaviour
 		lock (threadedLogs) {
 			threadedLogs.Add(log);
 		}
+		if(type == LogType.Error)
+        {
+			OnLogErrorNotify();
+		}
+	}
+
+	void OnLogErrorNotify()
+    {
+		if(this.ErrorNotify != null)
+        {
+			if (this.ErrorNotify.GetComponent<Common.Component.Tween>() != null)
+				return;
+
+			var tween = this.ErrorNotify.AddComponent<Common.Component.Tween>();
+			tween.alphaContext = new Common.Component.Tween.AlphaContext();
+			tween.alphaContext.Begin = 0.0f;
+			tween.alphaContext.End = 1.0f;
+			tween.alphaContext.loopCount = 3;
+			var keyFrame = new Keyframe[2];
+			keyFrame[0].time = 0.0f;
+			keyFrame[0].value = 0.0f;
+			keyFrame[1].time = 0.3f;
+			keyFrame[1].value = 1.0f;
+			tween.alphaContext.animationCurve = new AnimationCurve(keyFrame);
+			tween.alphaContext.playType = Common.Component.Tween.Context.PlayType.PingPong;
+			tween.StartTween();
+        }
 	}
 
 #if !UNITY_CHANGE3
