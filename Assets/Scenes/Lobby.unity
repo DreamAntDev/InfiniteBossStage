@@ -468,7 +468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -501,8 +501,8 @@ CanvasGroup:
   m_GameObject: {fileID: 813521328}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &839768087
 GameObject:
@@ -555,7 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: b1e1cc68527f2074391c39656a119fd0, type: 2}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -626,6 +626,7 @@ MonoBehaviour:
   fps: 0
   fpsText: 
   OpenButton: {fileID: 1539007390}
+  ErrorNotify: {fileID: 813521328}
   DiscordWebHook: https://discord.com/api/webhooks/1022509381629247568/fc3uWMb3D0h24B6XxD2rf7m-H1KTJFJUQRr_k35jPelJEIeph-L5pXywKInbdZNmcFCH
   images:
     clearImage: {fileID: 2800000, guid: 112c6fcf56e349449ab2e6ad76b67816, type: 3}
