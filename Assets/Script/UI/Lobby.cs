@@ -37,11 +37,11 @@ namespace UI.Lobby
                 var obj = pages.Find(o => o.gameObject.name.Equals(pageName));
                 if(obj != null)
                 {
-                    newPage = Instantiate(obj);
+                    newPage = Instantiate(obj,this.transform);
                     cachedLobbyDictionary.Add(pageName, newPage);
-                    newPage.transform.SetParent(this.transform);
+                    //newPage.transform.SetParent(this.transform);
                     newPage.transform.SetAsFirstSibling();
-                    newPage.transform.localScale = Vector3.one;
+                    //newPage.transform.localScale = Vector3.one;
                     newPage.SetParentLobby(this);
                 }
                 else

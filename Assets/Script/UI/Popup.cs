@@ -14,13 +14,14 @@ namespace UI
             GameObject bg = new GameObject("Dim");
             bg.layer = this.gameObject.layer;
             bg.transform.SetParent(this.gameObject.transform);
+            bg.transform.localScale = Vector3.one;
             bg.transform.SetAsFirstSibling();
 
             var image = bg.AddComponent<Image>();
-            image.rectTransform.anchorMin = new Vector2(0, 0);
-            image.rectTransform.anchorMax = new Vector2(1, 1);
-            image.rectTransform.anchoredPosition = new Vector2(0, 0);
-            image.rectTransform.sizeDelta = new Vector2(0, 0);
+            image.rectTransform.anchorMin = Vector2.zero;
+            image.rectTransform.anchorMax = Vector2.one;
+            image.rectTransform.anchoredPosition = Vector2.zero;
+            image.rectTransform.sizeDelta = Vector2.zero;
             image.color = new Color(0, 0, 0, 0.4f);
             bg.AddComponent<Button>();
         }
