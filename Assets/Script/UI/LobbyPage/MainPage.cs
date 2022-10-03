@@ -18,6 +18,10 @@ namespace UI.Lobby
         public TextMeshProUGUI Text_Stamina;
         public TextMeshProUGUI Text_Attack;
         public TextMeshProUGUI Text_Move;
+        public TextMeshProUGUI Text_Achievement_Stage;
+        public TextMeshProUGUI Text_Achievement_Relics;
+        public Slider Slider_Achievement_Stage;
+        public Slider Slider_Achievement_Relics;
 
 
         public Data.Character.CharacterStatus statusData;
@@ -67,6 +71,8 @@ namespace UI.Lobby
         {
             status = new Character.Status(statusData);
             PlayerStatus();
+            Achevement();
+
         }
 
         private void OnShop()
@@ -84,6 +90,29 @@ namespace UI.Lobby
             {
                 RelicManager.Instance.AddRelic(relic);
                 UI.UILoader.Load("RelicRewardPopup", () => UI.UILoader.GetUI<UI.RelicRewardPopup.RelicRewardPopup>("RelicRewardPopup").SetRelicData(relic));
+            }
+        }
+
+        private void Achevement()
+        {
+            var achievements = new List<string>();
+            achievements = Static.AchievementManager.get();
+            for(int i = 0; i < achievements.Count; i++) {
+                Debug.Log(achievements[i]);
+                string[] infos = achievements[i].Split(':');
+                switch (infos[0])
+                {
+                    case "0":
+                        // 스테이지
+                        Text_Achievement_Stage.text = infos[1] + "/" + infos[2];
+                        Slider_Achievement_Stage.value = float.Parse(infos[1])/float.Parse(infos[2]);
+                        break;
+                    case "1":
+                        // 렐릭
+                        Text_Achievement_Relics.text = infos[1] + "/" + infos[2];
+                        Slider_Achievement_Relics.value = float.Parse(infos[1])/float.Parse(infos[2]);
+                        break;
+                }
             }
         }
 

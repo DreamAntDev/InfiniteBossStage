@@ -144,6 +144,10 @@ MonoBehaviour:
   Text_Stamina: {fileID: 159782641377678924}
   Text_Attack: {fileID: 7747980089527207617}
   Text_Move: {fileID: 7801526471736851743}
+  Text_Achievement_Stage: {fileID: 4068051920969411352}
+  Text_Achievement_Relics: {fileID: 7711981284621215837}
+  Slider_Achievement_Stage: {fileID: 877858421297462696}
+  Slider_Achievement_Relics: {fileID: 6537893075483639363}
   statusData: {fileID: 11400000, guid: 0e618a5c34ed2724791eb34ef20b3d1b, type: 2}
 --- !u!114 &1541804460271611963
 MonoBehaviour:
@@ -1649,7 +1653,7 @@ GameObject:
   - component: {fileID: 4131093343256065077}
   - component: {fileID: 7711981284621215837}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_Achievement_Relics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2296,7 +2300,7 @@ GameObject:
   - component: {fileID: 7116859679749812875}
   - component: {fileID: 4068051920969411352}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_Achievement_Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
