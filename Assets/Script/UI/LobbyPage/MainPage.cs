@@ -95,25 +95,15 @@ namespace UI.Lobby
 
         private void Achevement()
         {
-            var achievements = new List<string>();
-            achievements = Static.AchievementManager.get();
-            for(int i = 0; i < achievements.Count; i++) {
-                Debug.Log(achievements[i]);
-                string[] infos = achievements[i].Split(':');
-                switch (infos[0])
-                {
-                    case "0":
-                        // 스테이지
-                        Text_Achievement_Stage.text = infos[1] + "/" + infos[2];
-                        Slider_Achievement_Stage.value = float.Parse(infos[1])/float.Parse(infos[2]);
-                        break;
-                    case "1":
-                        // 렐릭
-                        Text_Achievement_Relics.text = infos[1] + "/" + infos[2];
-                        Slider_Achievement_Relics.value = float.Parse(infos[1])/float.Parse(infos[2]);
-                        break;
-                }
-            }
+            // todo
+            var stageMax = 5;
+            var relicMax = 5;
+            // Stage
+            Text_Achievement_Stage.text = Static.AchievementManager.get(AchievementDefine.stageClearMax).ToString() + "/" + stageMax.ToString();
+            Slider_Achievement_Stage.value = (float)(Static.AchievementManager.get(AchievementDefine.stageClearMax)/stageMax);
+            // Relics
+            Text_Achievement_Relics.text = Static.AchievementManager.get(AchievementDefine.relicCount).ToString() + "/" + relicMax.ToString();
+            Slider_Achievement_Relics.value = (float)Static.AchievementManager.get(AchievementDefine.relicCount)/relicMax;
         }
 
         private void PlayerStatus()

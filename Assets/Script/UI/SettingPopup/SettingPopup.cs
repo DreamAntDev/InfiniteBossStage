@@ -9,6 +9,7 @@ namespace UI.SettingPopup
     {
         public Button enterButton;
         public Button closeButton;
+        public Button testButton;
 
         [System.Serializable]
         public class BackgroundSound
@@ -29,6 +30,7 @@ namespace UI.SettingPopup
 
             backgroundSound.slider.value = Static.SoundManager.Instance.backgroundSoundValue;
             backgroundSound.slider.onValueChanged.AddListener((float val) => ChangeBackgroundSoundValue(val));
+            this.testButton.onClick.AddListener(() => OnTest());
         }
 
 
@@ -48,6 +50,11 @@ namespace UI.SettingPopup
         private void ChangeBackgroundSoundValue(float value)
         {
             Static.SoundManager.Instance.SetSoundValue(value);
+        }
+
+        private void OnTest()
+        {
+            Static.AchievementManager.testDel();
         }
     }
 }
