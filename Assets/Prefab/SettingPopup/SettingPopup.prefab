@@ -372,6 +372,7 @@ MonoBehaviour:
   isNeedBackgroun: 1
   enterButton: {fileID: 309099495130985268}
   closeButton: {fileID: 8878276288862923136}
+  testButton: {fileID: 4373684275574189663}
   backgroundSound:
     slider: {fileID: 3583040585474180950}
 --- !u!1 &1092646363322533878

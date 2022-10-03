@@ -31,13 +31,13 @@ public class RelicManager : Singleton<RelicManager>
         InitRelic();
     }
 
-    
+
 
     private void InitRelic()
     {
         int count = PlayerPrefs.GetInt(RelicDefine.ActiveRelicCount, 0);
-        
-        for(int i = 1; i <= count; i++) { 
+
+        for(int i = 1; i <= count; i++) {
             var relicID = PlayerPrefs.GetInt(RelicDefine.ActiveRelic + i);
             var relic = relics.Find(x => x.ID == relicID);
             activeRelicList.Add(relic);
@@ -71,6 +71,9 @@ public class RelicManager : Singleton<RelicManager>
         int count = PlayerPrefs.GetInt(RelicDefine.InvenRelicCount, 0) + 1;
         PlayerPrefs.SetInt(RelicDefine.InvenRelicCount, count);
         PlayerPrefs.SetInt(RelicDefine.InvenRelic + count, relic.ID);
+        if (count == 1) {
+            Static.AchievementManager.incr(AchievementDefine.relicCount);
+        }
     }
 
     public void SelectRelic(Relic relic)

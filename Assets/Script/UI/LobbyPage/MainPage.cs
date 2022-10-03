@@ -96,11 +96,11 @@ namespace UI.Lobby
         private void Achevement()
         {
             // todo
-            var stageMax = 5;
+            var stageMax = 3;
             var relicMax = 5;
             // Stage
             Text_Achievement_Stage.text = Static.AchievementManager.get(AchievementDefine.stageClearMax).ToString() + "/" + stageMax.ToString();
-            Slider_Achievement_Stage.value = (float)(Static.AchievementManager.get(AchievementDefine.stageClearMax)/stageMax);
+            Slider_Achievement_Stage.value = (float)Static.AchievementManager.get(AchievementDefine.stageClearMax)/stageMax;
             // Relics
             Text_Achievement_Relics.text = Static.AchievementManager.get(AchievementDefine.relicCount).ToString() + "/" + relicMax.ToString();
             Slider_Achievement_Relics.value = (float)Static.AchievementManager.get(AchievementDefine.relicCount)/relicMax;

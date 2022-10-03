@@ -55,6 +55,7 @@ namespace UI.SettingPopup
         private void OnTest()
         {
             Static.AchievementManager.testDel();
+            PlayerPrefs.SetInt(RelicDefine.InvenRelicCount, 0);
         }
     }
 }
