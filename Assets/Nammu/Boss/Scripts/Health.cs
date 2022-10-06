@@ -23,6 +23,7 @@ public class Health : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         maxHealth = health;
+		Debug.Log("Boss :" + maxHealth);
         UI.MainInterface.MainInterface.Instance.bossHpSlider.SetValue((float)this.health / this.maxHealth);
     }
 
