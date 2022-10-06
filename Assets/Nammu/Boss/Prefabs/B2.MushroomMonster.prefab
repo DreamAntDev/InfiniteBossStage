@@ -255,7 +255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fec1daaa673acf4a92cd5ad89c65e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relics: []
+  relics:
+  - {fileID: 11400000, guid: 9b3e81d4f7f7ebf4aa7545e7b7dc4d91, type: 2}
+  - {fileID: 11400000, guid: 38257e3a467f2cf46a158868c1a88fcf, type: 2}
+  - {fileID: 11400000, guid: c20ca252e7ab1fd4a8a09ed8a5ee7a64, type: 2}
 --- !u!114 &4901991407810938976
 MonoBehaviour:
   m_ObjectHideFlags: 0
