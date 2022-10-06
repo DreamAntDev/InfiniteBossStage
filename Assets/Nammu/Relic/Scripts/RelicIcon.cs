@@ -13,7 +13,7 @@ public class RelicIcon : MonoBehaviour, IPointerClickHandler
     protected Image relicImage;
     [SerializeField]
     protected TMPro.TextMeshProUGUI text_itemCount;
-    private int itemCount = 0;
+    private int itemCount = 1;
 
     private Relic currentRelic;
 
@@ -24,6 +24,11 @@ public class RelicIcon : MonoBehaviour, IPointerClickHandler
     public Relic Relic
     {
         get => currentRelic;
+    }
+
+    public int ItemCount
+    {
+        get => itemCount;
     }
 
     public void SetRelicIcon(Relic relic)

@@ -65,6 +65,8 @@ namespace IBS.Monster
                     }
                     //Value 합산해서 한꺼번에 적용 필요.
 
+
+
                 }
             }
         }

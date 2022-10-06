@@ -9,6 +9,7 @@ using Type = IBS.Resoruce.Type;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace UI.Lobby
 {
@@ -61,17 +62,38 @@ namespace UI.Lobby
             relicIconList = new List<RelicIcon>();
         }
 
-        private void Start()
+       
+        private void OnEnable()
         {
-            InitUI();
+            NewRelicChecker();
         }
 
-        private void InitUI()
+        private void NewRelicChecker()
+        {
+            int sumCount = 0;
+
+            foreach(var icon in relicIconList)
+                sumCount += icon.ItemCount;
+
+            int count = RelicManager.Instance.Relics.Count - sumCount;
+
+            Debug.Log($"{RelicManager.Instance.Relics.Count}/{sumCount}/{count}");
+            if (count > 0)
+            {
+                AddRelicIcon(RelicManager.Instance.Relics.GetRange(sumCount, count));
+            }  
+        }
+
+       /* private void InitUI()
         {
             var relics = RelicManager.Instance.Relics;
             Debug.Log($"### InitUI Relic List {relics.Count}");
-
-            foreach(var relic in relics)
+            AddRelicIcon(relics);
+        }
+       */
+        private void AddRelicIcon(List<Relic> relics)
+        {
+            foreach (var relic in relics)
             {
                 RelicIcon iconData = null;
                 switch (relic.Rating)
@@ -111,7 +133,6 @@ namespace UI.Lobby
                 {
                     relicFindData.UpdateItemCount();
                 }
-
             }
         }
 

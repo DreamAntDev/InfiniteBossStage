@@ -15,6 +15,7 @@ public class RelicManager : Singleton<RelicManager>
 
     private List<Relic> activeRelicList = new List<Relic>();
 
+    private int currentHaveCount = 0;
     public List<Relic> Relics
     {
         get { MyRelic(); return haveRelics; }
@@ -29,6 +30,7 @@ public class RelicManager : Singleton<RelicManager>
     {
         haveRelics = new List<Relic>();
         InitRelic();
+        MyRelic();
     }
 
 
@@ -48,7 +50,14 @@ public class RelicManager : Singleton<RelicManager>
     private void MyRelic()
     {
         int count = PlayerPrefs.GetInt(RelicDefine.InvenRelicCount, 0);
-        Debug.Log("Count:" + count);
+
+        if (count == currentHaveCount)
+            return;
+
+        currentHaveCount = count;
+        haveRelics.Clear();
+
+        Debug.Log("MyRelic:" + count);
         for (int i = 1; i <= count; i++)
         {
             int id = PlayerPrefs.GetInt(RelicDefine.InvenRelic + i);
