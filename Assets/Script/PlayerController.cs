@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerController.instance != null)
         {
-            Debug.LogError("PlayerController Is SingleTone");
             return;
         }
 
@@ -43,6 +42,9 @@ public class PlayerController : MonoBehaviour
         this.characterController = GetComponent<CharacterController>();
         this.animator = GetComponent<Animator>();
 
+        if (animator == null)
+            Debug.LogError("PlayerController Animator is Null");
+
         stateContainer = new Dictionary<Character.State.State, Character.State.IState>();
         stateContainer.Add(Character.State.State.Idle, new Character.State.Idle());
         stateContainer.Add(Character.State.State.Move, new Character.State.Move());
@@ -52,6 +54,11 @@ public class PlayerController : MonoBehaviour
         stateContainer.Add(Character.State.State.Dead, new Character.State.Dead());
 
         this.state = stateContainer[Character.State.State.Idle];
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.instance = null;
     }
 
     private void Start()
@@ -189,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
         this.SetState(Character.State.State.Avoid);
         var avoidState = this.state as Character.State.Avoid;
-        Vector3 avoidVector = (reserveMoveVector == Vector3.zero) ? this.characterController.transform.forward : reserveMoveVector;
+        Vector3 avoidVector = (reserveMoveVector == Vector3.zero) ? this.gameObject.transform.forward : reserveMoveVector;
         avoidState?.SetMoveVector(avoidVector);
     }
     
