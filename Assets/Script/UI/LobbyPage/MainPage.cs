@@ -122,19 +122,16 @@ namespace UI.Lobby
                 var image_Relic = relicUI.transform.Find("Icon_Sub").GetComponent<Image>();
                 var Text_Relic_Name = relicUI.transform.Find("Text_Relic_Name").GetComponent<TextMeshProUGUI>();
                 var Text_Relic_Rating = relicUI.transform.Find("Text_Relic_Rating").GetComponent<TextMeshProUGUI>();
-                var Text_Relic_Context = relicUI.transform.Find("Text_Relic_Context").GetComponent<TextMeshProUGUI>();
 
                 if ((activeRelics.Count - i) > 0) {
                     image_Relic.enabled = true;
                     image_Relic.sprite = activeRelics[i].Sprite;
                     Text_Relic_Name.text = activeRelics[i].Name;
                     Text_Relic_Rating.text = activeRelics[i].Rating.ToString();
-                    Text_Relic_Context.text = activeRelics[i].Context;
                 } else {
                     image_Relic.enabled = false;
                     Text_Relic_Name.text = "";
                     Text_Relic_Rating.text = "";
-                    Text_Relic_Context.text = "";
                 }
             }
         }
