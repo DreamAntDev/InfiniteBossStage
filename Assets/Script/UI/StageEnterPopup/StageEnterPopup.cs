@@ -28,7 +28,7 @@ namespace UI.StageEnterPopup
 
         private void SetList()
         {
-            //StageData ·Îµù¹æ½Ä º¯°æÈÄ¿¡ ³ªÁß¿¡ ¼öÁ¤
+            //StageData ï¿½Îµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½
             foreach(var stage in Data.Stage.Instance.Container)
             {
                 var stageListItem = GameObject.Instantiate(this.listItem.gameObject, scrollRect.content.transform).GetComponent<StageListItem>();

@@ -11,6 +11,9 @@ namespace Data.Stage
     public class Stage : ScriptableObject
     {
         public int Index;
+        public string Title;
+        public string Desc;
+        public Sprite Icon;
         public string BossPrefab;
         public string WorldPrefab;
         public string BGM;

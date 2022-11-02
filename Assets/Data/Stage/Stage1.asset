@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   Index: 1
+  Title: Defeat the Golem
+  Desc: Basic Relic Drop
+  Icon: {fileID: 21300000, guid: 0358e94906c704657ab9ca0a8ce5a588, type: 3}
   BossPrefab: PBR_Golem
   WorldPrefab: Map_1
   BGM: Sound/Stage1BGM

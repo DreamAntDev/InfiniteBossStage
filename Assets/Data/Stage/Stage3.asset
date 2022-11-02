@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Stage3
   m_EditorClassIdentifier: 
   Index: 3
+  Title: too many legs
+  Desc: High rank relic drop
+  Icon: {fileID: 21300000, guid: 1763c140e7caf4eb2a38686bf8a790ec, type: 3}
   BossPrefab: B3.Spider_Flower
   WorldPrefab: Map_3
+  BGM: 
