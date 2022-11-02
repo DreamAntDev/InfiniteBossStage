@@ -36,6 +36,8 @@ namespace Character.State
                     UI.CommonPopup.CommonPopup.Close();
                 };
                 popupContext.needCloseButton = false;
+                popupContext.Title = "You Die";
+                popupContext.Desc = "Come back stronger than you are now";
 
                 UI.CommonPopup.CommonPopup.Open(popupContext);
             }

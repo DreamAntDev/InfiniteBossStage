@@ -15,6 +15,8 @@ namespace UI.CommonPopup
         {
             public UnityEngine.Events.UnityAction confirm;
             public bool needCloseButton;
+            public string Title;
+            public string Desc;
         }
 
         public override void SetBackButton()
@@ -40,7 +42,8 @@ namespace UI.CommonPopup
         {
             popup = UI.UILoader.GetUI<UI.CommonPopup.CommonPopup>("CommonPopup");
             popup.confirmButton.onClick.AddListener(context.confirm);
-
+            GameObject.Find("Text_Title").GetComponent<TextMeshProUGUI>().text = context.Title;
+            GameObject.Find("Text_Desc").GetComponent<TextMeshProUGUI>().text = context.Desc;
             popup.closeButton.gameObject.SetActive(context.needCloseButton);
             if (context.needCloseButton == true)
             {

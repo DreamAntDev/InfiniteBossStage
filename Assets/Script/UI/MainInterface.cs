@@ -57,6 +57,8 @@ namespace UI.MainInterface
                         UI.CommonPopup.CommonPopup.Close();
                     };
                     popupContext.needCloseButton = true;
+                    popupContext.Title = "Pause";
+                    popupContext.Desc = "Would you like to go back to the lobby now?";
                     UI.CommonPopup.CommonPopup.Open(popupContext);
                 }
             }
