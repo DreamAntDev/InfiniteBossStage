@@ -13,6 +13,7 @@ namespace IBS.Combat
         Animator animator;
         Mover mover;
         Health health;
+        SkillSystem skillSystem;
 
         [SerializeField]
         float attackDistance = 2f;
@@ -33,6 +34,7 @@ namespace IBS.Combat
             animator = GetComponent<Animator>();
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
+            skillSystem = GetComponent<SkillSystem>();
         }
 
         private void Start()
@@ -107,8 +109,10 @@ namespace IBS.Combat
         private void TriggerAttack()
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            attackName = "Attack" + Mathf.RoundToInt(UnityEngine.Random.Range(1, attackCount +1));
+            int count = UnityEngine.Random.Range(1, attackCount + 1);
+            attackName = "Attack" + Mathf.RoundToInt(count);
             animator.SetTrigger(attackName);
+            skillSystem.SkillAttack(count);
         }
 
         public void Cancel()
@@ -121,6 +125,7 @@ namespace IBS.Combat
         {
             animator.ResetTrigger(attackName);
             animator.SetTrigger("StopAttack");
+            skillSystem.Stop();
         }
     }
 }

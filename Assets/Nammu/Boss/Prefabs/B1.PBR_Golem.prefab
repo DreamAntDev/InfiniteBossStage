@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 5567177273460022606}
   - component: {fileID: 7583293479428830406}
   - component: {fileID: 1389686719}
+  - component: {fileID: 3223227632997481137}
   m_Layer: 0
   m_Name: B1.PBR_Golem
   m_TagString: Boss
@@ -130,6 +131,7 @@ Transform:
   m_Children:
   - {fileID: 5571732723343544244}
   - {fileID: 5570170403840007274}
+  - {fileID: 7169736959749022141}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 345.505, z: 0}
@@ -148,10 +150,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Upper_Arm_R'\n\tTransform 'Lower_Arm_R'\n\tTransform
-    'Upper_Arm_L'\n\tFrom animation clip 'PowerAttack02'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -187,7 +186,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5567177273460022593
 MonoBehaviour:
@@ -202,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 3
+  attackCount: 3
 --- !u!114 &5567177273460022592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +272,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4a3779292b3a2478bfd7978d3dd098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3223227632997481137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566833410643844168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a36804e59358ec48baa64789eaaa661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5480966050611604320}
+  projector: {fileID: 8078494983840526715}
+  arrowMaterial: {fileID: 2100000, guid: 817b3e14e19b5ce48b235bf9c3a3d92a, type: 2}
+  aoeMaterial: {fileID: 2100000, guid: c8c80c5b03f5c7e40b07eb2170e667e5, type: 2}
+  skiles:
+  - {fileID: 11400000, guid: cd211fdcfe3a81b48b326cf3c42b50bf, type: 2}
+  - {fileID: 11400000, guid: 541609731d7794c4ea6c84da60ac6907, type: 2}
+  - {fileID: 11400000, guid: 828ad51fb3ac47d40846010e53de402f, type: 2}
 --- !u!1 &5566845974488882890
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,3 +922,53 @@ Transform:
   m_Father: {fileID: 5570153246283640020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8089972255336932956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7169736959749022141}
+  - component: {fileID: 8078494983840526715}
+  m_Layer: 0
+  m_Name: Projecter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7169736959749022141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089972255336932956}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5570178034340111786}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!119 &8078494983840526715
+Projector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089972255336932956}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 0.1
+  m_FarClipPlane: 10
+  m_FieldOfView: 0.00000001
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 10
+  m_Material: {fileID: 2100000, guid: c8c80c5b03f5c7e40b07eb2170e667e5, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 0
