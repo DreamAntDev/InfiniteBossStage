@@ -11,6 +11,12 @@ public class SkillScriptableObject : ScriptableObject
     private SkileType skileType;
 
     [SerializeField]
+    private GameObject summonsObject;
+
+    [SerializeField]
+    private int summonsCount;
+
+    [SerializeField]
     private float skileReadyTime;
 
     [SerializeField]
@@ -27,6 +33,21 @@ public class SkillScriptableObject : ScriptableObject
     public float ReadyTime
     {
         get => skileReadyTime;
+    }
+
+    public float Damage
+    {
+        get => skileDamage;
+    }
+
+    public int SummousCount
+    {
+        get => summonsCount;
+    }
+
+    public GameObject SummonObject
+    {
+        get => summonsObject;
     }
     
     public float Range

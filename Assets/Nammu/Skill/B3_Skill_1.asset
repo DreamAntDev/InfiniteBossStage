@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f066e5d39a2e0f4498297a34ef237541, type: 3}
-  m_Name: Skill_3
+  m_Name: B3_Skill_1
   m_EditorClassIdentifier: 
   skileName: Attack
-  skileType: 1
-  skileReadyTime: 2
-  skileDamage: 30
-  range: 15
+  skileType: 0
+  skileReadyTime: 0.1
+  skileDamage: 10
+  range: 2

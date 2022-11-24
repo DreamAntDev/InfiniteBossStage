@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Boss
   - FxTemporaire
+  - Mine
   layers:
   - Default
   - TransparentFX
